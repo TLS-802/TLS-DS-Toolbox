@@ -651,10 +651,11 @@ function createMetricSectionHTML(platformKey, metricId, metricConfig) {
         });
         
         // 处理最后一行可能需要的计算按钮
-        const needsCalculationButton = metricConfig.type === 'positive_rate' || 
+        const needsCalculationButton = (metricConfig.type === 'positive_rate' || 
                                       metricConfig.type === 'negative_rate' || 
                                       metricConfig.type === 'positive_average' || 
-                                      metricConfig.type === 'negative_average';
+                                      metricConfig.type === 'negative_average') && 
+                                      !metricConfig.countInput; // 如果是countInput类型，不在这里添加按钮
         
         // 确定计算按钮文本
         const buttonText = metricConfig.calculationButtonText || 
