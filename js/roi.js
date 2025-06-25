@@ -40,9 +40,9 @@ const 电商计算器App = (function() {
         },
         // 版本按钮颜色
         VERSION_COLORS: {
-            merchant: '#ff0000', // 红色
-            influencer: '#ffcc00', // 黄色
-            store_profit: '#2c60ff', // 蓝色
+            merchant: '#2c60ff',  // 蓝色 - 抖店
+            influencer: '#ffcc00', // 黄色 - 淘宝
+            store_profit: '#00bb29', // 绿色 - 快手
         },
         // CSS classes for inactive platform buttons
         INACTIVE_BUTTON_CLASSES: ['bg-white', 'text-gray-700', 'hover:bg-gray-100', 'focus:ring-gray-400', 'border-gray-300'],
@@ -588,12 +588,8 @@ const 电商计算器App = (function() {
         btn.classList.remove(...CONFIG.INACTIVE_BUTTON_CLASSES);
         btn.classList.add('active');
         
-        // 版本对应颜色
-        const versionColors = {
-            merchant: '#2c60ff',  // 蓝色 - 抖店
-            influencer: '#ffcc00', // 黄色 - 淘宝
-            store_profit: '#00bb29' // 绿色 - 快手
-        };
+        // 使用CONFIG中定义的版本颜色
+        const versionColors = CONFIG.VERSION_COLORS;
         
         // 设置当前按钮的背景色和文字颜色
         btn.style.backgroundColor = versionColors[version];
@@ -607,12 +603,13 @@ const 电商计算器App = (function() {
             const headings = resultArea.querySelectorAll('h5');
             headings.forEach(heading => {
                 heading.style.color = color;
-                if (color === '#2c60ff') {
-                    heading.style.borderBottomColor = 'rgba(44, 96, 255, 0.3)';
-                } else if (color === '#ffcc00') {
-                    heading.style.borderBottomColor = 'rgba(255, 204, 0, 0.3)';
-                } else if (color === '#00bb29') {
-                    heading.style.borderBottomColor = 'rgba(0, 187, 41, 0.3)';
+                // 动态生成透明度颜色
+                const rgbMatch = color.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
+                if (rgbMatch) {
+                    const r = parseInt(rgbMatch[1], 16);
+                    const g = parseInt(rgbMatch[2], 16);
+                    const b = parseInt(rgbMatch[3], 16);
+                    heading.style.borderBottomColor = `rgba(${r}, ${g}, ${b}, 0.3)`;
                 }
             });
         }
@@ -682,7 +679,14 @@ const 电商计算器App = (function() {
                 const headings = resultArea.querySelectorAll('h5');
                 headings.forEach(heading => {
                     heading.style.color = versionColor;
-                    heading.style.borderBottomColor = versionColor.replace(/[^,]+(?=\))/, '0.3');
+                    // 动态生成透明度颜色
+                    const rgbMatch = versionColor.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
+                    if (rgbMatch) {
+                        const r = parseInt(rgbMatch[1], 16);
+                        const g = parseInt(rgbMatch[2], 16);
+                        const b = parseInt(rgbMatch[3], 16);
+                        heading.style.borderBottomColor = `rgba(${r}, ${g}, ${b}, 0.3)`;
+                    }
                 });
                 
                 // 可选：设置结果值的颜色
@@ -779,12 +783,8 @@ const 电商计算器App = (function() {
      * 应用默认颜色样式
      */
     function applyDefaultColors() {
-        // 版本对应颜色
-        const versionColors = {
-            merchant: '#2c60ff',  // 蓝色 - 抖店
-            influencer: '#ffcc00', // 黄色 - 淘宝
-            store_profit: '#00bb29' // 绿色 - 快手
-        };
+        // 直接使用CONFIG中定义的版本颜色
+        const versionColors = CONFIG.VERSION_COLORS;
         
         // 为所有按钮设置相应颜色
         DOM.platformButtons.forEach(button => {
@@ -810,12 +810,13 @@ const 电商计算器App = (function() {
                 const headings = resultArea.querySelectorAll('h5');
                 headings.forEach(heading => {
                     heading.style.color = color;
-                    if (color === '#2c60ff') {
-                        heading.style.borderBottomColor = 'rgba(44, 96, 255, 0.3)';
-                    } else if (color === '#ffcc00') {
-                        heading.style.borderBottomColor = 'rgba(255, 204, 0, 0.3)';
-                    } else if (color === '#00bb29') {
-                        heading.style.borderBottomColor = 'rgba(0, 187, 41, 0.3)';
+                    // 动态生成透明度颜色
+                    const rgbMatch = color.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
+                    if (rgbMatch) {
+                        const r = parseInt(rgbMatch[1], 16);
+                        const g = parseInt(rgbMatch[2], 16);
+                        const b = parseInt(rgbMatch[3], 16);
+                        heading.style.borderBottomColor = `rgba(${r}, ${g}, ${b}, 0.3)`;
                     }
                 });
             }
