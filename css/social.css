@@ -2,24 +2,32 @@
 .social-links {
     display: flex;
     justify-content: center;
-    gap: 8px !important;
-    margin-bottom: 2px;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-.social-links a {
-    display: flex;
+.social-item {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
+    width: 36px;
+    height: 36px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    color: #666;
     transition: all 0.3s ease;
-    width: 48px;
-    height: 48px;
-    padding: 5px;
-    box-sizing: border-box;
 }
 
-.social-links a:hover {
-    transform: translateY(-3px);
+.social-item:hover {
+    background-color: #3b82f6;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.social-icon {
+    width: 18px;
+    height: 18px;
 }
 
 /* 社交媒体图标 */

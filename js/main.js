@@ -5,6 +5,41 @@ document.addEventListener('DOMContentLoaded', function() {
     // 深色模式切换功能可以在这里实现
     // 全局分析功能可以在这里实现
     // 全局共享状态可以在这里管理
+
+    // 添加平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId !== '#') {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+    
+    // 响应式导航
+    const cardGrid = document.querySelector('.card-grid');
+    if (cardGrid) {
+        const updateGridColumns = () => {
+            const width = window.innerWidth;
+            if (width < 640) {
+                cardGrid.style.gridTemplateColumns = 'repeat(1, 1fr)';
+            } else if (width < 768) {
+                cardGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            } else {
+                cardGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+            }
+        };
+        
+        updateGridColumns();
+        window.addEventListener('resize', updateGridColumns);
+    }
 });
 
 // 工具函数
