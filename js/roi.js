@@ -13,7 +13,7 @@ const 电商计算器App = (function() {
         storeProfitForm: null, // Form for store profit
         merchantResultArea: null, // Area to display merchant ROI results
         influencerResultArea: null, // Area to display influencer ROI results
-        store_profitResultArea: null, // Area to display store profit results
+        storeProfitResultArea: null, // Area to display store profit results
         allResultAreas: [], // Array of all result display areas
         errorMessageDiv: null, // Div to display error messages
         defaultButton: null, // The default active calculator button (merchant)
@@ -359,13 +359,23 @@ const 电商计算器App = (function() {
      * @param {Array<object>} resultMappings - The configuration for mapping results to DOM elements.
      */
     function populateResults(resultsData, resultMappings) {
+        console.log('开始填充结果到HTML，数据:', resultsData);
+        console.log('结果映射配置:', resultMappings);
+        
         resultMappings.forEach(map => {
-            if (map.type === 'range') {
-                updateRangeText(map.id, resultsData[map.keys[0]], resultsData[map.keys[1]], map.suffix || '', map.decimalPlaces);
-            } else if (map.id) { // Ensure map.id exists
-                updateResultTextById(map.id, resultsData[map.key], map.suffix || '', map.decimalPlaces);
+            try {
+                if (map.type === 'range') {
+                    console.log(`处理范围类型结果 ID: ${map.id}, 键: ${map.keys[0]}, ${map.keys[1]}`);
+                    updateRangeText(map.id, resultsData[map.keys[0]], resultsData[map.keys[1]], map.suffix || '', map.decimalPlaces);
+                } else if (map.id) { // Ensure map.id exists
+                    console.log(`处理单值类型结果 ID: ${map.id}, 键: ${map.key}, 值: ${resultsData[map.key]}`);
+                    updateResultTextById(map.id, resultsData[map.key], map.suffix || '', map.decimalPlaces);
+                }
+            } catch (error) {
+                console.error(`填充结果时出错, ID: ${map.id}`, error);
             }
         });
+        console.log('结果填充完成');
     }
 
 
@@ -514,6 +524,8 @@ const 电商计算器App = (function() {
      * @returns {object} An object containing calculated store profit metrics.
      */
     function calculateStoreProfitMetrics(inputs) {
+        console.log('开始计算店铺利润指标，输入值:', inputs);
+        
         const revenue = inputs['store-revenue']; // Total revenue (after refunds)
         const results = { totalRevenue: revenue };
 
@@ -524,7 +536,11 @@ const 电商计算器App = (function() {
         results.totalMarketingCost = inputs['store-marketing-total-cost'] || 0;
         results.totalOperationsCost = inputs['store-operations-total-cost'] || 0;
         results.totalOtherCosts = inputs['store-other-total-costs'] || 0;
-        results.totalPlatformFee = revenue * ((inputs['store-platform-commission-rate'] || 0) / 100);
+        
+        // 计算平台技术服务费
+        const platformCommissionRate = inputs['store-platform-commission-rate'] || 0;
+        console.log(`平台技术服务费率: ${platformCommissionRate}%`);
+        results.totalPlatformFee = revenue * (platformCommissionRate / 100);
 
         // Calculate total costs and net profit
         results.totalAllCosts = results.totalLaborCost +
@@ -535,6 +551,18 @@ const 电商计算器App = (function() {
                                 results.totalOperationsCost +
                                 results.totalOtherCosts;
         results.netProfit = revenue - results.totalAllCosts;
+        
+        console.log('总成本计算:', {
+            totalLaborCost: results.totalLaborCost,
+            totalProductCost: results.totalProductCost,
+            totalLogisticsCost: results.totalLogisticsCost,
+            totalMarketingCost: results.totalMarketingCost,
+            totalPlatformFee: results.totalPlatformFee,
+            totalOperationsCost: results.totalOperationsCost,
+            totalOtherCosts: results.totalOtherCosts,
+            totalAllCosts: results.totalAllCosts,
+            netProfit: results.netProfit
+        });
 
         // Helper to calculate percentage of revenue
         const calculatePercentage = (cost) => (revenue > 1e-9 ? (cost / revenue) * 100 : 0);
@@ -548,7 +576,8 @@ const 电商计算器App = (function() {
         results.operationsCostPercentage = calculatePercentage(results.totalOperationsCost);
         results.otherCostsPercentage = calculatePercentage(results.totalOtherCosts);
         results.overallProfitMargin = calculatePercentage(results.netProfit);
-
+        
+        console.log('计算完成的店铺利润指标:', results);
         return results;
     }
 
@@ -597,7 +626,9 @@ const 电商计算器App = (function() {
         btn.style.color = 'white';
         
         // 设置结果区域颜色
-        const resultArea = document.getElementById(`${version}-result-area`);
+        // 特殊处理store_profit版本的结果区域ID
+        let resultAreaId = version === 'store_profit' ? 'store-profit-result-area' : `${version}-result-area`;
+        const resultArea = document.getElementById(resultAreaId);
         if (resultArea) {
             const color = versionColors[version];
             const headings = resultArea.querySelectorAll('h5');
@@ -649,22 +680,34 @@ const 电商计算器App = (function() {
         event.preventDefault();
         clearError();
         
-        // 特殊处理store_profit版本，因为它的表单ID是store-profit-form而不是store_profit-roi-form
+        console.log(`处理${version}版本的表单提交`);
+        
+        // 特殊处理store_profit版本，因为它的表单ID和结果区域ID与其他版本的命名模式不同
         let formId = version === 'store_profit' ? 'store-profit-form' : `${version}-roi-form`;
+        let resultAreaId = version === 'store_profit' ? 'store-profit-result-area' : `${version}-result-area`;
         
         const form = document.getElementById(formId);
-        const resultArea = document.getElementById(`${version}-result-area`);
+        const resultArea = document.getElementById(resultAreaId);
+        
+        console.log(`表单ID: ${formId}, 表单存在: ${!!form}`);
+        console.log(`结果区域ID: ${resultAreaId}, 结果区域存在: ${!!resultArea}`);
+        
         if (!form || !resultArea) {
-            console.error(`Form or result area for ${version} not found.`);
+            console.error(`Form or result area for ${version} not found. Form ID: ${formId}, Result Area ID: ${resultAreaId}`);
             return;
         }
         
         const inputConfig = CONFIG.INPUT_CONFIGS[version];
         const formValues = getFormValues(formId, inputConfig);
         
+        console.log(`获取到的表单值:`, formValues);
+        
         try {
             const isValid = validateInputs(formValues, inputConfig, formId);
-            if (!isValid) return;
+            if (!isValid) {
+                console.log('表单验证失败');
+                return;
+            }
             
             let results;
             if (version === 'merchant') {
@@ -672,7 +715,9 @@ const 电商计算器App = (function() {
             } else if (version === 'influencer') {
                 results = calculateInfluencerMetrics(formValues);
             } else if (version === 'store_profit') {
+                console.log('计算店铺利润指标');
                 results = calculateStoreProfitMetrics(formValues);
+                console.log('计算结果:', results);
             } else {
                 throw new Error(`Unknown calculator version: ${version}`);
             }
@@ -731,11 +776,21 @@ const 电商计算器App = (function() {
 
         DOM.merchantResultArea = document.getElementById('merchant-result-area');
         DOM.influencerResultArea = document.getElementById('influencer-result-area');
-        DOM.store_profitResultArea = document.getElementById('store-profit-result-area'); // Corrected key
-        DOM.allResultAreas = [DOM.merchantResultArea, DOM.influencerResultArea, DOM.store_profitResultArea]; // Corrected key
+        DOM.storeProfitResultArea = document.getElementById('store-profit-result-area');
+        DOM.allResultAreas = [DOM.merchantResultArea, DOM.influencerResultArea, DOM.storeProfitResultArea];
 
         DOM.errorMessageDiv = document.getElementById('error-message');
         DOM.defaultButton = document.querySelector('.platform-button[data-version="merchant"]');
+        
+        // 调试日志，检查DOM元素是否正确获取
+        console.log('DOM缓存状态:', {
+            merchantContainer: !!DOM.merchantContainer,
+            influencerContainer: !!DOM.influencerContainer,
+            storeProfitContainer: !!DOM.storeProfitContainer,
+            merchantForm: !!DOM.merchantForm,
+            influencerForm: !!DOM.influencerForm,
+            storeProfitForm: !!DOM.storeProfitForm
+        });
     }
 
     /**
@@ -756,15 +811,14 @@ const 电商计算器App = (function() {
             DOM.influencerForm.addEventListener('submit', e => handleSubmit(e, 'influencer'));
         }
         
-        if (DOM.storeProfitForm) {
-            DOM.storeProfitForm.addEventListener('submit', e => handleSubmit(e, 'store_profit'));
+        // 修复店铺利润计算器表单事件绑定
+        // 无论DOM.storeProfitForm是否已经缓存，都直接获取表单并绑定事件
+        const storeProfitForm = document.getElementById('store-profit-form');
+        if (storeProfitForm) {
+            console.log('绑定店铺利润计算器表单提交事件');
+            storeProfitForm.addEventListener('submit', e => handleSubmit(e, 'store_profit'));
         } else {
-            // 额外检查，以防DOM缓存没有找到正确的表单
-            const storeProfitForm = document.getElementById('store-profit-form');
-            if (storeProfitForm) {
-                console.log('Found store-profit-form directly, adding submit event listener');
-                storeProfitForm.addEventListener('submit', e => handleSubmit(e, 'store_profit'));
-            }
+            console.error('无法找到店铺利润计算器表单元素');
         }
     }
 
@@ -825,7 +879,8 @@ const 电商计算器App = (function() {
             }
             
             // 设置结果区域标题颜色
-            const resultArea = document.getElementById(`${version}-result-area`);
+            let resultAreaId = version === 'store_profit' ? 'store-profit-result-area' : `${version}-result-area`;
+            const resultArea = document.getElementById(resultAreaId);
             if (resultArea) {
                 const headings = resultArea.querySelectorAll('h5');
                 headings.forEach(heading => {
