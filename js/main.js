@@ -28,8 +28,3 @@ const utils = {
         return true;
     }
 }; 
-
-// 导出 utils 对象，使其可以在其他文件中使用
-if (typeof window !== 'undefined') {
-    window.dsToolboxUtils = utils;
-} 
