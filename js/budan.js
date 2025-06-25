@@ -787,7 +787,7 @@ function createMetricSectionHTML(platformKey, metricId, metricConfig) {
         );
         
         // 创建其他标准输入表单组
-        const formRows = createFormGroupsInRows(filteredInputs);
+        const formRows = createFormGroupsInRows(filteredInputs, 2, true);
         formRows.forEach(row => section.appendChild(row));
         
         // 创建计算按钮行
