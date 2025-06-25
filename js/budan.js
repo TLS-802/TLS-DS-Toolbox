@@ -60,13 +60,13 @@ const config = {
             sph_good_comment: { name: '商品好评率', type: 'positive_rate', baseUnit: '有效评价量', unit: '%', inputs: [{id: 'current', label: '当前好评率:', placeholder: '例如：95.0', type: 'number', step: '0.01', unitText: '%', min: "0", max: "100"}, {id: 'base', label: '当前有效评价量:', placeholder: '例如：3000', type: 'number', min: "0"}, {id: 'target', label: '目标好评率:', placeholder: '例如：98.0', type: 'number', step: '0.01', unitText: '%', min: "0", max: "100"}], detailedAssumption: "假设补单均为好评", detailedUnit: "个好评", smallText: "考核基数：近30天有效评价量。假设补单均为 100% 好评。" },
             sph_delivery_time: { name: '物流配送时长', type: 'negative_average', baseUnit: '已签收订单量', unit: '小时', idealValue: 24, inputs: [{id: 'current', label: '当前时长 (小时) :', placeholder: '例如：72.5', type: 'number', step: '0.1', min: "0"}, {id: 'base', label: '当前已签收订单量:', placeholder: '例如：4500', type: 'number', min: "0"}, {id: 'target', label: '目标时长 (小时) :', placeholder: '例如：48.0', type: 'number', min: "0"}], smallText: "考核基数：近30天已签收订单量。假设补单的物流配送时长为 24 小时。" },
             sph_receive_rate: { name: '及时揽收率', type: 'positive_rate', baseUnit: '应揽收订单量', unit: '%', inputs: [{id: 'current', label: '当前及时揽收率:', placeholder: '例如：99.71', type: 'number', step: '0.01', unitText: '%', min: "0", max: "100"}, {id: 'base', label: '当前应揽收订单量:', placeholder: '例如：3732', type: 'number', min: "0"}, {id: 'target', label: '目标及时揽收率:', placeholder: '例如：99.90', type: 'number', step: '0.01', unitText: '%', min: "0", max: "100"}], smallText: "考核基数：近30天应揽收订单量。假设补单的订单支揽时间 ≤ 24 小时 (即视为及时)。" },
-            sph_logistics_bad: { name: '物流负向反馈率', type: 'negative_rate', baseUnit: '已揽收的有效支付订单量', unit: '%', inputs: [{id: 'current_rate', label: '当前反馈率:', placeholder: '例如：0.03', type: 'number', step: '0.01', unitText: '%', min: "0", max: "100"}, {id: 'base', label: '当前已揽收订单量:', placeholder: '例如：3728', type: 'number', min: "0"}, {id: 'target', label: '目标反馈率:', placeholder: '例如：0.02', type: 'number', step: '0.0001', unitText: '%', min: "0", max: "100"}], smallText: "考核基数：近30天已揽收的有效支付订单量。假设补单不新增物流差评和投诉。" },
+            sph_logistics_bad: { name: '物流负向反馈率', type: 'negative_rate', baseUnit: '已揽收的有效支付订单量', unit: '%', inputs: [{id: 'current', label: '当前反馈率:', placeholder: '例如：0.03', type: 'number', step: '0.01', unitText: '%', min: "0", max: "100"}, {id: 'base', label: '当前已揽收订单量:', placeholder: '例如：3728', type: 'number', min: "0"}, {id: 'target', label: '目标反馈率:', placeholder: '例如：0.02', type: 'number', step: '0.0001', unitText: '%', min: "0", max: "100"}], smallText: "考核基数：近30天已揽收的有效支付订单量。假设补单不新增物流差评和投诉。" },
             sph_reply_time: { name: '平均回复时长', type: 'negative_average', baseUnit: '人工咨询轮次总数', unit: '秒', idealValue: 10, timeInput: true, calculationUnit: 'seconds', inputs: [{id: 'current_hours', label: '小时:', placeholder: '例如：56', type: 'number', min: "0"}, {id: 'current_minutes', label: '分钟:', placeholder: '例如：8', type: 'number', min: "0", max: "59"}, {id: 'current_seconds', label: '秒:', placeholder: '例如：0', type: 'number', min: "0", max: "59", step: "0.01"}, {id: 'base', label: '当前人工咨询轮次总数:', placeholder: '例如：2958', type: 'number', min: "0"}, {id: 'target', label: '目标时长 (秒) :', placeholder: '例如：60', type: 'number', min: "0"}], timeInputLabel: "当前人工回复时长之和:", detailedUnit: "个人工咨询轮次", smallText: "考核基数：近30日人工咨询轮次总数。假设补单的每轮对话回复时长 ≤ 10 秒。", calculationButtonText: "计算所需补会话量" },
-            sph_no_reply: { name: '不回复率', type: 'negative_rate', baseUnit: '人工咨询轮次总数', unit: '%', countInput: true, inputs: [{id: 'current_count', label: '当前人工未回复轮次数:', placeholder: '例如：6', type: 'number', min: "0"}, {id: 'base', label: '当前人工咨询轮次总数:', placeholder: '例如：2778', type: 'number', min: "0"}, {id: 'target', label: '目标不回复率:', placeholder: '例如：0.10', type: 'number', step: '0.01', unitText: '%', min: "0", max: "100"}], detailedUnit: "个人工咨询对话轮次", smallText: "考核基数：近30天人工咨询轮次总数。假设补单的人工咨询对话轮次均已回复。" },
+            sph_no_reply: { name: '不回复率', type: 'negative_rate', baseUnit: '人工咨询轮次总数', unit: '%', inputs: [{id: 'current', label: '当前不回复率:', placeholder: '例如：0.20', type: 'number', step: '0.01', unitText: '%', min: "0", max: "100"}, {id: 'base', label: '当前人工咨询轮次总数:', placeholder: '例如：2778', type: 'number', min: "0"}, {id: 'target', label: '目标不回复率:', placeholder: '例如：0.10', type: 'number', step: '0.01', unitText: '%', min: "0", max: "100"}], detailedUnit: "个人工咨询对话轮次", smallText: "考核基数：近30天人工咨询轮次总数。假设补单的人工咨询对话轮次均已回复。" },
             sph_first_operate: { name: '售后首次操作时长', type: 'negative_average', baseUnit: '售后单量', unit: '分钟', idealValue: 1, timeInput: true, calculationUnit: 'minutes', inputs: [{id: 'current_hours', label: '小时:', placeholder: '例如：5084', type: 'number', min: "0"}, {id: 'current_minutes', label: '分钟:', placeholder: '例如：51', type: 'number', min: "0", max: "59"}, {id: 'base', label: '当前售后单量:', placeholder: '例如：1403', type: 'number', min: "0"}, {id: 'target', label: '目标时长 (分钟):', placeholder: '例如：23', type: 'number', min: "0"}], timeInputLabel: "当前售后单商家首次操作时长之和:", smallText: "考核基数：近30天售后单量。假设补单的售后单商家首次操作时长 ≤ 1 分钟。" },
             sph_refund_time: { name: '仅退款自主完结时长', type: 'negative_average', baseUnit: '仅退款售后单量', unit: '分钟', idealValue: 10, timeInput: true, calculationUnit: 'minutes', inputs: [{id: 'current_hours', label: '小时:', placeholder: '例如：5125', type: 'number', min: "0"}, {id: 'current_minutes', label: '分钟:', placeholder: '例如：7', type: 'number', min: "0", max: "59"}, {id: 'base', label: '当前仅退款售后单量:', placeholder: '例如：1337', type: 'number', min: "0"}, {id: 'target', label: '目标时长 (分钟):', placeholder: '例如：52', type: 'number', min: "0"}], timeInputLabel: "当前仅退款售后单等待商家操作总时长:", smallText: "考核基数：近30天仅退款售后单量。假设补单的每条售后单等待商家操作时间 ≤ 10 分钟。" },
             sph_return_time: { name: '退货退款自主完结时长', type: 'negative_average', baseUnit: '退货退款售后单量', unit: '小时', idealValue: 24, timeInput: true, calculationUnit: 'hours', inputs: [{id: 'current_hours', label: '小时:', placeholder: '例如：7396', type: 'number', min: "0"}, {id: 'current_minutes', label: '分钟:', placeholder: '例如：19', type: 'number', min: "0", max: "59"}, {id: 'base', label: '当前退货退款售后单量:', placeholder: '例如：87', type: 'number', min: "0"}, {id: 'target', label: '目标时长 (小时) :', placeholder: '例如：47.24', type: 'number', min: "0"}], timeInputLabel: "当前退货退款售后单等待商家操作总时长:", smallText: "考核基数：近30天退货退款售后单量。假设补单的每条售后单等待商家操作时间 = 24 小时。" },
-            sph_dispute_rate: { name: '商责纠纷率', type: 'negative_rate', baseUnit: '有效支付订单量', unit: '%', countInput: true, inputs: [{id: 'current_count', label: '当前商责纠纷订单量:', placeholder: '例如：2', type: 'number', min: "0"}, {id: 'base', label: '当前有效支付订单量:', placeholder: '例如：5637', type: 'number', min: "0"}, {id: 'target', label: '目标纠纷率:', placeholder: '例如：0.03', type: 'number', step: '0.0001', unitText: '%', min: "0", max: "100"}], detailedUnit: "个有效支付订单", smallText: "考核基数：近30天有效支付订单量。假设补单的有效支付订单不新增商责纠纷。" },
+            sph_dispute_rate: { name: '商责纠纷率', type: 'negative_rate', baseUnit: '有效支付订单量', unit: '%', inputs: [{id: 'current', label: '当前商责纠纷率:', placeholder: '例如：0.03', type: 'number', step: '0.0001', unitText: '%', min: "0", max: "100"}, {id: 'base', label: '当前有效支付订单量:', placeholder: '例如：5637', type: 'number', min: "0"}, {id: 'target', label: '目标纠纷率:', placeholder: '例如：0.03', type: 'number', step: '0.0001', unitText: '%', min: "0", max: "100"}], detailedUnit: "个有效支付订单", smallText: "考核基数：近30天有效支付订单量。假设补单的有效支付订单不新增商责纠纷。" },
         }
     },
     xiaohongshu: {
@@ -148,10 +148,31 @@ function stabilizeContainers() {
         row.style.width = '100%';
     });
     
+    // 确保时间输入组的样式正确
+    document.querySelectorAll('.time-input-group').forEach(group => {
+        group.style.width = '100%';
+        group.style.display = 'flex';
+        group.style.flexWrap = 'nowrap';
+        group.style.gap = '10px';
+        group.style.marginBottom = '15px';
+    });
+    
+    // 确保时间输入组中的表单组样式正确
+    document.querySelectorAll('.time-input-group .form-group').forEach(group => {
+        group.style.flex = '1 1 80px';
+        group.style.minWidth = '80px';
+    });
+    
     // 防止结果区域影响布局
     document.querySelectorAll('.result').forEach(result => {
         result.style.width = '100%';
         result.style.boxSizing = 'border-box';
+    });
+    
+    // 修复可能的溢出问题
+    document.querySelectorAll('input, select').forEach(input => {
+        input.style.maxWidth = '100%';
+        input.style.boxSizing = 'border-box';
     });
 }
 
@@ -298,39 +319,59 @@ function parseTimeInput(platformKey, metricId, metricConfig) {
     const hInput = document.getElementById(idsToParse.hours);
     if (hInput) {
         const h = getIntValue(idsToParse.hours);
-        if (h === null || h < 0) { hasError = true; } else { totalSeconds += h * 3600; }
+        if (h === null || h < 0) { 
+            hasError = true; 
+            displayResult(platformKey, metricId, `错误：请为【${metricConfig.name}】的时间输入填写有效的小时数。`, false);
+        } else { 
+            totalSeconds += h * 3600; 
+        }
     }
 
     const mInput = document.getElementById(idsToParse.minutes);
     if (mInput && !hasError) {
         const m = getIntValue(idsToParse.minutes);
-        if (m === null || m < 0 || m > 59) { hasError = true; } else { totalSeconds += m * 60; }
+        if (m === null || m < 0 || m > 59) { 
+            hasError = true; 
+            displayResult(platformKey, metricId, `错误：请为【${metricConfig.name}】的时间输入填写有效的分钟数（0-59）。`, false);
+        } else { 
+            totalSeconds += m * 60; 
+        }
     }
 
     const sInput = document.getElementById(idsToParse.seconds);
     if (sInput && !hasError) {
         const s = getFloatValue(idsToParse.seconds);
-        if (s === null || s < 0 || s >= 60) { hasError = true; } else { totalSeconds += s; }
+        if (s === null || s < 0 || s >= 60) { 
+            hasError = true; 
+            displayResult(platformKey, metricId, `错误：请为【${metricConfig.name}】的时间输入填写有效的秒数（0-59.99）。`, false);
+        } else { 
+            totalSeconds += s; 
+        }
     }
 
-    if (hasError && (hInput || mInput || sInput)) { // Only error if at least one time input field was expected/found
-         // console.warn(`Invalid time input for ${platformKey}_${metricId}`);
+    if (hasError && (hInput || mInput || sInput)) {
          return null;
     }
-    if (!hInput && !mInput && !sInput && metricConfig.timeInput) { // If it's a timeInput metric but no fields rendered
-        // console.warn(`No time input fields found for timeInput metric ${platformKey}_${metricId}`);
-        return null; // Or handle as 0 if appropriate, but null indicates missing/invalid input
+    
+    if (!hInput && !mInput && !sInput && metricConfig.timeInput) {
+        displayResult(platformKey, metricId, `错误：【${metricConfig.name}】缺少时间输入框，请联系管理员。`, false);
+        return null;
     }
 
-
-    switch (metricConfig.calculationUnit) {
-        case 'seconds': return totalSeconds;
-        case 'minutes': return totalSeconds / 60;
-        case 'hours': return totalSeconds / 3600;
-        default:
-            // console.error("Invalid target unit for time parsing:", metricConfig.calculationUnit);
-            return null;
+    // 根据计算单位进行转换
+    if (metricConfig.calculationUnit) {
+        switch (metricConfig.calculationUnit) {
+            case 'seconds': return totalSeconds;
+            case 'minutes': return totalSeconds / 60;
+            case 'hours': return totalSeconds / 3600;
+            default:
+                displayResult(platformKey, metricId, `错误：【${metricConfig.name}】时间单位配置无效。`, false);
+                return null;
+        }
     }
+    
+    // 如果没有指定计算单位，默认返回秒数
+    return totalSeconds;
 }
 
 
@@ -348,24 +389,37 @@ function getValidatedInputs(platformKey, metricId, metricConfig) {
     if (metricConfig.timeInput) {
         const timeInputTotal = parseTimeInput(platformKey, metricId, metricConfig);
         if (timeInputTotal === null) {
-            displayResult(platformKey, metricId, `错误：请为【${metricConfig.name}】的当前时长部分填写所有相关的有效数字。`, false);
+            // parseTimeInput 已经显示了错误信息，这里不需要重复显示
             return null;
         }
         values.totalCurrentValue = timeInputTotal;
 
+        // 处理非时间输入字段
         metricConfig.inputs.forEach(inputConfig => {
             if (!inputConfig.id.startsWith('current_') || !['current_hours', 'current_minutes', 'current_seconds'].includes(inputConfig.id)) {
                 const inputElementId = `${platformKey}_${metricId}_${inputConfig.id}`;
                 const value = (inputConfig.type === 'number' && (inputConfig.step || inputConfig.id.includes('target') || inputConfig.id === 'current')) ? getFloatValue(inputElementId) : getIntValue(inputElementId);
-                if (value === null) allValid = false;
+                if (value === null) {
+                    allValid = false;
+                }
                 values[inputConfig.id] = value;
             }
         });
+        
         if (!allValid) {
-             displayResult(platformKey, metricId, `错误：请为【${metricConfig.name}】填写有效的基数和目标值。`, false);
-             return null;
+            displayResult(platformKey, metricId, `错误：请为【${metricConfig.name}】填写有效的基数和目标值。`, false);
+            return null;
         }
-        values.currentAverage = (values.base !== null && values.base > 0 && values.totalCurrentValue !== null) ? values.totalCurrentValue / values.base : 0;
+        
+        // 计算当前平均值
+        if (values.base !== null && values.base > 0 && values.totalCurrentValue !== null) {
+            values.currentAverage = values.totalCurrentValue / values.base;
+        } else if (values.base === 0) {
+            values.currentAverage = 0;
+        } else {
+            displayResult(platformKey, metricId, `错误：【${metricConfig.name}】基数必须大于或等于0。`, false);
+            return null;
+        }
 
     } else if (metricConfig.countInput) {
         const currentCount = getIntValue(`${platformKey}_${metricId}_current_count`);
@@ -651,12 +705,166 @@ function createMetricSectionHTML(platformKey, metricId, metricConfig) {
     };
 
     // 如果有时间输入功能，创建特殊的时间输入组
-    if (metricConfig.timeInput && metricConfig.calculationUnit) {
-        // 创建时间输入组...
-        // ... [此处省略原有的时间输入组处理代码] ...
+    if (metricConfig.timeInput) {
+        // 创建时间输入组
+        const timeInputLabel = createElement('label', {
+            className: 'block text-base font-medium text-gray-700 mb-3',
+            textContent: metricConfig.timeInputLabel || '当前总时长:'
+        });
+        section.appendChild(timeInputLabel);
+        
+        // 创建时间输入行
+        const timeInputRow = createElement('div', {
+            className: 'time-input-group'
+        });
+        
+        // 创建小时输入组
+        const hoursGroup = createElement('div', {
+            className: 'form-group'
+        });
+        const hoursLabel = createElement('label', {
+            htmlFor: `${platformKey}_${metricId}_current_hours`,
+            textContent: '小时:'
+        });
+        const hoursInput = createElement('input', {
+            type: 'number',
+            id: `${platformKey}_${metricId}_current_hours`,
+            placeholder: '例如: 5',
+            min: '0'
+        });
+        hoursGroup.appendChild(hoursLabel);
+        hoursGroup.appendChild(hoursInput);
+        timeInputRow.appendChild(hoursGroup);
+        
+        // 创建分钟输入组
+        const minutesGroup = createElement('div', {
+            className: 'form-group'
+        });
+        const minutesLabel = createElement('label', {
+            htmlFor: `${platformKey}_${metricId}_current_minutes`,
+            textContent: '分钟:'
+        });
+        const minutesInput = createElement('input', {
+            type: 'number',
+            id: `${platformKey}_${metricId}_current_minutes`,
+            placeholder: '例如: 30',
+            min: '0',
+            max: '59'
+        });
+        minutesGroup.appendChild(minutesLabel);
+        minutesGroup.appendChild(minutesInput);
+        timeInputRow.appendChild(minutesGroup);
+        
+        // 如果计算单位是秒，添加秒输入
+        if (!metricConfig.calculationUnit || metricConfig.calculationUnit === 'seconds') {
+            const secondsGroup = createElement('div', {
+                className: 'form-group'
+            });
+            const secondsLabel = createElement('label', {
+                htmlFor: `${platformKey}_${metricId}_current_seconds`,
+                textContent: '秒:'
+            });
+            const secondsInput = createElement('input', {
+                type: 'number',
+                id: `${platformKey}_${metricId}_current_seconds`,
+                placeholder: '例如: 45',
+                min: '0',
+                max: '59',
+                step: '0.01'
+            });
+            secondsGroup.appendChild(secondsLabel);
+            secondsGroup.appendChild(secondsInput);
+            timeInputRow.appendChild(secondsGroup);
+        }
+        
+        section.appendChild(timeInputRow);
+        
+        // 过滤掉时间相关的输入，只保留基数和目标值等其他输入
+        const filteredInputs = metricConfig.inputs.filter(input => 
+            !input.id.startsWith('current_hours') && 
+            !input.id.startsWith('current_minutes') && 
+            !input.id.startsWith('current_seconds')
+        );
+        
+        // 创建其他标准输入表单组
+        const formRows = createFormGroupsInRows(filteredInputs);
+        formRows.forEach(row => section.appendChild(row));
+        
+        // 创建计算按钮行
+        const buttonRow = createElement('div', {
+            className: 'form-row calc-button-row'
+        });
+        
+        const buttonGroup = createElement('div', {
+            className: 'form-group'
+        });
+        
+        // 确定计算按钮文本
+        const buttonText = metricConfig.calculationButtonText || '计算所需补单量';
+        
+        // 创建计算按钮
+        const button = createElement('button', {
+            type: 'button',
+            className: 'calc-button',
+            textContent: buttonText,
+            id: `${platformKey}_${metricId}_calculate`
+        });
+        
+        // 添加事件监听器
+        button.addEventListener('click', () => {
+            // 根据指标类型调用计算函数
+            if (metricConfig.type.includes('average')) {
+                calculateAverage(platformKey, metricId, metricConfig);
+            } else if (metricConfig.type.includes('rate')) {
+                calculateRate(platformKey, metricId, metricConfig);
+            } else {
+                console.error('未知的指标类型:', metricConfig.type);
+                displayResult(platformKey, metricId, `错误：未知的指标类型 ${metricConfig.type}`, false);
+            }
+        });
+        
+        buttonGroup.appendChild(button);
+        buttonRow.appendChild(buttonGroup);
+        section.appendChild(buttonRow);
+        
     } else if (metricConfig.countInput) {
-        // 创建计数输入功能...
-        // ... [此处省略原有的计数输入处理代码] ...
+        // 创建计数输入功能
+        const formRows = createFormGroupsInRows(metricConfig.inputs);
+        formRows.forEach(row => section.appendChild(row));
+        
+        // 创建计算按钮行
+        const buttonRow = createElement('div', {
+            className: 'form-row calc-button-row'
+        });
+        
+        const buttonGroup = createElement('div', {
+            className: 'form-group'
+        });
+        
+        // 确定计算按钮文本
+        const buttonText = metricConfig.calculationButtonText || '计算所需补单量';
+        
+        // 创建计算按钮
+        const button = createElement('button', {
+            type: 'button',
+            className: 'calc-button',
+            textContent: buttonText,
+            id: `${platformKey}_${metricId}_calculate`
+        });
+        
+        // 添加事件监听器
+        button.addEventListener('click', () => {
+            // 根据指标类型调用计算函数
+            if (metricConfig.type.includes('rate')) {
+                calculateRate(platformKey, metricId, metricConfig);
+            } else {
+                console.error('未知的指标类型:', metricConfig.type);
+            }
+        });
+        
+        buttonGroup.appendChild(button);
+        buttonRow.appendChild(buttonGroup);
+        section.appendChild(buttonRow);
     } else {
         // 创建标准输入表单组
         const formRows = createFormGroupsInRows(metricConfig.inputs);
