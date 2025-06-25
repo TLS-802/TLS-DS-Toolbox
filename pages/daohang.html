@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电商直播导航 - 驼铃电商工具箱</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/daohang.css">
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <main class="min-h-screen p-3 sm:p-4 lg:p-6">
+        <div class="container max-w-6xl bg-white w-full mx-auto p-3 sm:p-5 rounded-xl shadow-lg border border-gray-200">
+            <header class="mb-4 sm:mb-6">
+                <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 text-center">电商直播导航</h1>
+                <p class="mt-2 text-sm sm:text-base text-gray-600 text-center">直播电商平台管理、投放与运营工具一站式导航</p>
+                <div class="mt-4 text-center">
+                    <a href="../index.html" class="inline-flex items-center text-blue-600 hover:text-blue-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        返回首页
+                    </a>
+                </div>
+            </header>
+
+            <!-- 后台管理 -->
+            <div class="nav-section mb-8">
+                <div class="nav-section-header mb-4">
+                    <h2 class="text-lg sm:text-xl font-bold text-gray-800">后台管理</h2>
+                    <p class="text-sm text-gray-500">各大平台官方后台</p>
+                </div>
+                <div class="nav-links-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                    <a href="http://www.douyinec.com" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100203213470.png" alt="抖音电商" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">抖音电商</h3>
+                            <p class="text-xs text-gray-500">店铺、达人、机构等登录</p>
+                        </div>
+                    </a>
+
+                    <a href="https://channels.weixin.qq.com/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100203502628.png" alt="视频号助手" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">视频号助手</h3>
+                            <p class="text-xs text-gray-500">橱窗、直播、团长登录</p>
+                        </div>
+                    </a>
+
+                    <a href="https://login.kwaixiaodian.com/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100303111365.png" alt="快手电商" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">快手电商</h3>
+                            <p class="text-xs text-gray-500">快手电商登陆后台</p>
+                        </div>
+                    </a>
+
+                    <a href="https://customer.xiaohongshu.com/login?service=https://ark.xiaohongshu.com/app-system/home" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/1696302928-91489918d79ef6b585acc0308df392cf542c3bfe-e1696302949514.png" alt="小红书千帆" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">小红书千帆</h3>
+                            <p class="text-xs text-gray-500">小红书商家管理后台</p>
+                        </div>
+                    </a>
+
+                    <a href="https://e.douyin.com/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100303065669-e1696302451107.png" alt="抖音企业号" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">抖音企业号</h3>
+                            <p class="text-xs text-gray-500">抖音企业号数据管理</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 广告投放 -->
+            <div class="nav-section mb-8">
+                <div class="nav-section-header mb-4">
+                    <h2 class="text-lg sm:text-xl font-bold text-gray-800">广告投放</h2>
+                    <p class="text-sm text-gray-500">广告投放后台</p>
+                </div>
+                <div class="nav-links-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                    <a href="https://www.oceanengine.com/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100302593317.png" alt="巨量引擎" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">巨量引擎</h3>
+                            <p class="text-xs text-gray-500">抖音所有类型广告</p>
+                        </div>
+                    </a>
+
+                    <a href="https://qianchuan.jinritemai.com/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100302390745.png" alt="巨量千川" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">巨量千川</h3>
+                            <p class="text-xs text-gray-500">抖音广告投放平台</p>
+                        </div>
+                    </a>
+
+                    <a href="https://e.kuaishou.com/#/e/home" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100302571042-e1696301848547.png" alt="磁力引擎" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">磁力引擎</h3>
+                            <p class="text-xs text-gray-500">快手开屏、信息流、粉条</p>
+                        </div>
+                    </a>
+
+                    <a href="https://ad.e.kuaishou.com/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100302374759.png" alt="磁力智投" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">磁力智投</h3>
+                            <p class="text-xs text-gray-500">快手广告投放平台</p>
+                        </div>
+                    </a>
+
+                    <a href="https://ad.xiaohongshu.com/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100203445160.png" alt="聚光平台" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">聚光平台</h3>
+                            <p class="text-xs text-gray-500">小红书广告投放平台</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 平台联盟 -->
+            <div class="nav-section mb-8">
+                <div class="nav-section-header mb-4">
+                    <h2 class="text-lg sm:text-xl font-bold text-gray-800">平台联盟</h2>
+                    <p class="text-sm text-gray-500">各大平台联盟</p>
+                </div>
+                <div class="nav-links-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                    <a href="https://buyin.jinritemai.com/dashboard/merch-picking-hall" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100203213470.png" alt="抖音精选联盟" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">抖音精选联盟</h3>
+                            <p class="text-xs text-gray-500">抖音平台cps</p>
+                        </div>
+                    </a>
+
+                    <a href="https://cps.kwaixiaodian.com/pc/promoter/selection-center/home" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100303111365.png" alt="快手快分销" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">快手快分销</h3>
+                            <p class="text-xs text-gray-500">快手cps联盟</p>
+                        </div>
+                    </a>
+
+                    <a href="https://pub.alimama.com/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/1696850791-taobaolianmeng.png" alt="淘宝联盟" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">淘宝联盟</h3>
+                            <p class="text-xs text-gray-500">淘宝客</p>
+                        </div>
+                    </a>
+
+                    <a href="https://union.jd.com/index" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100911282919.png" alt="京东联盟" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">京东联盟</h3>
+                            <p class="text-xs text-gray-500">京东cps平台</p>
+                        </div>
+                    </a>
+
+                    <a href="https://jinbao.pinduoduo.com/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100911133072.png" alt="多多进宝" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">多多进宝</h3>
+                            <p class="text-xs text-gray-500">拼多多cps联盟</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 投放工具 -->
+            <div class="nav-section mb-8">
+                <div class="nav-section-header mb-4">
+                    <h2 class="text-lg sm:text-xl font-bold text-gray-800">投放工具</h2>
+                    <p class="text-sm text-gray-500">广告投放辅助工具</p>
+                </div>
+                <div class="nav-links-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                    <a href="https://zgzt.v-ma.com/#/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/1696317979-img_logo.be64bcc9.png" alt="诸葛智投" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">诸葛智投</h3>
+                            <p class="text-xs text-gray-500">视频号投放管理工具</p>
+                        </div>
+                    </a>
+
+                    <a href="http://www.xiaohuolong.com" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100307205551-e1696317673861.png" alt="小火龙" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">小火龙</h3>
+                            <p class="text-xs text-gray-500">抖音随心推投放工具</p>
+                        </div>
+                    </a>
+
+                    <a href="https://zs.doulaoban.com/login" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100307321758.png" alt="抖老板带货助手" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">抖老板带货助手</h3>
+                            <p class="text-xs text-gray-500">多平台数据管理</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 数据分析·选品 -->
+            <div class="nav-section mb-8">
+                <div class="nav-section-header mb-4">
+                    <h2 class="text-lg sm:text-xl font-bold text-gray-800">数据分析·选品</h2>
+                    <p class="text-sm text-gray-500">直播大数据网站推荐</p>
+                </div>
+                <div class="nav-links-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                    <a href="http://www.chanmama.com" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100214511842-e1696258312360.png" alt="蝉妈妈" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">蝉妈妈</h3>
+                            <p class="text-xs text-gray-500">抖音直播数据、选品平台</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.kaogujia.com/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/1696258513-kaogu.png" alt="考古加" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">考古加</h3>
+                            <p class="text-xs text-gray-500">专业数据服务平台</p>
+                        </div>
+                    </a>
+
+                    <a href="https://youshu.youcloud.com/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100307161261-e1696317396637.png" alt="有米有数" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">有米有数</h3>
+                            <p class="text-xs text-gray-500">广告投放数据分析工具</p>
+                        </div>
+                    </a>
+
+                    <a href="https://trendinsight.oceanengine.com/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/1696259305-c1c04-trendinsight.oceanengine.com_.png" alt="巨量算数" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">巨量算数</h3>
+                            <p class="text-xs text-gray-500">抖音短视频数据工具</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 店铺软件 -->
+            <div class="nav-section mb-8">
+                <div class="nav-section-header mb-4">
+                    <h2 class="text-lg sm:text-xl font-bold text-gray-800">店铺软件</h2>
+                    <p class="text-sm text-gray-500">各大平台店铺客户端</p>
+                </div>
+                <div class="nav-links-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                    <a href="https://im.jinritemai.com/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100203292743-e1696313990428.png" alt="抖店/飞鸽工作台" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">抖店/飞鸽工作台</h3>
+                            <p class="text-xs text-gray-500">抖店/飞鸽工作台</p>
+                        </div>
+                    </a>
+
+                    <a href="https://im.kwaixiaodian.com/pc" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100303111365.png" alt="快手商家工作台" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">快手商家工作台</h3>
+                            <p class="text-xs text-gray-500">左下角下载</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 办公常用 -->
+            <div class="nav-section">
+                <div class="nav-section-header mb-4">
+                    <h2 class="text-lg sm:text-xl font-bold text-gray-800">办公常用</h2>
+                    <p class="text-sm text-gray-500">导航</p>
+                </div>
+                <div class="nav-links-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                    <a href="https://www.feishu.cn/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100306285885.png" alt="飞书" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">飞书</h3>
+                            <p class="text-xs text-gray-500">先进企业协作与管理平台</p>
+                        </div>
+                    </a>
+
+                    <a href="https://docs.qq.com/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/1696314767-qqdoc.png" alt="腾讯文档" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">腾讯文档</h3>
+                            <p class="text-xs text-gray-500">在线协作平台</p>
+                        </div>
+                    </a>
+
+                    <a href="https://naotu.baidu.com/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100306343122.png" alt="百度脑图" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">百度脑图</h3>
+                            <p class="text-xs text-gray-500">百度在线思维导图平台</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.yinxiang.com/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100306362137.png" alt="印象笔记" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">印象笔记</h3>
+                            <p class="text-xs text-gray-500">随时随地获取、整理、分享笔记</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.kdocs.cn/" target="_blank" class="nav-link-card">
+                        <div class="nav-link-logo">
+                            <img src="https://toushoubang.com/wp-content/uploads/2023/10/2023100306402093.png" alt="金山文档" class="w-10 h-10 object-contain">
+                        </div>
+                        <div class="nav-link-info">
+                            <h3 class="font-medium">金山文档</h3>
+                            <p class="text-xs text-gray-500">协同办公</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <footer class="mt-8 pt-4 border-t border-gray-300 text-center text-sm text-gray-600">
+                <p>© 2025 驼铃电商社出品</p>
+            </footer>
+        </div>
+    </main>
+
+    <script src="../js/daohang.js"></script>
+</body>
+</html> 
