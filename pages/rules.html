@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多平台电商规则中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/social.css">
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+        }
+        .platform-card-link:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.4);
+        }
+        /* 添加自定义样式以优化小屏幕显示 */
+        @media (max-width: 640px) {
+            .card-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 0.5rem;
+            }
+            .platform-card-link {
+                padding: 0.5rem 0.25rem;
+                height: 100%;
+            }
+        }
+        .platform-card-link {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-description {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <main class="min-h-screen flex items-center justify-center p-3 sm:p-4 lg:p-6">
+        <div class="container max-w-6xl bg-white w-full mx-auto p-3 sm:p-5 rounded-xl shadow-lg border border-gray-200">
+            <header class="mb-4 sm:mb-6">
+                <a href="../index.html" class="inline-flex items-center text-blue-600 mb-3 hover:underline">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    返回工具箱
+                </a>
+                <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 text-center">多平台规则中心</h1>
+                <p class="mt-2 text-gray-600 text-sm sm:text-base text-center">各大电商平台最新规则汇总，助您合规经营</p>
+            </header>
+
+            <div class="card-grid grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 gap-2 sm:gap-4 md:gap-5 mb-4 sm:mb-6">
+                <!-- 抖音 -->
+                <a href="https://school.jinritemai.com/doudian/web/rules/13174" target="_blank" rel="noopener noreferrer" class="platform-card-link bg-white rounded-lg py-3 sm:py-4 md:py-5 px-2 sm:px-3 md:px-4 shadow-md text-center transition duration-200 ease-in-out hover:translate-y-[-4px] hover:shadow-lg group">
+                    <img src="https://www.nodeimage.com/i/32451/XQtBqsnS3WNR5WcGsc0qkW8eE47qsgSj.png" alt="抖音 Logo" class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain mb-2 sm:mb-3 rounded-lg mx-auto" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/64x64/cccccc/333333?text=图片加载失败';">
+                    <h3 class="text-xs sm:text-sm md:text-base font-semibold text-gray-800">抖音规则</h3>
+                    <div class="card-description mt-2">
+                        <p class="text-[0.65rem] sm:text-xs text-gray-500">抖音电商平台规则政策，包含商家入驻、商品发布、营销活动等规范</p>
+                    </div>
+                </a>
+
+                <!-- 淘宝 -->
+                <a href="https://rulechannel.taobao.com/#/rules?cId=161" target="_blank" rel="noopener noreferrer" class="platform-card-link bg-white rounded-lg py-3 sm:py-4 md:py-5 px-2 sm:px-3 md:px-4 shadow-md text-center transition duration-200 ease-in-out hover:translate-y-[-4px] hover:shadow-lg group">
+                    <img src="https://www.nodeimage.com/i/32451/1KDtMtn83WNR5WdBsc0qzvz0ldbehZxU.png" alt="淘宝 Logo" class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain mb-2 sm:mb-3 rounded-lg mx-auto" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/64x64/cccccc/333333?text=图片加载失败';">
+                    <h3 class="text-xs sm:text-sm md:text-base font-semibold text-gray-800">淘宝规则</h3>
+                    <div class="card-description mt-2">
+                        <p class="text-[0.65rem] sm:text-xs text-gray-500">淘宝平台规则中心，覆盖店铺运营、商品管理、营销推广等全方位规范</p>
+                    </div>
+                </a>
+
+                <!-- 京东 -->
+                <a href="https://rule.jd.com/rule/list.action?btype=1&bid=1208615152623161344&useId=1" target="_blank" rel="noopener noreferrer" class="platform-card-link bg-white rounded-lg py-3 sm:py-4 md:py-5 px-2 sm:px-3 md:px-4 shadow-md text-center transition duration-200 ease-in-out hover:translate-y-[-4px] hover:shadow-lg group">
+                    <img src="https://www.nodeimage.com/i/32451/UqsgCFnl3WNR5Wd9sc0q4thcO4RjNrHc.png" alt="京东 Logo" class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain mb-2 sm:mb-3 rounded-lg mx-auto" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/64x64/cccccc/333333?text=图片加载失败';">
+                    <h3 class="text-xs sm:text-sm md:text-base font-semibold text-gray-800">京东规则</h3>
+                    <div class="card-description mt-2">
+                        <p class="text-[0.65rem] sm:text-xs text-gray-500">京东商家规则中心，提供商家入驻、商品管理、售后服务等政策指南</p>
+                    </div>
+                </a>
+
+                <!-- 快手 -->
+                <a href="https://edu.kwaixiaodian.com/rule/web/category?id=543235263565676545" target="_blank" rel="noopener noreferrer" class="platform-card-link bg-white rounded-lg py-3 sm:py-4 md:py-5 px-2 sm:px-3 md:px-4 shadow-md text-center transition duration-200 ease-in-out hover:translate-y-[-4px] hover:shadow-lg group">
+                    <img src="https://www.nodeimage.com/i/32451/8Rd3Q3nu3WNR5WcIsc0qRhSV4hba84Yq.png" alt="快手 Logo" class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain mb-2 sm:mb-3 rounded-lg mx-auto" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/64x64/cccccc/333333?text=图片加载失败';">
+                    <h3 class="text-xs sm:text-sm md:text-base font-semibold text-gray-800">快手规则</h3>
+                    <div class="card-description mt-2">
+                        <p class="text-[0.65rem] sm:text-xs text-gray-500">快手小店商家规则，包含运营规范、商品发布、直播带货等相关政策</p>
+                    </div>
+                </a>
+
+                <!-- 视频号 -->
+                <a href="https://store.weixin.qq.com/chengzhang/notice/home/home/1" target="_blank" rel="noopener noreferrer" class="platform-card-link bg-white rounded-lg py-3 sm:py-4 md:py-5 px-2 sm:px-3 md:px-4 shadow-md text-center transition duration-200 ease-in-out hover:translate-y-[-4px] hover:shadow-lg group">
+                    <img src="https://www.nodeimage.com/i/32451/apZQ27ne3WNR5WcFsc0qEcXvxrdXY2r0.png" alt="视频号 Logo" class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain mb-2 sm:mb-3 rounded-lg mx-auto" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/64x64/cccccc/333333?text=图片加载失败';">
+                    <h3 class="text-xs sm:text-sm md:text-base font-semibold text-gray-800">视频号规则</h3>
+                    <div class="card-description mt-2">
+                        <p class="text-[0.65rem] sm:text-xs text-gray-500">微信视频号商家规则，涵盖内容创作、商品橱窗、交易管理等政策指导</p>
+                    </div>
+                </a>
+
+                <!-- 小红书 -->
+                <a href="https://school.xiaohongshu.com/rule/list/134?jumpFrom=ark&uba_pre=8.school_rule_list..1746694207046&uba_ppre=8.school_rule_list..1746694206018&uba_index=2" target="_blank" rel="noopener noreferrer" class="platform-card-link bg-white rounded-lg py-3 sm:py-4 md:py-5 px-2 sm:px-3 md:px-4 shadow-md text-center transition duration-200 ease-in-out hover:translate-y-[-4px] hover:shadow-lg group">
+                    <img src="https://www.nodeimage.com/i/32451/FDs7uUnX3WNR5WcEsc0qX0D3DnUmq5kH.png" alt="小红书 Logo" class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain mb-2 sm:mb-3 rounded-lg mx-auto" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/64x64/cccccc/333333?text=图片加载失败';">
+                    <h3 class="text-xs sm:text-sm md:text-base font-semibold text-gray-800">小红书规则</h3>
+                    <div class="card-description mt-2">
+                        <p class="text-[0.65rem] sm:text-xs text-gray-500">小红书商家规则中心，提供内容创作、商品发布、品牌合作等规范指南</p>
+                    </div>
+                </a>
+
+                <!-- 拼多多 -->
+                <a href="https://mms.pinduoduo.com/other/rule?listId=6" target="_blank" rel="noopener noreferrer" class="platform-card-link bg-white rounded-lg py-3 sm:py-4 md:py-5 px-2 sm:px-3 md:px-4 shadow-md text-center transition duration-200 ease-in-out hover:translate-y-[-4px] hover:shadow-lg group">
+                    <img src="https://www.nodeimage.com/i/32451/m9o8MUnS3WNR5WeBsc0q7ut27JwmGfYp.png" alt="拼多多 Logo" class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain mb-2 sm:mb-3 rounded-lg mx-auto" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/64x64/cccccc/333333?text=图片加载失败';">
+                    <h3 class="text-xs sm:text-sm md:text-base font-semibold text-gray-800">拼多多规则</h3>
+                    <div class="card-description mt-2">
+                        <p class="text-[0.65rem] sm:text-xs text-gray-500">拼多多平台规则，包含商家管理、商品发布、营销活动等相关政策</p>
+                    </div>
+                </a>
+
+                <!-- 补单计算器 -->
+                <a href="budan.html" class="platform-card-link bg-white rounded-lg py-3 sm:py-4 md:py-5 px-2 sm:px-3 md:px-4 shadow-md text-center transition duration-200 ease-in-out hover:translate-y-[-4px] hover:shadow-lg group">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center bg-blue-100 rounded-lg mb-2 sm:mb-3 mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xs sm:text-sm md:text-base font-semibold text-gray-800">补单计算器</h3>
+                    <div class="card-description mt-2">
+                        <p class="text-[0.65rem] sm:text-xs text-gray-500">多平台电商补单数量计算工具，助力商家快速提升店铺关键指标</p>
+                    </div>
+                </a>
+                
+                <!-- 千川出价计算器 -->
+                <a href="roi.html" class="platform-card-link bg-white rounded-lg py-3 sm:py-4 md:py-5 px-2 sm:px-3 md:px-4 shadow-md text-center transition duration-200 ease-in-out hover:translate-y-[-4px] hover:shadow-lg group">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center bg-red-100 rounded-lg mb-2 sm:mb-3 mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xs sm:text-sm md:text-base font-semibold text-gray-800">千川出价计算器</h3>
+                    <div class="card-description mt-2">
+                        <p class="text-[0.65rem] sm:text-xs text-gray-500">细化成本结构，精确计算广告出价策略，提升投放ROI效果</p>
+                    </div>
+                </a>
+            </div>
+
+            <footer class="mt-5 pt-4 border-t border-gray-300 text-center text-sm text-gray-600">
+                <!-- 社交媒体链接 -->
+                <div class="social-links">
+                    <!-- 社交媒体链接将由social.js动态生成 -->
+                </div>
+                
+                <p class="mt-2">© 2025 驼铃电商社出品</p>
+            </footer>
+        </div>
+    </main>
+
+    <script src="../js/social.js"></script>
+</body>
+</html> 
