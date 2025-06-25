@@ -581,7 +581,7 @@ function createMetricSectionHTML(platformKey, metricId, metricConfig) {
     }
 
     // 创建表单行和表单组
-    const createFormGroupsInRows = (inputs, rowSize = 2) => {
+    const createFormGroupsInRows = (inputs, rowSize = 2, skipButton = false) => {
         const formGroups = [];
         const rows = [];
         let currentRow = null;
@@ -651,11 +651,10 @@ function createMetricSectionHTML(platformKey, metricId, metricConfig) {
         });
         
         // 处理最后一行可能需要的计算按钮
-        const needsCalculationButton = (metricConfig.type === 'positive_rate' || 
+        const needsCalculationButton = !skipButton && (metricConfig.type === 'positive_rate' || 
                                       metricConfig.type === 'negative_rate' || 
                                       metricConfig.type === 'positive_average' || 
-                                      metricConfig.type === 'negative_average') && 
-                                      !metricConfig.countInput; // 如果是countInput类型，不在这里添加按钮
+                                      metricConfig.type === 'negative_average');
         
         // 确定计算按钮文本
         const buttonText = metricConfig.calculationButtonText || 
@@ -829,8 +828,9 @@ function createMetricSectionHTML(platformKey, metricId, metricConfig) {
         section.appendChild(buttonRow);
         
     } else if (metricConfig.countInput) {
-        // 创建计数输入功能
-        const formRows = createFormGroupsInRows(metricConfig.inputs);
+        // 创建计数输入功能，但不在createFormGroupsInRows中添加计算按钮
+        // 传递true作为skipButton参数，表示不自动添加计算按钮
+        const formRows = createFormGroupsInRows(metricConfig.inputs, 2, true);
         formRows.forEach(row => section.appendChild(row));
         
         // 创建计算按钮行
