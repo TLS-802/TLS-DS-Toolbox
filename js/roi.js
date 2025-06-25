@@ -615,7 +615,12 @@ const 电商计算器App = (function() {
         }
         
         // 设置计算按钮颜色
-        const calculateButton = document.querySelector(`#${version}-roi-form .calculate-button`);
+        // 特殊处理store_profit版本的计算按钮选择器
+        let buttonSelector = version === 'store_profit' 
+            ? `#store-profit-form .calculate-button` 
+            : `#${version}-roi-form .calculate-button`;
+            
+        const calculateButton = document.querySelector(buttonSelector);
         if (calculateButton && versionColors[version]) {
             calculateButton.style.backgroundColor = versionColors[version];
             calculateButton.style.borderColor = versionColors[version];
@@ -644,7 +649,10 @@ const 电商计算器App = (function() {
         event.preventDefault();
         clearError();
         
-        const form = document.getElementById(`${version}-roi-form`);
+        // 特殊处理store_profit版本，因为它的表单ID是store-profit-form而不是store_profit-roi-form
+        let formId = version === 'store_profit' ? 'store-profit-form' : `${version}-roi-form`;
+        
+        const form = document.getElementById(formId);
         const resultArea = document.getElementById(`${version}-result-area`);
         if (!form || !resultArea) {
             console.error(`Form or result area for ${version} not found.`);
@@ -652,10 +660,10 @@ const 电商计算器App = (function() {
         }
         
         const inputConfig = CONFIG.INPUT_CONFIGS[version];
-        const formValues = getFormValues(`${version}-roi-form`, inputConfig);
+        const formValues = getFormValues(formId, inputConfig);
         
         try {
-            const isValid = validateInputs(formValues, inputConfig, `${version}-roi-form`);
+            const isValid = validateInputs(formValues, inputConfig, formId);
             if (!isValid) return;
             
             let results;
@@ -750,6 +758,13 @@ const 电商计算器App = (function() {
         
         if (DOM.storeProfitForm) {
             DOM.storeProfitForm.addEventListener('submit', e => handleSubmit(e, 'store_profit'));
+        } else {
+            // 额外检查，以防DOM缓存没有找到正确的表单
+            const storeProfitForm = document.getElementById('store-profit-form');
+            if (storeProfitForm) {
+                console.log('Found store-profit-form directly, adding submit event listener');
+                storeProfitForm.addEventListener('submit', e => handleSubmit(e, 'store_profit'));
+            }
         }
     }
 
@@ -798,7 +813,12 @@ const 电商计算器App = (function() {
         // 设置默认的计算按钮颜色
         Object.keys(versionColors).forEach(version => {
             const color = versionColors[version];
-            const calculateButton = document.querySelector(`#${version}-roi-form .calculate-button`);
+            // 特殊处理store_profit版本的计算按钮选择器
+            let buttonSelector = version === 'store_profit' 
+                ? `#store-profit-form .calculate-button` 
+                : `#${version}-roi-form .calculate-button`;
+                
+            const calculateButton = document.querySelector(buttonSelector);
             if (calculateButton) {
                 calculateButton.style.backgroundColor = color;
                 calculateButton.style.borderColor = color;
