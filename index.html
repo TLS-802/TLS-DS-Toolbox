@@ -83,33 +83,36 @@
         }
         .sec-panel {
             background: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
             margin-bottom: 20px;
+            overflow: hidden;
         }
         .sec-panel-head {
             padding: 15px 20px;
             border-bottom: 1px solid #f0f0f0;
+            background-color: #fafafa;
         }
         .sec-panel-head h2 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             margin: 0;
             display: flex;
             align-items: center;
+            color: #333;
         }
         .sec-panel-head h2 small {
-            font-size: 14px;
+            font-size: 13px;
             color: #999;
             margin-left: 10px;
             font-weight: normal;
         }
         .sec-panel-body {
-            padding: 20px;
+            padding: 15px;
         }
         .list-navs {
             display: grid;
-            grid-gap: 15px;
+            grid-gap: 12px;
         }
         .list-navs-cols-5 {
             grid-template-columns: repeat(5, 1fr);
@@ -123,43 +126,62 @@
             .list-navs-cols-5 {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .sec-panel-body {
+                padding: 10px;
+            }
+            .list-navs {
+                grid-gap: 8px;
+            }
         }
+        
+        /* 新的卡片样式，参照图片 */
         .navs-link {
             display: flex;
-            padding: 15px;
-            background: #f9f9f9;
-            border-radius: 5px;
-            transition: all 0.3s ease;
+            padding: 12px;
+            background: #fff;
+            border-radius: 8px;
+            transition: all 0.25s ease;
             text-decoration: none;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            border: 1px solid #f0f0f0;
+            height: 100%;
         }
         .navs-link:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         .navs-link-logo {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             margin-right: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
         .navs-link-logo img {
             max-width: 100%;
             max-height: 100%;
+            border-radius: 4px;
         }
         .navs-link-info {
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         .navs-link-info h3 {
             font-size: 14px;
-            margin: 0 0 5px;
+            margin: 0 0 4px;
             color: #333;
+            font-weight: 600;
+            line-height: 1.3;
         }
         .navs-link-info p {
             font-size: 12px;
             color: #999;
             margin: 0;
+            line-height: 1.3;
         }
         .platform-card-link .w-10 {
             width: 2.25rem;
@@ -236,11 +258,11 @@
     </style>
 </head>
 <body class="bg-gray-100">
-    <main class="min-h-screen flex items-center justify-center p-3 sm:p-4 lg:p-6">
-        <div class="container max-w-6xl bg-white w-full mx-auto p-3 sm:p-5 rounded-xl shadow-lg border border-gray-200">
-            <header class="mb-4 sm:mb-6">
-                <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 text-center">驼铃电商工具箱</h1>
-                <p class="mt-2 text-sm sm:text-base text-gray-600 text-center">一站式电商运营工具集合，助力商家高效经营</p>
+    <main class="min-h-screen flex items-center justify-center p-2 sm:p-3 lg:p-4">
+        <div class="container max-w-6xl bg-white w-full mx-auto p-3 sm:p-4 rounded-lg shadow-md border border-gray-200">
+            <header class="mb-3 sm:mb-4">
+                <h1 class="text-xl sm:text-2xl md:text-2xl font-bold text-gray-800 text-center">驼铃电商工具箱</h1>
+                <p class="mt-2 text-xs sm:text-sm text-gray-600 text-center">一站式电商运营工具集合，助力商家高效经营</p>
             </header>
 
             <!-- 修改主要工具卡片区域为导航样式 -->
@@ -903,7 +925,7 @@
                 </div>
             </section>
 
-            <footer class="mt-5 pt-4 border-t border-gray-300 text-center text-sm text-gray-600">
+            <footer class="mt-4 pt-3 border-t border-gray-200 text-center text-xs text-gray-500">
                 <!-- 社交媒体链接 -->
                 <div class="social-links">
                     <!-- 社交媒体链接将由social.js动态生成 -->
