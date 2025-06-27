@@ -633,3 +633,54 @@ input, select, textarea, button {
  * 2024-06-28 进一步优化移动端显示效果，调整网格布局
  * 2024-06-28 添加设备检测和触摸优化，提升移动端体验
  */ 
+
+/* 头部和底部样式 */
+header.navs-section, footer.navs-section {
+    background-color: #007bff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+header.navs-section {
+    margin-bottom: 20px;
+}
+
+footer.navs-section {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    header.navs-section {
+        margin-bottom: 15px;
+        border-radius: 6px;
+    }
+    
+    footer.navs-section {
+        margin-top: 15px;
+        border-radius: 6px;
+    }
+}
+
+@media (max-width: 576px) {
+    header.navs-section {
+        margin-bottom: 12px;
+        border-radius: 5px;
+    }
+    
+    footer.navs-section {
+        margin-top: 12px;
+        border-radius: 5px;
+    }
+}
+
+/* 
+ * 2024-06-26 UI样式更新
+ * 所有分类现在使用统一的category-card样式
+ * 统一了分类卡片头部的样式和内容布局
+ * 所有分类项采用表格式布局，更加紧凑，节省空间
+ * 2024-06-27 优化响应式布局，适应PC、平板和手机
+ * 2024-06-28 进一步优化移动端显示效果，调整网格布局
+ * 2024-06-28 添加设备检测和触摸优化，提升移动端体验
+ * 2024-06-29 统一头部和底部与内容区域宽度，保持UI一致性
+ */ 
