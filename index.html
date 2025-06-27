@@ -134,8 +134,8 @@
             }
         }
         
-        /* 新的卡片样式，参照图片 */
-        .navs-link {
+        /* 所有卡片链接样式统一，适用于图片中的样式 */
+        .navs-link, .category-item {
             display: flex;
             padding: 12px;
             background: #fff;
@@ -146,11 +146,11 @@
             border: 1px solid #f0f0f0;
             height: 100%;
         }
-        .navs-link:hover {
+        .navs-link:hover, .category-item:hover {
             transform: translateY(-3px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        .navs-link-logo {
+        .navs-link-logo, .category-item-icon {
             width: 36px;
             height: 36px;
             margin-right: 10px;
@@ -159,25 +159,25 @@
             justify-content: center;
             flex-shrink: 0;
         }
-        .navs-link-logo img {
+        .navs-link-logo img, .category-item-icon img {
             max-width: 100%;
             max-height: 100%;
             border-radius: 4px;
         }
-        .navs-link-info {
+        .navs-link-info, .category-item-info {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
-        .navs-link-info h3 {
+        .navs-link-info h3, .category-item-info h3 {
             font-size: 14px;
             margin: 0 0 4px;
             color: #333;
             font-weight: 600;
             line-height: 1.3;
         }
-        .navs-link-info p {
+        .navs-link-info p, .category-item-info p {
             font-size: 12px;
             color: #999;
             margin: 0;
@@ -317,66 +317,66 @@
                             </a>
                             
                             <!-- 驼铃补单计算器 -->
-                            <a class="navs-link" href="pages/budan.html">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="pages/budan.html">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="补单计算器">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>驼铃补单计算器</h3>
                                     <p>计算补单数量，提升指标</p>
                                 </div>
                             </a>
 
                             <!-- 驼铃ROI计算器 -->
-                            <a class="navs-link" href="pages/roi.html">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="pages/roi.html">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="千川计算器">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>驼铃千川计算器</h3>
                                     <p>计算出价，提升投放效果</p>
                                 </div>
                             </a>
                             
                             <!-- 驼铃直播中控工具 -->
-                            <a class="navs-link" href="https://fbjvryq00y.feishu.cn/drive/folder/K7zIfP4IOlI5PxdberKcNgqOnCc?from=from_copylink" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://fbjvryq00y.feishu.cn/drive/folder/K7zIfP4IOlI5PxdberKcNgqOnCc?from=from_copylink" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="直播中控工具">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>驼铃直播中控工具</h3>
                                     <p>自动弹窗、自动发言等</p>
                                 </div>
                             </a>
 
                             <!-- 直播录制工具 -->
-                            <a class="navs-link" href="https://fbjvryq00y.feishu.cn/drive/folder/Y0BTfqMWoleXphdT1cNci3fDnUg?from=from_copylink" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://fbjvryq00y.feishu.cn/drive/folder/Y0BTfqMWoleXphdT1cNci3fDnUg?from=from_copylink" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="直播录制工具">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>直播间录制工具</h3>
                                     <p>批量录制、自动转码等</p>
                                 </div>
                             </a>
 
                             <!-- 驼铃规则中心 -->
-                            <a class="navs-link" href="pages/rules.html">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="pages/rules.html">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="千川计算器">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>驼铃规则中心</h3>
                                     <p>集合多平台规则中心</p>
                                 </div>
                             </a>
                             
                             <!-- YTPPTV - 观影 -->
-                            <a class="navs-link" href="https://tv.199908.top/" target="_blank" rel="noopener noreferrer">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://tv.199908.top/" target="_blank" rel="noopener noreferrer">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="YTPPTV">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>YTPPTV - 观影</h3>
                                     <p>免费影视资源，无需注册</p>
                                 </div>
@@ -405,38 +405,38 @@
                                     <p>自动弹窗、自动发言等</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://streamingtool.douyin.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://streamingtool.douyin.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/jUvSchne3WNR5WcAsc0tfCPfAlKNRXEM.png" alt="抖音直播伴侣">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>抖音直播伴侣</h3>
                                     <p>抖音、火山官方直播工具</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://live.kuaishou.com/live-partner" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://live.kuaishou.com/live-partner" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/6gzjv3nL3WNR5WcCsc0tVR4fYD2xXChk.png" alt="快手直播伴侣">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>快手直播伴侣</h3>
                                     <p>快手平台直播软件</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://www.xiaohongshu.com/zhibo/robs" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://www.xiaohongshu.com/zhibo/robs" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/FDs7uUnX3WNR5WcEsc0qX0D3DnUmq5kH.png" alt="小红书直播助手">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>小红书直播助手</h3>
                                     <p>小红书电脑直播助手</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://obsproject.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://obsproject.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/oVlnsjn53WNR5WdAsc0tK1WlfBft5mPD.png" alt="OBS">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>OBS</h3>
                                     <p>多平台直播推流工具</p>
                                 </div>
@@ -455,47 +455,47 @@
                     </div>
                     <div class="category-card-body">
                         <div class="category-grid">
-                            <a class="navs-link" href="http://www.douyinec.com" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="http://www.douyinec.com" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/XQtBqsnS3WNR5WcGsc0qkW8eE47qsgSj.png" alt="抖音电商">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>抖音电商</h3>
                                     <p>店铺、达人、机构等登录</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://channels.weixin.qq.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://channels.weixin.qq.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/q3Dcu5nB3WNR5WdBsc0t2syjkrxc4HEo.png" alt="视频号助手">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>视频号助手</h3>
                                     <p>橱窗、直播、团长登录</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://login.kwaixiaodian.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://login.kwaixiaodian.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/8Rd3Q3nu3WNR5WcIsc0qRhSV4hba84Yq.png" alt="快手电商">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>快手电商</h3>
                                     <p>快手电商登陆后台</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://customer.xiaohongshu.com/login?service=https://ark.xiaohongshu.com/app-system/home" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://customer.xiaohongshu.com/login?service=https://ark.xiaohongshu.com/app-system/home" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/lMOMlznL3WNR5WdEsc0tNFEufOpAoep5.png" alt="小红书千帆">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>小红书千帆</h3>
                                     <p>小红书商家管理后台</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://e.douyin.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://e.douyin.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/Pb0EDPnj3WNR5WcDsc0thgzOesUKxi1i.png" alt="抖音企业号">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>抖音企业号</h3>
                                     <p>抖音企业号数据管理</p>
                                 </div>
@@ -514,65 +514,65 @@
                     </div>
                     <div class="category-card-body">
                         <div class="category-grid">
-                            <a class="navs-link" href="https://im.jinritemai.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://im.jinritemai.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/b9K62gnP3WNR5WdDsc0tTQXXu9n4QU7c.png" alt="飞鸽工作台">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>抖店</h3>
                                     <p>抖音商家工具</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://loginmyseller.taobao.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://loginmyseller.taobao.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/N32EhWnX3WNR5WcIsc0tDGciEvaoSmmz.png" alt="淘宝商家工作台">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>千牛</h3>
                                     <p>淘宝商家工具</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://login.kwaixiaodian.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://login.kwaixiaodian.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/8Rd3Q3nu3WNR5WcIsc0qRhSV4hba84Yq.png" alt="快手商家工作台">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>快手</h3>
                                     <p>快手商家工具</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://passport.shop.jd.com/login/index.action/jdm" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://passport.shop.jd.com/login/index.action/jdm" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/wgcsFJn13WNR5WcHsc0tFtQbcDGUTJrJ.png" alt="京东商家工作台">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>京麦</h3>
                                     <p>京东商家工具</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://store.weixin.qq.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://store.weixin.qq.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/rgPy6Nnp3WNR5WcFsc0tQLgJi9viAMaa.png" alt="视频号商家工作台">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>视频号</h3>
                                     <p>视频号商家工具</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://customer.xiaohongshu.com/login?service=https://ark.xiaohongshu.com/app-system/home" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://customer.xiaohongshu.com/login?service=https://ark.xiaohongshu.com/app-system/home" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/lMOMlznL3WNR5WdEsc0tNFEufOpAoep5.png" alt="快手商家工作台">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>千帆</h3>
                                     <p>小红书商家工具</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://mms.pinduoduo.com/login/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://mms.pinduoduo.com/login/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/vGWqfcnr3WNR5WfAsc0tSu3BZXAOlAXv.png" alt="快手商家工作台">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>拼多多</h3>
                                     <p>拼多多商家工具</p>
                                 </div>
@@ -583,82 +583,82 @@
             </section>
 
             <section class="navs-section">
-                <div class="sec-panel">
-                    <div class="sec-panel-head">
+                <div class="category-card">
+                    <div class="category-card-head">
                         <h2>
                             <span>店铺入驻</span> <small>各大平台店铺入驻</small>
                         </h2>
                     </div>
-                    <div class="sec-panel-body">
-                        <div class="list list-navs list-navs-cols-5">
-                            <a class="navs-link" href="https://fxg.jinritemai.com/" target="_blank">
-                                <div class="navs-link-logo">
+                    <div class="category-card-body">
+                        <div class="category-grid">
+                            <a class="category-item" href="https://fxg.jinritemai.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/b9K62gnP3WNR5WdDsc0tTQXXu9n4QU7c.png" alt="抖音小店">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>抖音小店</h3>
                                     <p>抖音小店申请入驻</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://channels.weixin.qq.com/shop" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://channels.weixin.qq.com/shop" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/rgPy6Nnp3WNR5WcFsc0tQLgJi9viAMaa.png" alt="视频号小店">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>视频号小店</h3>
                                     <p>腾讯视频号小店入驻</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://www.kwaixiaodian.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://www.kwaixiaodian.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/2GL5qgnp3WNR5WdFsc0tJQldjEBsDUYT.png" alt="快手小店">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>快手小店</h3>
                                     <p>快手小店入驻</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://ark.xiaohongshu.com/merchant/login" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://ark.xiaohongshu.com/merchant/login" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/FDs7uUnX3WNR5WcEsc0qX0D3DnUmq5kH.png" alt="小红书店铺">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>小红书店铺</h3>
                                     <p>小红书商家入驻</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://zhaoshang.tmall.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://zhaoshang.tmall.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/5Xox5PnZ3WNR5WdGsc0txYXjFT9ro1yS.png" alt="天猫入驻">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>天猫入驻</h3>
                                     <p>天猫入驻</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://zhaoshang.jd.com/index/home" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://zhaoshang.jd.com/index/home" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/2EtN4AnQ3WNR5WdBsc0tyQlpXwnkoR0Y.png" alt="京东入驻">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>京东入驻</h3>
                                     <p>京东入驻</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://ims.pinduoduo.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://ims.pinduoduo.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/g8twjOnl3WNR5WfEsc0tw6XXcGXya4Wq.png" alt="拼多多入驻">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>拼多多入驻</h3>
                                     <p>拼多多入驻</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://ishop.taobao.com/openshop/tb_open_shop_landing.htm#/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://ishop.taobao.com/openshop/tb_open_shop_landing.htm#/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/CK7hicnr3WNR5WfFsc0tUMkdeV0ppLHH.png" alt="淘宝入驻">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>淘宝入驻</h3>
                                     <p>淘宝店铺入驻</p>
                                 </div>
@@ -669,82 +669,82 @@
             </section>
 
             <section class="navs-section">
-                <div class="sec-panel">
-                    <div class="sec-panel-head">
+                <div class="category-card">
+                    <div class="category-card-head">
                         <h2>
                             <span>广告投放</span> <small>广告投放后台与工具</small>
                         </h2>
                     </div>
-                    <div class="sec-panel-body">
-                        <div class="list list-navs list-navs-cols-5">
-                            <a class="navs-link" href="https://www.oceanengine.com/" target="_blank">
-                                <div class="navs-link-logo">
+                    <div class="category-card-body">
+                        <div class="category-grid">
+                            <a class="category-item" href="https://www.oceanengine.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/Udq131nl3WNR5WcGsc0tzWdi4PtgNGkc.png" alt="巨量引擎">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>巨量引擎</h3>
                                     <p>抖音所有类型广告</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://qianchuan.jinritemai.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://qianchuan.jinritemai.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/pCSGVLn53WNR5WcEsc0tfVkpAiXgBFct.png" alt="巨量千川">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>巨量千川</h3>
                                     <p>抖音广告投放平台</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://e.kuaishou.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://e.kuaishou.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/kvO4P0n63WNR5WcDsc0tNPkSTvbqijze.png" alt="磁力引擎">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>磁力引擎</h3>
                                     <p>快手开屏、信息流、粉条</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://ad.e.kuaishou.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://ad.e.kuaishou.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/Co4EtUnP3WNR5WcEsc0t8lUq9FBnFWFG.png" alt="磁力智投">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>磁力智投</h3>
                                     <p>快手广告投放平台</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://ad.xiaohongshu.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://ad.xiaohongshu.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/HdPvbbnA3WNR5WdAsc0tTfFy7GBWTbmo.png" alt="聚光平台">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>聚光平台</h3>
                                     <p>小红书广告投放平台</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://zgzt.v-ma.com/#/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://zgzt.v-ma.com/#/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/l4UMaWnG3WNR5WcAsc0tLDl83NMiQUjd.png" alt="诸葛智投">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>诸葛智投</h3>
                                     <p>视频号投放管理工具</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="http://www.xiaohuolong.com" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="http://www.xiaohuolong.com" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/UAeoz1nd3WNR5WcAsc0tHphBuDp9S3F1.png" alt="小火龙">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>小火龙</h3>
                                     <p>抖音随心推投放工具</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://zs.doulaoban.com/login" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://zs.doulaoban.com/login" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/XxkAXKnj3WNR5WcDsc0taSOsqo9YxZMw.png" alt="抖老板带货助手">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>抖老板带货助手</h3>
                                     <p>多平台数据管理</p>
                                 </div>
@@ -755,55 +755,55 @@
             </section>
 
             <section class="navs-section">
-                <div class="sec-panel">
-                    <div class="sec-panel-head">
+                <div class="category-card">
+                    <div class="category-card-head">
                         <h2>
                             <span>平台联盟</span> <small>各大平台联盟</small>
                         </h2>
                     </div>
-                    <div class="sec-panel-body">
-                        <div class="list list-navs list-navs-cols-5">
-                            <a class="navs-link" href="https://buyin.jinritemai.com/dashboard/merch-picking-hall" target="_blank">
-                                <div class="navs-link-logo">
+                    <div class="category-card-body">
+                        <div class="category-grid">
+                            <a class="category-item" href="https://buyin.jinritemai.com/dashboard/merch-picking-hall" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/Mb9Mw6ny3WNR5WcIsc0tS5jkID10VaMH.png" alt="抖音精选联盟">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>抖音精选联盟</h3>
                                     <p>抖音平台cps</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://cps.kwaixiaodian.com/pc/promoter/selection-center/home" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://cps.kwaixiaodian.com/pc/promoter/selection-center/home" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/2GL5qgnp3WNR5WdFsc0tJQldjEBsDUYT.png" alt="快手快分销">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>快手快分销</h3>
                                     <p>快手cps联盟</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://pub.alimama.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://pub.alimama.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/XCgVwwnI3WNR5WfCsc0tE7Ir9MKdoOa4.png" alt="淘宝联盟">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>淘宝联盟</h3>
                                     <p>淘宝客</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://union.jd.com/index" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://union.jd.com/index" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/WnootRnH3WNR5WcGsc0tIGzTb3pkVO1Y.png" alt="京东联盟">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>京东联盟</h3>
                                     <p>京东cps平台</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://jinbao.pinduoduo.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://jinbao.pinduoduo.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/g8twjOnl3WNR5WfEsc0tw6XXcGXya4Wq.png" alt="多多进宝">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>多多进宝</h3>
                                     <p>拼多多cps联盟</p>
                                 </div>
@@ -814,100 +814,100 @@
             </section>
 
             <section class="navs-section">
-                <div class="sec-panel">
-                    <div class="sec-panel-head">
+                <div class="category-card">
+                    <div class="category-card-head">
                         <h2>
                             <span>数据分析·选品</span> <small>直播大数据网站推荐</small>
                         </h2>
                     </div>
-                    <div class="sec-panel-body">
-                        <div class="list list-navs list-navs-cols-5">
-                            <a class="navs-link" href="http://www.chanmama.com" target="_blank">
-                                <div class="navs-link-logo">
+                    <div class="category-card-body">
+                        <div class="category-grid">
+                            <a class="category-item" href="http://www.chanmama.com" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/ALAac4n83WNR5WdAsc0t91yH83HETMEu.png" alt="蝉妈妈">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>蝉妈妈</h3>
                                     <p>抖音直播数据、选品平台</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://www.kaogujia.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://www.kaogujia.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/qUhvulny3WNR5WcFsc0tWXHHZDYI4b9D.png" alt="考古加">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>考古加</h3>
                                     <p>专业数据服务平台</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://youshu.youcloud.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://youshu.youcloud.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/fWMrjCnO3WNR5WcCsc0tvis6gARhoX8R.png" alt="有米有数">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>有米有数</h3>
                                     <p>广告投放数据分析工具</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://trendinsight.oceanengine.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://trendinsight.oceanengine.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/ZvqK3Hnc3WNR5WcFsc0tpVfX1uJXJB8z.png" alt="巨量算数">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>巨量算数</h3>
                                     <p>抖音官方大数据平台</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://dy.huitun.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://dy.huitun.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/4hsqWRnZ3WNR5Wd9sc0taODcY05DpKcV.png" alt="灰豚数据-抖音">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>灰豚数据-抖音</h3>
                                     <p>灰豚数据抖音</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://ks.huitun.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://ks.huitun.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/4hsqWRnZ3WNR5Wd9sc0taODcY05DpKcV.png" alt="灰豚数据-快手">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>灰豚数据-快手</h3>
                                     <p>灰豚数据快手版</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="http://www.dataoke.com" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="http://www.dataoke.com" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/d80DPCnN3WNR5WdIsc0tSaL7WRPuYalf.png" alt="大淘客">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>大淘客</h3>
                                     <p>淘客选品平台</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://mixuan.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://mixuan.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/MspICbnX3WNR5WcBsc0tnIoGmRY6Ayaj.png" alt="米选">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>米选</h3>
                                     <p>飞瓜旗下选品平台</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://www.douchacha.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://www.douchacha.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/OqsFPjnJ3WNR5WfIsc0tBppnm2gQIc66.png" alt="抖查查">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>抖查查</h3>
                                     <p>数据、达人与选品平台</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://bytedance.feishu.cn/docx/FCCxdKMarouWw3xrR87cNKeRn3b" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://bytedance.feishu.cn/docx/FCCxdKMarouWw3xrR87cNKeRn3b" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/Mb9Mw6ny3WNR5WcIsc0tS5jkID10VaMH.png" alt="抖音官方选品工具">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>抖音官方选品工具</h3>
                                     <p>抖音官方选品工具</p>
                                 </div>
@@ -918,145 +918,145 @@
             </section>
 
             <section class="navs-section">
-                <div class="sec-panel">
-                    <div class="sec-panel-head">
+                <div class="category-card">
+                    <div class="category-card-head">
                         <h2>
                             <span>视频剪辑</span> <small>视频剪辑工具和素材</small>
                         </h2>
                     </div>
-                    <div class="sec-panel-body">
-                        <div class="list list-navs list-navs-cols-5">
-                            <a class="navs-link" href="https://www.capcut.cn/" target="_blank">
-                                <div class="navs-link-logo">
+                    <div class="category-card-body">
+                        <div class="category-grid">
+                            <a class="category-item" href="https://www.capcut.cn/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/RQEJSTn23WNR5WcBsc0tgRWMwCxSPHGF.png" alt="剪映">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>剪映</h3>
                                     <p>全能易用的视频剪辑软件</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://www.kuaijianji.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://www.kuaijianji.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/FGdyRbnL3WNR5WcFsc0tFJ0leB6M1b56.png" alt="快剪辑">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>快剪辑</h3>
                                     <p>视频在线剪辑工具</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://cc.oceanengine.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://cc.oceanengine.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/YoskgPnn3WNR5WcGsc0t3rVdgaKg3PsC.png" alt="巨量创意">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>巨量创意</h3>
                                     <p>激发创意灵感</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://www.ktcapp.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://www.ktcapp.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/kyP7tAnL3WNR5WcDsc0tDkAPWk4frXsR.png" alt="快提词">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>快提词</h3>
                                     <p>一款免费的手机提词器APP</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://www.aigei.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://www.aigei.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/TIQpasnb3WNR5WcAsc0tBekcfx1pChQH.png" alt="爱给网">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>爱给网</h3>
                                     <p>音效配乐、视频素材</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://github.com/xifangczy/cat-catch" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://github.com/xifangczy/cat-catch" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/ldivFxnC3WNR5WcGsc0tE8vydlqrSpZY.png" alt="猫爪">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>猫爪</h3>
                                     <p>网页视频嗅探与下载</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://fbjvryq00y.feishu.cn/drive/folder/Y0BTfqMWoleXphdT1cNci3fDnUg?from=from_copylink" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://fbjvryq00y.feishu.cn/drive/folder/Y0BTfqMWoleXphdT1cNci3fDnUg?from=from_copylink" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/sv8NhYnH3WNR5WcEsc0t02ZLnWL6bTeS.png" alt="直播录制工具">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>直播间录制工具</h3>
                                     <p>批量录制、自动转码等</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://fbjvryq00y.feishu.cn/drive/folder/Y0BTfqMWoleXphdT1cNci3fDnUg?from=from_copylink" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://fbjvryq00y.feishu.cn/drive/folder/Y0BTfqMWoleXphdT1cNci3fDnUg?from=from_copylink" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/cX9WP8nk3WNR5WcBsc0topnvXZw9EEe0.png" alt="小绿点直播录屏">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>小绿点直播录屏</h3>
                                     <p>多平台直播录屏软件</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://www.soundems.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://www.soundems.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/eenjG3nc3WNR5WcGsc0t9eiPzu15ORvg.png" alt="闪电配音">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>闪电配音</h3>
                                     <p>配音平台</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://zenvideo.qq.com/home" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://zenvideo.qq.com/home" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/Fjj1IsnI3WNR5WcAsc0tDnH2HNXz7YTB.png" alt="腾讯智影">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>腾讯智影</h3>
                                     <p>腾讯AI智能创作平台</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://jollytoday.com/index/cn" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://jollytoday.com/index/cn" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/rqLl3Inh3WNR5WcCsc0txqzbbiF0VGw1.png" alt="鬼手剪辑">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>鬼手剪辑</h3>
                                     <p>硬字幕翻译、视频去字幕</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://azure.microsoft.com/zh-cn/products/ai-services/text-to-speech/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://azure.microsoft.com/zh-cn/products/ai-services/text-to-speech/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/HnBdAJno3WNR5Wc9sc0t5lTtdgvd05m0.png" alt="微软文本转语音">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>微软文本转语音</h3>
                                     <p>微软文本转语音</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://peiyin.xunfei.cn/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://peiyin.xunfei.cn/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/eUC8BFnZ3WNR5WcEsc0tlFtXTKTLXorQ.png" alt="讯飞智作">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>讯飞智作</h3>
                                     <p>讯飞AI配音</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://www.67tool.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://www.67tool.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/SGRJOyn73WNR5WcBsc0teKKtrYXMeX9S.png" alt="即时工具">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>即时工具</h3>
                                     <p>视频、图片处理工具箱</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://u8wfqgo0no.feishu.cn/docx/O81JdkKq4oRtX5xbD48c93q5nQz?from=from_copylink" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://u8wfqgo0no.feishu.cn/docx/O81JdkKq4oRtX5xbD48c93q5nQz?from=from_copylink" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/ySRU7Knl3WNR5WcFsc0tyLRYaVfxOsDj.png" alt="背景音乐合集">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>背景音乐合集</h3>
                                     <p>背景音乐合集</p>
                                 </div>
@@ -1067,82 +1067,82 @@
             </section>
 
             <section class="navs-section">
-                <div class="sec-panel">
-                    <div class="sec-panel-head">
+                <div class="category-card">
+                    <div class="category-card-head">
                         <h2>
                             <span>平面设计</span> <small>平面设计软件</small>
                         </h2>
                     </div>
-                    <div class="sec-panel-body">
-                        <div class="list list-navs list-navs-cols-5">
-                            <a class="navs-link" href="https://www.chuangkit.com/" target="_blank">
-                                <div class="navs-link-logo">
+                    <div class="category-card-body">
+                        <div class="category-grid">
+                            <a class="category-item" href="https://www.chuangkit.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/5ix2cZnQ3WNR5WcEsc0tlG2aNWAe3oSb.png" alt="创客贴">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>创客贴</h3>
                                     <p>在线制图</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://huaban.com/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://huaban.com/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/J6jreqnq3WNR5WcDsc0tckKizuIgM3CX.png" alt="花瓣网">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>花瓣网</h3>
                                     <p>图片素材</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://picwish.cn/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://picwish.cn/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/cdbp1rnL3WNR5WcDsc0tf6siZbTlrlRn.png" alt="佐糖-AI在线抠图">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>佐糖-AI在线抠图</h3>
                                     <p>AI在线抠图</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://www.fotor.com.cn/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://www.fotor.com.cn/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/Zltuuun13WNR5WcEsc0t1Y0f9TjxyYEh.png" alt="懒设计">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>懒设计</h3>
                                     <p>在线设计网站</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://colordrop.io/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://colordrop.io/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/NpWhJ9n83WNR5WcEsc0t8ggdjeLOtKzN.png" alt="配色网站">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>配色网站</h3>
                                     <p>配色网站</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://color.adobe.com/zh/create/color-wheel" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://color.adobe.com/zh/create/color-wheel" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/TqCEGLnO3WNR5WcCsc0t4zvj5XbQlbBN.png" alt="adobe色卡">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>adobe色卡</h3>
                                     <p>adobe色卡</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://bytedance.feishu.cn/docx/OqlYd1X3goVp5ZxhZd0c7NnPnzc" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://bytedance.feishu.cn/docx/OqlYd1X3goVp5ZxhZd0c7NnPnzc" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/jzURTpnJ3WNR5WcCsc0tKRmPYS1TvwV0.png" alt="商品卡主图模板">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>商品卡主图模板</h3>
                                     <p>商品卡主图模板</p>
                                 </div>
                             </a>
-                            <a class="navs-link" href="https://www.iconfont.cn/" target="_blank">
-                                <div class="navs-link-logo">
+                            <a class="category-item" href="https://www.iconfont.cn/" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/UnjRvkn13WNR5WdBsc0tA2Qtv6sMDZOD.png" alt="图标下载">
                                 </div>
-                                <div class="navs-link-info">
+                                <div class="category-item-info">
                                     <h3>图标下载</h3>
                                     <p>图标下载</p>
                                 </div>

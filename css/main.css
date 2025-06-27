@@ -248,3 +248,10 @@ input, select, textarea, button {
     margin: 0;
     line-height: 1.3;
 } 
+
+/* 
+ * 2024-06-26 UI样式更新
+ * 所有分类现在使用统一的category-card样式
+ * 统一了分类卡片头部的样式和内容布局
+ * 所有分类项采用相同的样式，确保整体一致性
+ */ 
