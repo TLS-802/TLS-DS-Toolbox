@@ -32,12 +32,7 @@
     border-radius: 50%;
 }
 
-/* 删除平台特定背景色 */
-/* 仅保留悬停动画效果 */
-.bounce-animation {
-    animation: none;
-}
-
+/* 悬停动画效果 */
 .bounce-animation:hover {
     animation: bounce 0.5s ease;
 }
@@ -69,4 +64,4 @@ footer .social-links img {
     background-color: #ffffff;
     padding: 3px;
     border-radius: 50%;
-} 
+}

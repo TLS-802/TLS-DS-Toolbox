@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
             img.onerror = function() {
                 this.onerror = null;
                 this.src = 'https://placehold.co/48x48/cccccc/333333?text=' + encodeURIComponent(social.platform);
-                console.log(`图片加载失败: ${social.platform}`);
             };
             
             link.appendChild(img);
