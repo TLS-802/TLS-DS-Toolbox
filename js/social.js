@@ -49,12 +49,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const img = document.createElement('img');
             img.src = social.imgSrc;
             img.alt = social.platform;
-            img.width = 48;
-            img.height = 48;
+            img.width = 36;
+            img.height = 36;
             // 添加图片加载错误处理
             img.onerror = function() {
                 this.onerror = null;
-                this.src = 'https://placehold.co/48x48/cccccc/333333?text=' + encodeURIComponent(social.platform);
+                this.src = 'https://placehold.co/36x36/cccccc/333333?text=' + encodeURIComponent(social.platform);
             };
             
             link.appendChild(img);
