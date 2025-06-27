@@ -566,72 +566,194 @@ function calculateAverage(platformKey, metricId, metricConfig) {
 
 // --- UI 生成和事件处理 ---
 function createMetricSectionHTML(platformKey, metricId, metricConfig) {
-    const section = createElement('div', {
+    // 创建指标节容器
+    const section = createElement('section', {
         className: 'metric-section hidden',
         id: `${platformKey}_${metricId}_section`
     });
-    
-    // 创建标题
-    const title = createElement('h2', {
-        textContent: metricConfig.name
-    });
-    section.appendChild(title);
-    
-    // 添加描述（如果有）
-    if (metricConfig.description) {
-        const description = createElement('small', {
-            textContent: metricConfig.description
-        });
-        section.appendChild(description);
+
+    // 添加标题
+    section.appendChild(createElement('h2', { textContent: metricConfig.name }));
+
+    // 如果有小文本说明，添加到容器
+    if (metricConfig.smallText) {
+        section.appendChild(createElement('small', { textContent: metricConfig.smallText }));
     }
-    
-    // 特殊处理时间输入类型
+
+    // 创建表单行和表单组
+    const createFormGroupsInRows = (inputs, rowSize = 2, skipButton = false) => {
+        const formGroups = [];
+        const rows = [];
+        let currentRow = null;
+        let groupsInCurrentRow = 0;
+        
+        // 创建常规输入字段的表单组
+        inputs.forEach((input, index) => {
+            // 创建表单组
+            const formGroup = createElement('div', { className: 'form-group' });
+            
+            // 创建表单标签
+            const label = createElement('label', { 
+                htmlFor: `${platformKey}_${metricId}_${input.id}`, 
+                textContent: input.label 
+            });
+            formGroup.appendChild(label);
+            
+            // 根据输入类型创建输入字段
+            if (input.type === 'number') {
+                // 标准数字输入
+                if (input.unitText) {
+                    // 带单位文本的输入组
+                    const inputGroup = createElement('div', { className: 'input-group' });
+                    
+                    const inputField = createElement('input', {
+                        type: 'number',
+                        id: `${platformKey}_${metricId}_${input.id}`,
+                        placeholder: input.placeholder,
+                        step: input.step || '1',
+                        min: input.min,
+                        max: input.max
+                    });
+                    
+                    const unitAddon = createElement('div', {
+                        className: 'input-group-addon',
+                        textContent: input.unitText
+                    });
+                    
+                    inputGroup.appendChild(inputField);
+                    inputGroup.appendChild(unitAddon);
+                    formGroup.appendChild(inputGroup);
+                } else {
+                    // 普通数字输入
+                    const inputField = createElement('input', {
+                        type: 'number',
+                        id: `${platformKey}_${metricId}_${input.id}`,
+                        placeholder: input.placeholder,
+                        step: input.step || '1',
+                        min: input.min,
+                        max: input.max
+                    });
+                    formGroup.appendChild(inputField);
+                }
+            }
+            
+            formGroups.push(formGroup);
+            
+            // 添加表单组到行
+            if (index % rowSize === 0) {
+                currentRow = createElement('div', { className: 'form-row' });
+                rows.push(currentRow);
+                groupsInCurrentRow = 0;
+            }
+            
+            currentRow.appendChild(formGroup);
+            groupsInCurrentRow++;
+        });
+        
+        // 处理最后一行可能需要的计算按钮
+        const needsCalculationButton = !skipButton && (metricConfig.type === 'positive_rate' || 
+                                      metricConfig.type === 'negative_rate' || 
+                                      metricConfig.type === 'positive_average' || 
+                                      metricConfig.type === 'negative_average');
+        
+        // 确定计算按钮文本
+        const buttonText = metricConfig.calculationButtonText || 
+                          (metricConfig.type.includes('rate') ? '计算所需补单量' : '计算所需补单量');
+        
+        if (needsCalculationButton) {
+            const buttonFormGroup = createElement('div', { className: 'form-group' });
+            
+            // 为按钮添加与输入字段相同的顶部间距
+            const invisibleLabel = createElement('label', { 
+                innerHTML: '&nbsp;', 
+                style: 'visibility: hidden;' 
+            });
+            buttonFormGroup.appendChild(invisibleLabel);
+            
+            // 创建计算按钮
+            const button = createElement('button', {
+                type: 'button',
+                className: 'calc-button',
+                textContent: buttonText,
+                id: `${platformKey}_${metricId}_calculate`
+            });
+            
+            buttonFormGroup.appendChild(button);
+            
+            // 如果最后一行的组数已经达到行大小，创建新行
+            if (groupsInCurrentRow === rowSize) {
+                currentRow = createElement('div', { className: 'form-row' });
+                rows.push(currentRow);
+                currentRow.appendChild(buttonFormGroup);
+            } else {
+                // 否则添加到最后一行
+                currentRow.appendChild(buttonFormGroup);
+            }
+            
+            // 添加事件监听器
+            button.addEventListener('click', () => {
+                // 根据指标类型调用不同的计算函数
+                if (metricConfig.type.includes('rate')) {
+                    calculateRate(platformKey, metricId, metricConfig);
+                } else if (metricConfig.type.includes('average')) {
+                    calculateAverage(platformKey, metricId, metricConfig);
+                }
+            });
+        }
+        
+        return rows;
+    };
+
+    // 如果有时间输入功能，创建特殊的时间输入组
     if (metricConfig.timeInput) {
+        // 创建时间输入组
+        const timeInputLabel = createElement('label', {
+            className: 'block text-base font-medium text-gray-700 mb-3',
+            textContent: metricConfig.timeInputLabel || '当前总时长:'
+        });
+        section.appendChild(timeInputLabel);
+        
         // 创建时间输入行
         const timeInputRow = createElement('div', {
-            className: 'form-row'
+            className: 'time-input-group'
         });
         
-        // 如果计算单位是小时或者默认，添加小时输入
-        if (!metricConfig.calculationUnit || metricConfig.calculationUnit === 'hours' || metricConfig.calculationUnit === 'minutes' || metricConfig.calculationUnit === 'seconds') {
-            const hoursGroup = createElement('div', {
-                className: 'form-group'
-            });
-            const hoursLabel = createElement('label', {
-                htmlFor: `${platformKey}_${metricId}_current_hours`,
-                textContent: '小时:'
-            });
-            const hoursInput = createElement('input', {
-                type: 'number',
-                id: `${platformKey}_${metricId}_current_hours`,
-                placeholder: '例如: 2',
-                min: '0'
-            });
-            hoursGroup.appendChild(hoursLabel);
-            hoursGroup.appendChild(hoursInput);
-            timeInputRow.appendChild(hoursGroup);
-        }
+        // 创建小时输入组
+        const hoursGroup = createElement('div', {
+            className: 'form-group'
+        });
+        const hoursLabel = createElement('label', {
+            htmlFor: `${platformKey}_${metricId}_current_hours`,
+            textContent: '小时:'
+        });
+        const hoursInput = createElement('input', {
+            type: 'number',
+            id: `${platformKey}_${metricId}_current_hours`,
+            placeholder: '例如: 5',
+            min: '0'
+        });
+        hoursGroup.appendChild(hoursLabel);
+        hoursGroup.appendChild(hoursInput);
+        timeInputRow.appendChild(hoursGroup);
         
-        // 如果计算单位是分钟或者默认，添加分钟输入
-        if (!metricConfig.calculationUnit || metricConfig.calculationUnit === 'minutes' || metricConfig.calculationUnit === 'hours' || metricConfig.calculationUnit === 'seconds') {
-            const minutesGroup = createElement('div', {
-                className: 'form-group'
-            });
-            const minutesLabel = createElement('label', {
-                htmlFor: `${platformKey}_${metricId}_current_minutes`,
-                textContent: '分钟:'
-            });
-            const minutesInput = createElement('input', {
-                type: 'number',
-                id: `${platformKey}_${metricId}_current_minutes`,
-                placeholder: '例如: 30',
-                min: '0',
-                max: '59'
-            });
-            minutesGroup.appendChild(minutesLabel);
-            minutesGroup.appendChild(minutesInput);
-            timeInputRow.appendChild(minutesGroup);
-        }
+        // 创建分钟输入组
+        const minutesGroup = createElement('div', {
+            className: 'form-group'
+        });
+        const minutesLabel = createElement('label', {
+            htmlFor: `${platformKey}_${metricId}_current_minutes`,
+            textContent: '分钟:'
+        });
+        const minutesInput = createElement('input', {
+            type: 'number',
+            id: `${platformKey}_${metricId}_current_minutes`,
+            placeholder: '例如: 30',
+            min: '0',
+            max: '59'
+        });
+        minutesGroup.appendChild(minutesLabel);
+        minutesGroup.appendChild(minutesInput);
+        timeInputRow.appendChild(minutesGroup);
         
         // 如果计算单位是秒，添加秒输入
         if (!metricConfig.calculationUnit || metricConfig.calculationUnit === 'seconds') {
@@ -698,6 +820,46 @@ function createMetricSectionHTML(platformKey, metricId, metricConfig) {
             } else {
                 console.error('未知的指标类型:', metricConfig.type);
                 displayResult(platformKey, metricId, `错误：未知的指标类型 ${metricConfig.type}`, false);
+            }
+        });
+        
+        buttonGroup.appendChild(button);
+        buttonRow.appendChild(buttonGroup);
+        section.appendChild(buttonRow);
+        
+    } else if (metricConfig.countInput) {
+        // 创建计数输入功能，但不在createFormGroupsInRows中添加计算按钮
+        // 传递true作为skipButton参数，表示不自动添加计算按钮
+        const formRows = createFormGroupsInRows(metricConfig.inputs, 2, true);
+        formRows.forEach(row => section.appendChild(row));
+        
+        // 创建计算按钮行
+        const buttonRow = createElement('div', {
+            className: 'form-row calc-button-row'
+        });
+        
+        const buttonGroup = createElement('div', {
+            className: 'form-group'
+        });
+        
+        // 确定计算按钮文本
+        const buttonText = metricConfig.calculationButtonText || '计算所需补单量';
+        
+        // 创建计算按钮
+        const button = createElement('button', {
+            type: 'button',
+            className: 'calc-button',
+            textContent: buttonText,
+            id: `${platformKey}_${metricId}_calculate`
+        });
+        
+        // 添加事件监听器
+        button.addEventListener('click', () => {
+            // 根据指标类型调用计算函数
+            if (metricConfig.type.includes('rate')) {
+                calculateRate(platformKey, metricId, metricConfig);
+            } else {
+                console.error('未知的指标类型:', metricConfig.type);
             }
         });
         

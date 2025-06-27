@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="驼铃电商工具箱 - 一站式电商运营工具集合，助力商家高效经营">
-    <meta name="theme-color" content="#f1f2f4">
+    <meta name="theme-color" content="#007bff">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>驼铃电商工具箱</title>
@@ -34,7 +34,53 @@
                 font-size: 0.7rem;
             }
         }
-        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 0.5rem;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        @media (min-width: 640px) {
+            .card-grid {
+                gap: 0.65rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .card-grid {
+                gap: 0.85rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            .card-grid {
+                gap: 1rem;
+                max-width: 95%;
+            }
+        }
+        .platform-card-link {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0.35rem;
+        }
+        @media (min-width: 640px) {
+            .platform-card-link {
+                padding: 0.65rem 0.5rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .platform-card-link {
+                padding: 0.85rem 0.65rem;
+            }
+        }
+        .card-description {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 0.4rem;
+        }
+
         /* 导航样式 */
         .navs-section {
             margin-bottom: 20px;
@@ -228,12 +274,20 @@
     </style>
 </head>
 <body class="bg-gray-100">
-    <main class="min-h-screen flex flex-col bg-[#f1f2f4]">
-        <div class="container mx-auto px-3 py-4 sm:px-4 sm:py-5 lg:px-6 lg:py-6 flex-grow">
-            <header class="mb-4 sm:mb-6 bg-blue-600 rounded-lg shadow-md p-4 sm:p-6">
-                <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-center text-white">驼铃电商工具箱</h1>
-                <p class="text-gray-200 text-sm sm:text-base text-center">一站式电商运营工具集合，助力商家高效经营</p>
+    <main class="min-h-screen flex items-center justify-center p-4 sm:p-4 lg:p-6">
+        <div class="container max-w-6xl bg-white w-full mx-auto p-0 rounded-lg shadow-md border border-gray-200">
+            <header class="section wpcom-modules modules-fullwidth mb-2 sm:mb-3 md:mb-4" style="background-color: #007bff; padding: 15px 0; width: 100%; margin-left: 0; margin-right: 0; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;">
+                <div class="container text-center">
+                    <section class="section wpcom-modules modules-text-format" style="margin-bottom: 6px;">
+                        <p class="text-format-el"><strong><span style="color: #ffffff; font-size: 18px; line-height: 1.3;">驼铃电商工具百宝箱</span></strong></p>
+                    </section>
+                    <section class="section wpcom-modules modules-text-format">
+                        <p class="text-format-el"><span style="color: #ffffff; font-size: 13px; line-height: 1.2;">一站式电商运营工具集合，助力商家高效经营</span></p>
+                    </section>
+                </div>
             </header>
+            <div class="p-2 sm:p-3 md:p-4">
+
 
             <!-- 修改主要工具卡片区域为导航样式 -->
             <section class="navs-section">
@@ -311,10 +365,21 @@
                                 </div>
                             </a>
 
+                            <!-- 直播录制工具 -->
+                            <a class="category-item" href="https://fbjvryq00y.feishu.cn/drive/folder/Y0BTfqMWoleXphdT1cNci3fDnUg?from=from_copylink" target="_blank">
+                                <div class="category-item-icon">
+                                    <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="直播录制工具">
+                                </div>
+                                <div class="category-item-info">
+                                    <h3>直播间录制工具</h3>
+                                    <p>批量录制、自动转码等</p>
+                                </div>
+                            </a>
+
                             <!-- 驼铃规则中心 -->
                             <a class="category-item" href="pages/rules.html">
                                 <div class="category-item-icon">
-                                    <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="规则中心">
+                                    <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="千川计算器">
                                 </div>
                                 <div class="category-item-info">
                                     <h3>驼铃规则中心</h3>
@@ -933,6 +998,15 @@
                             </a>
                             <a class="category-item" href="https://fbjvryq00y.feishu.cn/drive/folder/Y0BTfqMWoleXphdT1cNci3fDnUg?from=from_copylink" target="_blank">
                                 <div class="category-item-icon">
+                                    <img src="https://www.nodeimage.com/i/32451/sv8NhYnH3WNR5WcEsc0t02ZLnWL6bTeS.png" alt="直播录制工具">
+                                </div>
+                                <div class="category-item-info">
+                                    <h3>直播间录制工具</h3>
+                                    <p>批量录制、自动转码等</p>
+                                </div>
+                            </a>
+                            <a class="category-item" href="https://fbjvryq00y.feishu.cn/drive/folder/Y0BTfqMWoleXphdT1cNci3fDnUg?from=from_copylink" target="_blank">
+                                <div class="category-item-icon">
                                     <img src="https://www.nodeimage.com/i/32451/cX9WP8nk3WNR5WcBsc0topnvXZw9EEe0.png" alt="小绿点直播录屏">
                                 </div>
                                 <div class="category-item-info">
@@ -1095,31 +1169,14 @@
             </section>
 
             </div>
-            <footer class="mt-3 sm:mt-4">
-                <div class="bg-blue-600 rounded-lg shadow-md p-4 sm:p-6 mx-auto" style="max-width: 800px;">
-                    <div class="category-card-head border-b border-blue-500 mb-3">
-                        <h2 class="text-white">
-                            <span>联系我们</span> <small class="text-blue-200">关注社交媒体</small>
-                        </h2>
-                    </div>
+            <footer class="mt-3 sm:mt-4 text-center text-xs section wpcom-modules modules-fullwidth" style="background-color: #007bff; padding: 12px 0 10px; width: 100%; margin-left: 0; margin-right: 0; border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem;">
+                <div class="container text-center">
                     <!-- 社交媒体链接 -->
-                    <div class="social-links flex justify-center gap-4 mb-3">
-                        <!-- 示例社交媒体图标，实际图标将由social.js动态生成 -->
-                        <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                            <span class="text-blue-600">G</span>
-                        </a>
-                        <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                            <span class="text-blue-600">T</span>
-                        </a>
-                        <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                            <span class="text-blue-600">W</span>
-                        </a>
-                        <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                            <span class="text-blue-600">D</span>
-                        </a>
+                    <div class="social-links mb-2">
+                        <!-- 社交媒体链接将由social.js动态生成 -->
                     </div>
                     
-                    <p class="text-white text-xs text-center">© 2025 驼铃电商社出品</p>
+                    <p class="mt-2 text-white text-xs">© 2025 驼铃电商社出品</p>
                 </div>
             </footer>
         </div>

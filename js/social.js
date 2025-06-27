@@ -49,12 +49,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const img = document.createElement('img');
             img.src = social.imgSrc;
             img.alt = social.platform;
-            img.width = 36;
-            img.height = 36;
+            img.width = 48;
+            img.height = 48;
             // 添加图片加载错误处理
             img.onerror = function() {
                 this.onerror = null;
-                this.src = 'https://placehold.co/36x36/cccccc/333333?text=' + encodeURIComponent(social.platform);
+                this.src = 'https://placehold.co/48x48/cccccc/333333?text=' + encodeURIComponent(social.platform);
+                console.log(`图片加载失败: ${social.platform}`);
             };
             
             link.appendChild(img);

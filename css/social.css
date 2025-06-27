@@ -4,9 +4,6 @@
     justify-content: center;
     gap: 8px !important;
     margin-bottom: 2px;
-    max-width: 300px; /* 限制最大宽度 */
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .social-links a {
@@ -35,7 +32,12 @@
     border-radius: 50%;
 }
 
-/* 悬停动画效果 */
+/* 删除平台特定背景色 */
+/* 仅保留悬停动画效果 */
+.bounce-animation {
+    animation: none;
+}
+
 .bounce-animation:hover {
     animation: bounce 0.5s ease;
 }
@@ -67,43 +69,4 @@ footer .social-links img {
     background-color: #ffffff;
     padding: 3px;
     border-radius: 50%;
-}
-
-/* 页脚卡片样式 */
-footer .bg-blue-600 {
-    max-width: 800px; /* 限制最大宽度 */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* 页脚标题样式 */
-footer .category-card-head {
-    padding: 10px 0;
-    margin-bottom: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-footer .category-card-head h2 {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-footer .category-card-head h2 small {
-    font-size: 13px;
-    margin-left: 10px;
-    font-weight: normal;
-    opacity: 0.8;
-}
-
-@media (max-width: 576px) {
-    footer .category-card-head h2 {
-        font-size: 14px;
-    }
-    footer .category-card-head h2 small {
-        font-size: 12px;
-    }
-}
+} 

@@ -1,5 +1,7 @@
 // 主JavaScript文件
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('驼铃电商工具箱已加载');
+    
     // 添加平滑滚动
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
