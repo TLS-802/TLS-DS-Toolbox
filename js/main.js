@@ -2,10 +2,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('驼铃电商工具箱已加载');
     
-    // 深色模式切换功能可以在这里实现
-    // 全局分析功能可以在这里实现
-    // 全局共享状态可以在这里管理
-
     // 添加平滑滚动
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -35,17 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isMobile) document.body.classList.add('is-mobile');
         if (isTablet) document.body.classList.add('is-tablet');
         if (isDesktop) document.body.classList.add('is-desktop');
-        
-        // 优化点击区域 - 在移动端增大点击区域
-        if (isMobile) {
-            document.querySelectorAll('.category-item').forEach(item => {
-                item.classList.add('mobile-touch');
-            });
-        } else {
-            document.querySelectorAll('.category-item').forEach(item => {
-                item.classList.remove('mobile-touch');
-            });
-        }
         
         // 针对不同设备优化图标大小
         document.querySelectorAll('.category-item-icon img').forEach(img => {
@@ -79,62 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // 监听窗口大小变化
     window.addEventListener('resize', function() {
         initResponsiveLayout();
-    });
-    
-    // 响应式导航
-    const cardGrid = document.querySelector('.card-grid');
-    if (cardGrid) {
-        const updateGridColumns = () => {
-            const width = window.innerWidth;
-            if (width < 640) {
-                cardGrid.style.gridTemplateColumns = 'repeat(1, 1fr)';
-            } else if (width < 768) {
-                cardGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-            } else {
-                cardGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
-            }
-        };
-        
-        updateGridColumns();
-        window.addEventListener('resize', updateGridColumns);
-    }
-
-    // 页面加载后更新分类卡片UI样式
-    // 更新所有部分容器为category-card样式
-    document.querySelectorAll('.sec-panel').forEach(function(panel) {
-        panel.classList.add('category-card');
-    });
-    
-    // 更新所有头部为category-card-head样式
-    document.querySelectorAll('.sec-panel-head').forEach(function(head) {
-        head.classList.add('category-card-head');
-    });
-    
-    // 更新所有内容区域为category-card-body样式
-    document.querySelectorAll('.sec-panel-body').forEach(function(body) {
-        body.classList.add('category-card-body');
-    });
-    
-    // 更新所有网格为category-grid样式
-    document.querySelectorAll('.list.list-navs').forEach(function(grid) {
-        grid.classList.add('category-grid');
-    });
-    
-    // 更新所有卡片项目为category-item样式
-    document.querySelectorAll('.navs-link').forEach(function(item) {
-        item.classList.add('category-item');
-        
-        // 更新图标容器
-        const iconContainer = item.querySelector('.navs-link-logo');
-        if (iconContainer) {
-            iconContainer.classList.add('category-item-icon');
-        }
-        
-        // 更新信息容器
-        const infoContainer = item.querySelector('.navs-link-info');
-        if (infoContainer) {
-            infoContainer.classList.add('category-item-info');
-        }
     });
 });
 

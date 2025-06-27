@@ -1,57 +1,88 @@
 # 驼铃电商工具箱
 
-## 项目概述
-驼铃电商工具箱是一个集成了多个电商工具的Web应用，旨在帮助电商卖家提升运营效率。目前包含三大核心功能：多平台电商补单计算器、千川出价和利润计算器以及电商规则中心。
+一站式电商运营工具集合，助力商家高效经营
 
-## 功能模块
+## 项目介绍
 
-### 1. 多平台电商补单计算器
-- **功能描述**：帮助电商卖家计算提升各平台KPI指标所需的补单数量
-- **支持平台**：抖店、淘宝、快手、视频号、小红书、京东等
-- **主要指标**：商品评分、退款率、揽收时效、物流配送时效、售后处理等多种电商平台考核指标
-- **页面位置**：`pages/budan.html`
+驼铃电商工具箱是一个集合了各类电商运营工具的导航网站，包括电商知识库、补单计算器、ROI计算器、直播工具、店铺管理工具等。本项目旨在为电商从业者提供一个便捷的工具集合，提高工作效率。
 
-### 2. 千川出价和利润计算器
-- **功能描述**：针对电商营销投放场景，提供精准的利润计算和出价建议
-- **计算版本**：商家版、达人版、店铺利润版
-- **出价建议**：随心推、千川、全域投放的保守/激进策略建议
-- **页面位置**：`pages/roi.html`
+## 功能特点
 
-### 3. 电商规则中心
-- **功能描述**：汇总各大电商平台的最新规则和政策
-- **支持平台**：抖音、淘宝、京东、快手、视频号、小红书、拼多多等
-- **页面位置**：`pages/rules.html`
+- 电商知识库：从新手到高手的电商知识体系
+- 电商黑科技：品退、差评方法等实用技巧
+- 补单计算器：快速计算补单数量，提升店铺指标
+- 千川计算器：计算广告投放ROI，优化投放效果
+- 直播中控工具：自动弹窗、自动发言等直播辅助功能
+- 规则中心：集合多平台规则，帮助商家合规经营
+- 多平台导航：包含各大电商平台的官方工具入口
 
 ## 项目结构
 
 ```
-combined-project/
-│
-├── index.html               // 主页，三个工具的入口
-├── css/
-│   ├── main.css             // 全站共享的基础样式
-│   ├── budan.css            // 补单计算器专用样式
-│   └── roi.css              // ROI计算器专用样式
-│
-├── js/
-│   ├── main.js              // 全站共享的JavaScript功能
-│   ├── budan.js             // 补单计算器的核心逻辑
-│   └── roi.js               // ROI计算器的核心逻辑
-│
-└── pages/
-    ├── budan.html           // 补单计算器页面
-    ├── roi.html             // ROI计算器页面
-    └── rules.html           // 规则中心页面
+TLS-DS-Toolbox/
+├── index.html          # 主页面
+├── css/                # 样式文件
+│   ├── main.css        # 主样式表
+│   ├── social.css      # 社交媒体样式
+│   ├── roi.css         # ROI计算器样式
+│   └── budan.css       # 补单计算器样式
+├── js/                 # JavaScript文件
+│   ├── main.js         # 主脚本文件
+│   ├── social.js       # 社交媒体脚本
+│   ├── roi.js          # ROI计算器脚本
+│   └── budan.js        # 补单计算器脚本
+└── pages/              # 子页面
+    ├── rules.html      # 规则中心
+    ├── roi.html        # ROI计算器
+    └── budan.html      # 补单计算器
 ```
 
 ## 技术栈
+
 - HTML5
 - CSS3
-- JavaScript (原生)
-- TailwindCSS
+- JavaScript
+- Tailwind CSS (CDN)
+- 响应式设计
 
-## 如何使用
-直接打开 `index.html` 文件在浏览器中访问，或部署到任何Web服务器上。项目不依赖后端服务，所有功能在前端执行。
+## 代码优化记录
 
-## 开发与维护
-项目采用模块化开发，各工具间功能独立，便于单独维护和更新。通过共享的CSS和JavaScript文件减少了代码冗余，同时保持了统一的用户界面风格。 
+### 2023-06-30 代码清理优化
+- 删除了index.html中未使用的CSS样式类
+- 移除了main.js中冗余的JavaScript代码
+- 清理了main.css中重复定义和未使用的样式
+- 优化了响应式布局，确保在各种设备上正常显示
+- 统一了头部和底部与内容区域宽度，保持UI一致性
+
+## 使用说明
+
+1. 克隆仓库到本地
+```bash
+git clone https://github.com/TLS-802/TLS-DS-Toolbox.git
+```
+
+2. 使用浏览器打开index.html即可访问主页
+3. 点击相应的工具卡片可以进入对应的工具页面
+
+## 贡献指南
+
+欢迎对本项目进行贡献！如果你有任何改进意见或新功能建议，请按以下步骤操作：
+
+1. Fork 本仓库
+2. 创建你的特性分支 (`git checkout -b feature/amazing-feature`)
+3. 提交你的更改 (`git commit -m 'Add some amazing feature'`)
+4. 推送到分支 (`git push origin feature/amazing-feature`)
+5. 开启一个 Pull Request
+
+## 许可证
+
+本项目采用 MIT 许可证 - 详情请参阅 LICENSE 文件
+
+## 联系方式
+
+如有任何问题或建议，请通过以下方式联系我们：
+
+- GitHub: [https://github.com/TLS-802](https://github.com/TLS-802)
+- 抖音: [https://v.douyin.com/ICMNRjljVK8/](https://v.douyin.com/ICMNRjljVK8/)
+- 微信: [https://url.199908.top/VX2](https://url.199908.top/VX2)
+- 飞书: [https://www.feishu.cn/invitation/page/add_contact/?token=154u7d8e-d426-4b6a-b4ec-75f7ff732522&amp;unique_id=Lwo89tNN9CZrOi0uAwnjEw==](https://www.feishu.cn/invitation/page/add_contact/?token=154u7d8e-d426-4b6a-b4ec-75f7ff732522&amp;unique_id=Lwo89tNN9CZrOi0uAwnjEw==) 
