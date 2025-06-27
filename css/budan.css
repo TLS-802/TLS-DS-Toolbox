@@ -7,7 +7,7 @@
     --text-light: #6c757d;  /* 浅色文本颜色 */
     --border-color: #dee2e6;  /* 边框颜色 */
     --input-border-color: #ced4da;  /* 输入框边框颜色 */
-    --background-light: #f1f3f5;  /* 浅色背景 */
+    --background-light: #f1f2f4;  /* 浅色背景 */
     --background-section: #f8f9fa;  /* 区块背景 */
     --background-white: #ffffff;  /* 白色背景 */
     --success-bg: #d4edda;  /* 成功背景色 */
@@ -33,7 +33,7 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: var(--background-light);
+    background-color: #f1f2f4;
     color: var(--text-dark);
     -webkit-text-size-adjust: 100%;
     font-size: 16px;
@@ -42,7 +42,7 @@ body {
 /* --- 布局与容器 --- */
 .wrapper {
     padding: 20px;
-    background-color: var(--background-light);
+    background-color: #f1f2f4;
     min-height: 100vh;
     display: flex;
     justify-content: center;
