@@ -40,6 +40,44 @@ document.addEventListener('DOMContentLoaded', function() {
         updateGridColumns();
         window.addEventListener('resize', updateGridColumns);
     }
+
+    // 页面加载后更新分类卡片UI样式
+    // 更新所有部分容器为category-card样式
+    document.querySelectorAll('.sec-panel').forEach(function(panel) {
+        panel.classList.add('category-card');
+    });
+    
+    // 更新所有头部为category-card-head样式
+    document.querySelectorAll('.sec-panel-head').forEach(function(head) {
+        head.classList.add('category-card-head');
+    });
+    
+    // 更新所有内容区域为category-card-body样式
+    document.querySelectorAll('.sec-panel-body').forEach(function(body) {
+        body.classList.add('category-card-body');
+    });
+    
+    // 更新所有网格为category-grid样式
+    document.querySelectorAll('.list.list-navs').forEach(function(grid) {
+        grid.classList.add('category-grid');
+    });
+    
+    // 更新所有卡片项目为category-item样式
+    document.querySelectorAll('.navs-link').forEach(function(item) {
+        item.classList.add('category-item');
+        
+        // 更新图标容器
+        const iconContainer = item.querySelector('.navs-link-logo');
+        if (iconContainer) {
+            iconContainer.classList.add('category-item-icon');
+        }
+        
+        // 更新信息容器
+        const infoContainer = item.querySelector('.navs-link-info');
+        if (infoContainer) {
+            infoContainer.classList.add('category-item-info');
+        }
+    });
 });
 
 // 工具函数
