@@ -3,25 +3,25 @@
 /* 修复分类网格在移动设备上的显示问题 */
 .category-grid {
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-columns: repeat(5, 1fr) !important; /* 电脑端默认5列 */
     gap: 0 !important;
 }
 
 @media (max-width: 992px) {
     .category-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
+        grid-template-columns: repeat(5, 1fr) !important; /* 平板端保持5列 */
     }
 }
 
 @media (max-width: 768px) {
     .category-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: repeat(3, 1fr) !important; /* 小平板过渡为3列 */
     }
 }
 
 @media (max-width: 576px) {
     .category-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* 手机端2列 */
     }
 }
 
