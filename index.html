@@ -7,6 +7,8 @@
     <meta name="theme-color" content="#007bff">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="HandheldFriendly" content="true">
     <title>驼铃电商工具箱</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,7 +58,6 @@
         
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 0.5rem;
             width: 100%;
         }
@@ -67,7 +68,6 @@
         }
         @media (min-width: 768px) {
             .category-grid {
-                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
                 gap: 1rem;
             }
         }

@@ -358,18 +358,21 @@ input, select, textarea, button {
     border-left: none;
 }
 
+/* 平板保持5列布局 */
 @media (max-width: 1100px) {
     .category-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
     }
 }
 
+/* 小平板保持5列布局 */
 @media (max-width: 850px) {
     .category-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(5, 1fr);
     }
 }
 
+/* 手机显示2列 */
 @media (max-width: 650px) {
     .category-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -542,37 +545,19 @@ input, select, textarea, button {
 .mobile-touch {
     cursor: pointer;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    touch-action: manipulation; /* 优化触摸操作 */
 }
 
-/* 移动端设备类样式 */
-.is-mobile .category-card-head h2 {
-    font-size: 15px;
-}
-
-.is-mobile .category-card-head h2 small {
-    font-size: 12px;
-    display: block;
-    margin-left: 0;
-    margin-top: 2px;
-}
-
+/* 在移动设备上增大点击区域 */
 .is-mobile .category-item {
-    padding: 8px 10px;
+    padding: 10px 12px; /* 稍微增大内边距 */
+    min-height: 50px; /* 确保最小高度适合触摸 */
 }
 
 .is-mobile .category-item-icon {
     width: 24px;
     height: 24px;
-    margin-right: 6px;
-}
-
-.is-mobile .category-item-info h3 {
-    font-size: 12px;
-    margin-bottom: 1px;
-}
-
-.is-mobile .category-item-info p {
-    font-size: 10px;
+    margin-right: 8px;
 }
 
 /* 平板设备优化 */
@@ -587,6 +572,48 @@ input, select, textarea, button {
 .is-tablet .category-item-icon {
     width: 28px;
     height: 28px;
+}
+
+.is-tablet .category-item-info h3 {
+    font-size: 12px;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.is-tablet .category-item-info p {
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 移动端设备类样式 */
+.is-mobile .category-card-head h2 {
+    font-size: 15px;
+}
+
+.is-mobile .category-card-head h2 small {
+    font-size: 12px;
+    display: block;
+    margin-left: 0;
+    margin-top: 2px;
+}
+
+.is-mobile .category-item-info h3 {
+    font-size: 12px;
+    margin-bottom: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.is-mobile .category-item-info p {
+    font-size: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* 触摸反馈效果 */

@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 响应式布局处理
     function initResponsiveLayout() {
-        // 检测设备类型
+        // 检测设备类型 - 与CSS断点保持一致
         const isMobile = window.innerWidth <= 650;
         const isTablet = window.innerWidth > 650 && window.innerWidth <= 1024;
         const isDesktop = window.innerWidth > 1024;
@@ -58,6 +58,17 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 img.style.maxWidth = '32px';
                 img.style.maxHeight = '32px';
+            }
+        });
+        
+        // 控制网格布局 - 确保与CSS媒体查询一致
+        document.querySelectorAll('.category-grid').forEach(grid => {
+            if (isMobile) {
+                // 手机显示2列
+                grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            } else {
+                // 平板和PC显示5列
+                grid.style.gridTemplateColumns = 'repeat(5, 1fr)';
             }
         });
     }
