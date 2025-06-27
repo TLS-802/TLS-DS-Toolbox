@@ -16,108 +16,179 @@
     <link rel="stylesheet" href="css/social.css">
     <link rel="stylesheet" href="css/mobile-fix.css">
     <style>
-        /* 基础样式 */
         body {
             font-family: "Inter", sans-serif;
             background-color: #f1f2f4;
             margin: 0;
-            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+            padding: 0;
             min-height: 100vh;
+            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
         }
-
-        /* 布局组件 */
-        .container {
-            max-width: 1200px;
+        .platform-card-link:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.4);
+        }
+        /* 添加移动端优化样式 */
+        @media (max-width: 640px) {
+            .card-title {
+                font-size: 0.8rem;
+                line-height: 1.1rem;
+                margin-bottom: 0.3rem;
+            }
+            .card-action {
+                font-size: 0.7rem;
+            }
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 0.5rem;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 0 1rem;
+        }
+        @media (min-width: 640px) {
+            .card-grid {
+                gap: 0.65rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .card-grid {
+                gap: 0.85rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            .card-grid {
+                gap: 1rem;
+                max-width: 95%;
+            }
+        }
+        .platform-card-link {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0.35rem;
+        }
+        @media (min-width: 640px) {
+            .platform-card-link {
+                padding: 0.65rem 0.5rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .platform-card-link {
+                padding: 0.85rem 0.65rem;
+            }
+        }
+        .card-description {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 0.4rem;
         }
 
-        /* 卡片组件 */
-        .category-card {
+        /* 导航样式 */
+        .navs-section {
+            margin-bottom: 20px;
+        }
+        .sec-panel {
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            margin-bottom: 1.25rem;
+            margin-bottom: 20px;
             overflow: hidden;
         }
-
-        .category-card-head {
-            padding: 1rem 1.25rem;
+        .sec-panel-head {
+            padding: 15px 20px;
             border-bottom: 1px solid #f0f0f0;
             background-color: #fafafa;
         }
-
-        .category-card-head h2 {
-            font-size: 1rem;
+        .sec-panel-head h2 {
+            font-size: 16px;
             font-weight: 600;
             margin: 0;
             display: flex;
             align-items: center;
             color: #333;
         }
-
-        .category-card-head h2 small {
-            font-size: 0.8125rem;
+        .sec-panel-head h2 small {
+            font-size: 13px;
             color: #999;
-            margin-left: 0.625rem;
+            margin-left: 10px;
             font-weight: normal;
         }
-
-        .category-card-body {
-            padding: 1rem;
+        .sec-panel-body {
+            padding: 15px;
         }
-
-        /* 网格布局 */
-        .category-grid {
+        .list-navs {
             display: grid;
+            grid-gap: 12px;
+        }
+        .list-navs-cols-5 {
             grid-template-columns: repeat(5, 1fr);
-            gap: 0.75rem;
         }
-
-        /* 卡片项目 */
-        .category-item {
+        @media (max-width: 768px) {
+            .list-navs-cols-5 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 576px) {
+            .list-navs-cols-5 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .sec-panel-body {
+                padding: 10px;
+            }
+            .list-navs {
+                grid-gap: 8px;
+            }
+        }
+        
+        /* 所有卡片链接样式统一，适用于图片中的样式 */
+        .navs-link, .category-item {
             display: flex;
-            padding: 0.75rem 1rem;
+            padding: 10px 14px;
             background: #fff;
-            text-decoration: none;
-            border: 1px solid #f0f0f0;
             transition: all 0.2s ease;
+            text-decoration: none;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            border-right: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
             height: 100%;
+            position: relative;
         }
-
-        .category-item:hover {
+        .navs-link:hover, .category-item:hover {
+            transform: none;
             background-color: #f9f9f9;
-            transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: none;
+            z-index: 1;
         }
-
-        .category-item-icon {
-            width: 2rem;
-            height: 2rem;
-            margin-right: 0.5rem;
+        .navs-link-logo, .category-item-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
         }
-
-        .category-item-icon img {
+        .navs-link-logo img, .category-item-icon img {
             max-width: 100%;
             max-height: 100%;
             border-radius: 4px;
         }
-
-        .category-item-info {
+        .navs-link-info, .category-item-info {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-width: 0;
+            min-width: 0; /* 防止文本溢出 */
         }
-
-        .category-item-info h3 {
-            font-size: 0.8125rem;
-            margin: 0 0 0.125rem;
+        .navs-link-info h3, .category-item-info h3 {
+            font-size: 13px;
+            margin: 0 0 2px;
             color: #333;
             font-weight: 600;
             line-height: 1.3;
@@ -125,9 +196,8 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-
-        .category-item-info p {
-            font-size: 0.75rem;
+        .navs-link-info p, .category-item-info p {
+            font-size: 12px;
             color: #999;
             margin: 0;
             line-height: 1.2;
@@ -135,106 +205,144 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        .platform-card-link .w-10 {
+            width: 2.25rem;
+        }
+        .platform-card-link .h-10 {
+            height: 2.25rem;
+        }
+        @media (min-width: 640px) {
+            .platform-card-link .w-12 {
+                width: 2.5rem;
+            }
+            .platform-card-link .h-12 {
+                height: 2.5rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .platform-card-link .w-14 {
+                width: 2.75rem;
+            }
+            .platform-card-link .h-14 {
+                height: 2.75rem;
+            }
+            .platform-card-link .w-7 {
+                width: 1.5rem;
+            }
+            .platform-card-link .h-7 {
+                height: 1.5rem;
+            }
+        }
+        .platform-card-link svg.w-6 {
+            width: 1.25rem;
+        }
+        .platform-card-link svg.h-6 {
+            height: 1.25rem;
+        }
+        @media (min-width: 640px) {
+            .platform-card-link svg.w-7 {
+                width: 1.4rem;
+            }
+            .platform-card-link svg.h-7 {
+                height: 1.4rem;
+            }
+        }
+        .card-title {
+            font-size: 0.85rem;
+            line-height: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+        @media (min-width: 640px) {
+            .card-title {
+                font-size: 0.9rem;
+                line-height: 1.25rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .card-title {
+                font-size: 0.95rem;
+                line-height: 1.3rem;
+            }
+        }
+        .card-description p {
+            font-size: 0.7rem;
+            line-height: 1rem;
+        }
+        .card-action {
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+        }
+        @media (min-width: 640px) {
+            .card-action {
+                font-size: 0.75rem;
+            }
+        }
 
-        /* 页头页脚 */
-        header, footer {
-            background-color: #007bff;
-            padding: 1rem 0;
+        /* 确保页面容器在移动设备上正确显示 */
+        .container {
             width: 100%;
-            text-align: center;
-            color: #fff;
+            max-width: 100%;
+            overflow: hidden;
         }
-
-        header {
-            border-top-left-radius: 0.5rem;
-            border-top-right-radius: 0.5rem;
+        
+        /* 确保header和footer在移动设备上正确显示 */
+        header, footer {
+            width: 100% !important;
+            overflow: hidden !important;
+            position: relative !important;
         }
-
-        footer {
-            border-bottom-left-radius: 0.5rem;
-            border-bottom-right-radius: 0.5rem;
-            padding: 0.75rem 0 0.625rem;
-        }
-
-        /* 响应式布局 */
-        @media (max-width: 1024px) {
-            .category-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            .container {
-                max-width: 95%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .category-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 0.5rem;
-            }
-            .category-card-body {
-                padding: 0.75rem;
-            }
-            .category-item {
-                padding: 0.625rem 0.75rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .category-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.5rem;
-            }
-            .category-card-body {
-                padding: 0.625rem;
-            }
-            .category-item {
-                padding: 0.5rem 0.625rem;
-            }
-            .category-item-icon {
-                width: 1.75rem;
-                height: 1.75rem;
-            }
-        }
-
-        /* iOS Safari 特殊处理 */
+        
+        /* 专门针对iOS Safari的修复 */
         @supports (-webkit-touch-callout: none) {
             body {
+                /* iOS Safari特有的安全区域适配 */
                 padding-top: 0;
                 padding-bottom: 0;
             }
             
             main {
+                /* 确保main元素不会溢出 */
                 width: 100%;
                 overflow-x: hidden;
             }
             
+            /* 确保页面底部不会出现额外的蓝色背景 */
             footer {
-                margin-bottom: -1px;
+                margin-bottom: -1px !important;
             }
         }
     </style>
 </head>
 <body>
-    <main class="min-h-screen flex items-center justify-center p-4">
-        <div class="container bg-white rounded-lg shadow-md border border-gray-200">
-            <!-- 页头 -->
-            <header>
-                <h1 class="text-lg font-bold mb-2">驼铃电商工具百宝箱</h1>
-                <p class="text-sm">一站式电商运营工具集合，助力商家高效经营</p>
+    <main class="min-h-screen flex items-center justify-center p-4 sm:p-4 lg:p-6">
+        <div class="container max-w-6xl bg-white w-full mx-auto p-0 rounded-lg shadow-md border border-gray-200">
+            <header class="section wpcom-modules modules-fullwidth mb-2 sm:mb-3 md:mb-4" style="background-color: #007bff; padding: 15px 0; width: 100%; margin-left: 0; margin-right: 0; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem; overflow: hidden;">
+                <div class="container text-center">
+                    <section class="section wpcom-modules modules-text-format" style="margin-bottom: 6px;">
+                        <p class="text-format-el"><strong><span style="color: #ffffff; font-size: 18px; line-height: 1.3;">驼铃电商工具百宝箱</span></strong></p>
+                    </section>
+                    <section class="section wpcom-modules modules-text-format">
+                        <p class="text-format-el"><span style="color: #ffffff; font-size: 13px; line-height: 1.2;">一站式电商运营工具集合，助力商家高效经营</span></p>
+                    </section>
+                </div>
             </header>
+            <div class="p-2 sm:p-3 md:p-4">
 
-            <div class="p-4">
-                <!-- 常用工具 -->
-                <section class="category-card">
+
+            <!-- 修改主要工具卡片区域为导航样式 -->
+            <section class="navs-section">
+                <div class="category-card">
                     <div class="category-card-head">
-                        <h2><span>常用工具</span><small>一站式电商运营工具集合</small></h2>
+                        <h2>
+                            <span>常用工具</span> <small>一站式电商运营工具集合</small>
+                        </h2>
                     </div>
                     <div class="category-card-body">
                         <div class="category-grid">
                             <!-- 驼铃电商知识库 -->
                             <a class="category-item" href="https://fbjvryq00y.feishu.cn/docx/doxcnoAkUCQ27nY31F2PU9bTNPW?from=from_copylink" target="_blank" rel="noopener noreferrer">
                                 <div class="category-item-icon">
-                                    <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="电商知识库" loading="lazy">
+                                    <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="电商知识库">
                                 </div>
                                 <div class="category-item-info">
                                     <h3>驼铃电商知识库</h3>
@@ -331,12 +439,16 @@
                             </a>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <!-- 直播软件 -->
-                <section class="category-card">
+            <!-- 导航部分开始 -->
+            <section class="navs-section">
+                <div class="category-card">
                     <div class="category-card-head">
-                        <h2><span>直播软件</span><small>各大平台直播软件</small></h2>
+                        <h2>
+                            <span>直播软件</span> <small>各大平台直播软件</small>
+                        </h2>
                     </div>
                     <div class="category-card-body">
                         <div class="category-grid">
@@ -387,12 +499,15 @@
                             </a>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <!-- 后台管理 -->
-                <section class="category-card">
+            <section class="navs-section">
+                <div class="category-card">
                     <div class="category-card-head">
-                        <h2><span>后台管理</span><small>各大平台官方后台</small></h2>
+                        <h2>
+                            <span>后台管理</span> <small>各大平台官方后台</small>
+                        </h2>
                     </div>
                     <div class="category-card-body">
                         <div class="category-grid">
@@ -443,12 +558,15 @@
                             </a>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <!-- 店铺软件 -->
-                <section class="category-card">
+            <section class="navs-section">
+                <div class="category-card">
                     <div class="category-card-head">
-                        <h2><span>店铺软件</span><small>各大平台店铺客户端</small></h2>
+                        <h2>
+                            <span>店铺软件</span> <small>各大平台店铺客户端</small>
+                        </h2>
                     </div>
                     <div class="category-card-body">
                         <div class="category-grid">
@@ -517,12 +635,15 @@
                             </a>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <!-- 店铺入驻 -->
-                <section class="category-card">
+            <section class="navs-section">
+                <div class="category-card">
                     <div class="category-card-head">
-                        <h2><span>店铺入驻</span><small>各大平台店铺入驻</small></h2>
+                        <h2>
+                            <span>店铺入驻</span> <small>各大平台店铺入驻</small>
+                        </h2>
                     </div>
                     <div class="category-card-body">
                         <div class="category-grid">
@@ -600,12 +721,15 @@
                             </a>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <!-- 广告投放 -->
-                <section class="category-card">
+            <section class="navs-section">
+                <div class="category-card">
                     <div class="category-card-head">
-                        <h2><span>广告投放</span><small>广告投放后台与工具</small></h2>
+                        <h2>
+                            <span>广告投放</span> <small>广告投放后台与工具</small>
+                        </h2>
                     </div>
                     <div class="category-card-body">
                         <div class="category-grid">
@@ -683,12 +807,15 @@
                             </a>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <!-- 平台联盟 -->
-                <section class="category-card">
+            <section class="navs-section">
+                <div class="category-card">
                     <div class="category-card-head">
-                        <h2><span>平台联盟</span><small>各大平台联盟</small></h2>
+                        <h2>
+                            <span>平台联盟</span> <small>各大平台联盟</small>
+                        </h2>
                     </div>
                     <div class="category-card-body">
                         <div class="category-grid">
@@ -739,12 +866,15 @@
                             </a>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <!-- 数据分析·选品 -->
-                <section class="category-card">
+            <section class="navs-section">
+                <div class="category-card">
                     <div class="category-card-head">
-                        <h2><span>数据分析·选品</span><small>直播大数据网站推荐</small></h2>
+                        <h2>
+                            <span>数据分析·选品</span> <small>直播大数据网站推荐</small>
+                        </h2>
                     </div>
                     <div class="category-card-body">
                         <div class="category-grid">
@@ -840,12 +970,15 @@
                             </a>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <!-- 视频剪辑 -->
-                <section class="category-card">
+            <section class="navs-section">
+                <div class="category-card">
                     <div class="category-card-head">
-                        <h2><span>视频剪辑</span><small>视频剪辑工具和素材</small></h2>
+                        <h2>
+                            <span>视频剪辑</span> <small>视频剪辑工具和素材</small>
+                        </h2>
                     </div>
                     <div class="category-card-body">
                         <div class="category-grid">
@@ -986,12 +1119,15 @@
                             </a>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <!-- 平面设计 -->
-                <section class="category-card">
+            <section class="navs-section">
+                <div class="category-card">
                     <div class="category-card-head">
-                        <h2><span>平面设计</span><small>平面设计软件</small></h2>
+                        <h2>
+                            <span>平面设计</span> <small>平面设计软件</small>
+                        </h2>
                     </div>
                     <div class="category-card-body">
                         <div class="category-grid">
@@ -1069,15 +1205,19 @@
                             </a>
                         </div>
                     </div>
-                </section>
-            </div>
-
-            <!-- 页脚 -->
-            <footer>
-                <div class="social-links mb-2">
-                    <!-- 社交媒体链接将由 social.js 动态生成 -->
                 </div>
-                <p class="text-xs">© 2025 驼铃电商社出品</p>
+            </section>
+
+            </div>
+            <footer class="mt-3 sm:mt-4 text-center text-xs section wpcom-modules modules-fullwidth" style="background-color: #007bff; padding: 12px 0 10px; width: 100%; margin-left: 0; margin-right: 0; border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem; overflow: hidden;">
+                <div class="container text-center">
+                    <!-- 社交媒体链接 -->
+                    <div class="social-links mb-2">
+                        <!-- 社交媒体链接将由social.js动态生成 -->
+                    </div>
+                    
+                    <p class="mt-2 text-white text-xs">© 2025 驼铃电商社出品</p>
+                </div>
             </footer>
         </div>
     </main>
