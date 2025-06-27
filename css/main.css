@@ -51,6 +51,12 @@ img, video {
 @media (max-width: 1200px) {
     .container {
         max-width: 100%;
+        padding: 0 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
         padding: 0 10px;
     }
 }
@@ -66,7 +72,14 @@ img, video {
 
 @media (max-width: 1200px) {
     .navs-section {
+        padding: 0 12px;
+    }
+}
+
+@media (max-width: 992px) {
+    .navs-section {
         padding: 0 10px;
+        margin-bottom: 18px;
     }
 }
 
@@ -74,12 +87,13 @@ img, video {
 @media (max-width: 768px) {
     .navs-section {
         margin-bottom: 15px;
+        padding: 0 8px;
     }
 }
 
 @media (max-width: 576px) {
     .navs-section {
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         padding: 0 5px;
     }
 }
@@ -264,23 +278,43 @@ input, select, textarea, button {
 
 /* 分类卡片样式 - 根据图片UI复现（表格式布局） */
 .category-card {
-    background: #f3f3f3;
+    width: 100%;
+    background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     margin-bottom: 20px;
     overflow: hidden;
-    border: 1px solid #f0f0f0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 768px) {
+    .category-card {
+        margin-bottom: 15px;
+        border-radius: 6px;
+    }
+}
+
+@media (max-width: 576px) {
+    .category-card {
+        margin-bottom: 12px;
+        border-radius: 5px;
+    }
 }
 
 .category-card-head {
     padding: 14px 20px;
     border-bottom: 1px solid #f0f0f0;
-    background-color: #f3f3f3;
+    background-color: #f9f9f9;
+}
+
+@media (max-width: 768px) {
+    .category-card-head {
+        padding: 12px 15px;
+    }
 }
 
 @media (max-width: 576px) {
     .category-card-head {
-        padding: 10px 15px;
+        padding: 10px 12px;
     }
 }
 
@@ -324,30 +358,71 @@ input, select, textarea, button {
     border-left: none;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1100px) {
     .category-grid {
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
     .category-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 650px) {
     .category-grid {
         grid-template-columns: repeat(2, 1fr);
-    }
-    .category-card-body {
-        padding: 0;
     }
 }
 
 @media (max-width: 400px) {
     .category-grid {
-        grid-template-columns: 1fr 1fr; /* 确保在小屏幕上只有两列 */
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .category-item {
+        padding: 8px 10px;
+    }
+}
+
+.category-item {
+    display: flex;
+    padding: 10px 14px;
+    background: #fff;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    border-right: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    height: 100%;
+    position: relative;
+    align-items: center;
+}
+
+.category-item:hover {
+    transform: none;
+    background-color: #f5f5f5;
+    box-shadow: none;
+    z-index: 1;
+}
+
+@media (max-width: 576px) {
+    .category-item {
+        padding: 8px 10px;
+    }
+    .category-item-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 6px;
+    }
+    .category-item-info h3 {
+        font-size: 12px;
+        margin-bottom: 1px;
+    }
+    .category-item-info p {
+        font-size: 10px;
     }
 }
 
@@ -422,28 +497,103 @@ input, select, textarea, button {
 /* 响应式布局优化 - 页面整体结构 */
 @media (max-width: 768px) {
     main {
-        padding: 10px !important;
+        padding: 0 !important;
     }
     header {
-        padding: 10px 0 !important;
+        padding: 12px 0 !important;
+        margin-bottom: 15px !important;
+    }
+    header p.text-format-el strong span {
+        font-size: 16px !important;
+    }
+    header p.text-format-el span {
+        font-size: 12px !important;
     }
     footer {
-        padding: 15px 0 10px !important;
+        padding: 12px 0 !important;
+        margin-top: 15px !important;
     }
 }
 
 @media (max-width: 576px) {
     main {
-        padding: 8px !important;
+        padding: 0 !important;
     }
     header {
-        padding: 8px 0 !important;
+        padding: 10px 0 !important;
+        margin-bottom: 10px !important;
+    }
+    header p.text-format-el strong span {
+        font-size: 15px !important;
+    }
+    header p.text-format-el span {
+        font-size: 11px !important;
     }
     footer {
-        padding: 12px 0 8px !important;
+        padding: 10px 0 !important;
+        margin-top: 10px !important;
     }
     footer p {
-        font-size: 11px !important;
+        font-size: 10px !important;
+    }
+}
+
+/* 移动端触摸优化 */
+.mobile-touch {
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 移动端设备类样式 */
+.is-mobile .category-card-head h2 {
+    font-size: 15px;
+}
+
+.is-mobile .category-card-head h2 small {
+    font-size: 12px;
+    display: block;
+    margin-left: 0;
+    margin-top: 2px;
+}
+
+.is-mobile .category-item {
+    padding: 8px 10px;
+}
+
+.is-mobile .category-item-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 6px;
+}
+
+.is-mobile .category-item-info h3 {
+    font-size: 12px;
+    margin-bottom: 1px;
+}
+
+.is-mobile .category-item-info p {
+    font-size: 10px;
+}
+
+/* 平板设备优化 */
+.is-tablet .category-card-head {
+    padding: 12px 18px;
+}
+
+.is-tablet .category-item {
+    padding: 10px 12px;
+}
+
+.is-tablet .category-item-icon {
+    width: 28px;
+    height: 28px;
+}
+
+/* 触摸反馈效果 */
+@media (hover: none) {
+    /* 在触摸屏上提供更好的点击反馈 */
+    .category-item:active {
+        background-color: rgba(0, 123, 255, 0.1);
     }
 }
 
@@ -453,4 +603,6 @@ input, select, textarea, button {
  * 统一了分类卡片头部的样式和内容布局
  * 所有分类项采用表格式布局，更加紧凑，节省空间
  * 2024-06-27 优化响应式布局，适应PC、平板和手机
+ * 2024-06-28 进一步优化移动端显示效果，调整网格布局
+ * 2024-06-28 添加设备检测和触摸优化，提升移动端体验
  */ 

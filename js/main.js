@@ -23,6 +23,53 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // 响应式布局处理
+    function initResponsiveLayout() {
+        // 检测设备类型
+        const isMobile = window.innerWidth <= 650;
+        const isTablet = window.innerWidth > 650 && window.innerWidth <= 1024;
+        const isDesktop = window.innerWidth > 1024;
+        
+        // 为body添加设备类
+        document.body.classList.remove('is-mobile', 'is-tablet', 'is-desktop');
+        if (isMobile) document.body.classList.add('is-mobile');
+        if (isTablet) document.body.classList.add('is-tablet');
+        if (isDesktop) document.body.classList.add('is-desktop');
+        
+        // 优化点击区域 - 在移动端增大点击区域
+        if (isMobile) {
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.classList.add('mobile-touch');
+            });
+        } else {
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.classList.remove('mobile-touch');
+            });
+        }
+        
+        // 针对不同设备优化图标大小
+        document.querySelectorAll('.category-item-icon img').forEach(img => {
+            if (isMobile) {
+                img.style.maxWidth = '24px';
+                img.style.maxHeight = '24px';
+            } else if (isTablet) {
+                img.style.maxWidth = '28px';
+                img.style.maxHeight = '28px';
+            } else {
+                img.style.maxWidth = '32px';
+                img.style.maxHeight = '32px';
+            }
+        });
+    }
+    
+    // 初始化响应式布局
+    initResponsiveLayout();
+    
+    // 监听窗口大小变化
+    window.addEventListener('resize', function() {
+        initResponsiveLayout();
+    });
+    
     // 响应式导航
     const cardGrid = document.querySelector('.card-grid');
     if (cardGrid) {
