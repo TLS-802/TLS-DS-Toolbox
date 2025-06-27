@@ -77,12 +77,3 @@ git clone https://github.com/TLS-802/TLS-DS-Toolbox.git
 ## 许可证
 
 本项目采用 MIT 许可证 - 详情请参阅 LICENSE 文件
-
-## 联系方式
-
-如有任何问题或建议，请通过以下方式联系我们：
-
-- GitHub: [https://github.com/TLS-802](https://github.com/TLS-802)
-- 抖音: [https://v.douyin.com/ICMNRjljVK8/](https://v.douyin.com/ICMNRjljVK8/)
-- 微信: [https://url.199908.top/VX2](https://url.199908.top/VX2)
-- 飞书: [https://www.feishu.cn/invitation/page/add_contact/?token=154u7d8e-d426-4b6a-b4ec-75f7ff732522&amp;unique_id=Lwo89tNN9CZrOi0uAwnjEw==](https://www.feishu.cn/invitation/page/add_contact/?token=154u7d8e-d426-4b6a-b4ec-75f7ff732522&amp;unique_id=Lwo89tNN9CZrOi0uAwnjEw==) 
