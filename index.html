@@ -2,13 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="驼铃电商工具箱 - 一站式电商运营工具集合，助力商家高效经营">
-    <meta name="theme-color" content="#007bff">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>驼铃电商工具箱</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,53 +13,87 @@
     <style>
         body {
             font-family: "Inter", sans-serif;
-            background-color: #f3f3f3;
         }
-        
-        /* 确保所有内容宽度一致 */
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 1rem;
-            padding-right: 1rem;
+        .platform-card-link:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.4);
         }
-        
-        .category-card {
-            width: 100%;
-            background-color: #fff;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            overflow: hidden;
+        /* 添加移动端优化样式 */
+        @media (max-width: 640px) {
+            .card-title {
+                font-size: 0.8rem;
+                line-height: 1.1rem;
+                margin-bottom: 0.3rem;
+            }
+            .card-action {
+                font-size: 0.7rem;
+            }
         }
-        
-        .category-grid {
+        .card-grid {
             display: grid;
+            grid-template-columns: repeat(3, 1fr) !important;
             gap: 0.5rem;
-            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
         }
         @media (min-width: 640px) {
-            .category-grid {
-                gap: 0.75rem;
+            .card-grid {
+                gap: 0.65rem;
             }
         }
         @media (min-width: 768px) {
-            .category-grid {
-                gap: 1rem;
+            .card-grid {
+                gap: 0.85rem;
             }
         }
-        
+        @media (min-width: 1024px) {
+            .card-grid {
+                gap: 1rem;
+                max-width: 95%;
+            }
+        }
+        .platform-card-link {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0.35rem;
+        }
+        @media (min-width: 640px) {
+            .platform-card-link {
+                padding: 0.65rem 0.5rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .platform-card-link {
+                padding: 0.85rem 0.65rem;
+            }
+        }
+        .card-description {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 0.4rem;
+        }
+
         /* 导航样式 */
         .navs-section {
             margin-bottom: 20px;
         }
-        .category-card-head {
+        .sec-panel {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .sec-panel-head {
             padding: 15px 20px;
             border-bottom: 1px solid #f0f0f0;
             background-color: #fafafa;
         }
-        .category-card-head h2 {
+        .sec-panel-head h2 {
             font-size: 16px;
             font-weight: 600;
             margin: 0;
@@ -73,15 +101,37 @@
             align-items: center;
             color: #333;
         }
-        .category-card-head h2 small {
+        .sec-panel-head h2 small {
             font-size: 13px;
             color: #999;
             margin-left: 10px;
             font-weight: normal;
         }
-        .category-card-body {
+        .sec-panel-body {
             padding: 15px;
-            background-color: #fff;
+        }
+        .list-navs {
+            display: grid;
+            grid-gap: 12px;
+        }
+        .list-navs-cols-5 {
+            grid-template-columns: repeat(5, 1fr);
+        }
+        @media (max-width: 768px) {
+            .list-navs-cols-5 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 576px) {
+            .list-navs-cols-5 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .sec-panel-body {
+                padding: 10px;
+            }
+            .list-navs {
+                grid-gap: 8px;
+            }
         }
         
         /* 所有卡片链接样式统一，适用于图片中的样式 */
@@ -145,59 +195,94 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        
-        /* 头部和底部样式 */
-        .header-blue {
-            background-color: #007bff;
-            padding: 15px 0;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 8px;
+        .platform-card-link .w-10 {
+            width: 2.25rem;
         }
-        
-        .footer-blue {
-            background-color: #007bff;
-            padding: 12px 0 10px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 8px;
+        .platform-card-link .h-10 {
+            height: 2.25rem;
         }
-        
-        @media (max-width: 768px) {
-            .header-blue {
-                padding: 12px 0;
+        @media (min-width: 640px) {
+            .platform-card-link .w-12 {
+                width: 2.5rem;
             }
-            .footer-blue {
-                padding: 10px 0;
+            .platform-card-link .h-12 {
+                height: 2.5rem;
             }
         }
-        
-        @media (max-width: 576px) {
-            .header-blue {
-                padding: 10px 0;
+        @media (min-width: 768px) {
+            .platform-card-link .w-14 {
+                width: 2.75rem;
             }
-            .footer-blue {
-                padding: 8px 0;
+            .platform-card-link .h-14 {
+                height: 2.75rem;
+            }
+            .platform-card-link .w-7 {
+                width: 1.5rem;
+            }
+            .platform-card-link .h-7 {
+                height: 1.5rem;
+            }
+        }
+        .platform-card-link svg.w-6 {
+            width: 1.25rem;
+        }
+        .platform-card-link svg.h-6 {
+            height: 1.25rem;
+        }
+        @media (min-width: 640px) {
+            .platform-card-link svg.w-7 {
+                width: 1.4rem;
+            }
+            .platform-card-link svg.h-7 {
+                height: 1.4rem;
+            }
+        }
+        .card-title {
+            font-size: 0.85rem;
+            line-height: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+        @media (min-width: 640px) {
+            .card-title {
+                font-size: 0.9rem;
+                line-height: 1.25rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .card-title {
+                font-size: 0.95rem;
+                line-height: 1.3rem;
+            }
+        }
+        .card-description p {
+            font-size: 0.7rem;
+            line-height: 1rem;
+        }
+        .card-action {
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+        }
+        @media (min-width: 640px) {
+            .card-action {
+                font-size: 0.75rem;
             }
         }
     </style>
 </head>
-<body class="bg-[#f3f3f3]">
-    <main class="min-h-screen p-0">
-        <div class="container">
-            <header class="navs-section section wpcom-modules mb-3 header-blue">
+<body class="bg-gray-100">
+    <main class="min-h-screen flex items-center justify-center p-2 sm:p-3 lg:p-4">
+        <div class="container max-w-6xl bg-white w-full mx-auto p-0 rounded-lg shadow-md border border-gray-200">
+            <header class="section wpcom-modules modules-fullwidth mb-4" style="background-color: #007bff; padding: 15px 0; width: 100%; margin-left: 0; margin-right: 0; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;">
                 <div class="container text-center">
-                    <section class="section wpcom-modules modules-text-format" style="margin-bottom: 6px;">
-                        <p class="text-format-el"><strong><span style="color: #ffffff; font-size: 18px; line-height: 1.3;">驼铃电商工具百宝箱</span></strong></p>
+                    <section class="section wpcom-modules modules-text-format" style="margin-bottom: 8px;">
+                        <p class="text-format-el"><strong><span style="color: #ffffff; font-size: 20px;">驼铃电商工具百宝箱</span></strong></p>
                     </section>
                     <section class="section wpcom-modules modules-text-format">
-                        <p class="text-format-el"><span style="color: #ffffff; font-size: 13px; line-height: 1.2;">一站式电商运营工具集合，助力商家高效经营</span></p>
+                        <p class="text-format-el"><span style="color: #ffffff; font-size: 14px;">一站式电商运营工具集合，助力商家高效经营</span></p>
                     </section>
                 </div>
             </header>
-            <div>
+            <div class="p-3 sm:p-4">
 
 
             <!-- 修改主要工具卡片区域为导航样式 -->
@@ -377,6 +462,65 @@
                 <div class="category-card">
                     <div class="category-card-head">
                         <h2>
+                            <span>后台管理</span> <small>各大平台官方后台</small>
+                        </h2>
+                    </div>
+                    <div class="category-card-body">
+                        <div class="category-grid">
+                            <a class="category-item" href="http://www.douyinec.com" target="_blank">
+                                <div class="category-item-icon">
+                                    <img src="https://www.nodeimage.com/i/32451/XQtBqsnS3WNR5WcGsc0qkW8eE47qsgSj.png" alt="抖音电商">
+                                </div>
+                                <div class="category-item-info">
+                                    <h3>抖音电商</h3>
+                                    <p>店铺、达人、机构等登录</p>
+                                </div>
+                            </a>
+                            <a class="category-item" href="https://channels.weixin.qq.com/" target="_blank">
+                                <div class="category-item-icon">
+                                    <img src="https://www.nodeimage.com/i/32451/q3Dcu5nB3WNR5WdBsc0t2syjkrxc4HEo.png" alt="视频号助手">
+                                </div>
+                                <div class="category-item-info">
+                                    <h3>视频号助手</h3>
+                                    <p>橱窗、直播、团长登录</p>
+                                </div>
+                            </a>
+                            <a class="category-item" href="https://login.kwaixiaodian.com/" target="_blank">
+                                <div class="category-item-icon">
+                                    <img src="https://www.nodeimage.com/i/32451/8Rd3Q3nu3WNR5WcIsc0qRhSV4hba84Yq.png" alt="快手电商">
+                                </div>
+                                <div class="category-item-info">
+                                    <h3>快手电商</h3>
+                                    <p>快手电商登陆后台</p>
+                                </div>
+                            </a>
+                            <a class="category-item" href="https://customer.xiaohongshu.com/login?service=https://ark.xiaohongshu.com/app-system/home" target="_blank">
+                                <div class="category-item-icon">
+                                    <img src="https://www.nodeimage.com/i/32451/lMOMlznL3WNR5WdEsc0tNFEufOpAoep5.png" alt="小红书千帆">
+                                </div>
+                                <div class="category-item-info">
+                                    <h3>小红书千帆</h3>
+                                    <p>小红书商家管理后台</p>
+                                </div>
+                            </a>
+                            <a class="category-item" href="https://e.douyin.com/" target="_blank">
+                                <div class="category-item-icon">
+                                    <img src="https://www.nodeimage.com/i/32451/Pb0EDPnj3WNR5WcDsc0thgzOesUKxi1i.png" alt="抖音企业号">
+                                </div>
+                                <div class="category-item-info">
+                                    <h3>抖音企业号</h3>
+                                    <p>抖音企业号数据管理</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="navs-section">
+                <div class="category-card">
+                    <div class="category-card-head">
+                        <h2>
                             <span>店铺软件</span> <small>各大平台店铺客户端</small>
                         </h2>
                     </div>
@@ -443,15 +587,6 @@
                                 <div class="category-item-info">
                                     <h3>拼多多</h3>
                                     <p>拼多多商家工具</p>
-                                </div>
-                            </a>
-                            <a class="category-item" href="https://e.douyin.com/" target="_blank">
-                                <div class="category-item-icon">
-                                    <img src="https://www.nodeimage.com/i/32451/Pb0EDPnj3WNR5WcDsc0thgzOesUKxi1i.png" alt="抖音企业号">
-                                </div>
-                                <div class="category-item-info">
-                                    <h3>抖音企业号</h3>
-                                    <p>抖音企业号数据管理</p>
                                 </div>
                             </a>
                         </div>
@@ -1030,14 +1165,14 @@
             </section>
 
             </div>
-            <footer class="navs-section mt-4 text-center text-xs section wpcom-modules footer-blue">
+            <footer class="mt-4 text-center text-xs section wpcom-modules modules-fullwidth" style="background-color: #007bff; padding: 20px 0 15px; width: 100%; margin-left: 0; margin-right: 0; border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem;">
                 <div class="container text-center">
                     <!-- 社交媒体链接 -->
-                    <div class="social-links mb-2">
+                    <div class="social-links mb-3">
                         <!-- 社交媒体链接将由social.js动态生成 -->
                     </div>
                     
-                    <p class="mt-2 text-white text-xs">© 2025 驼铃电商社出品</p>
+                    <p class="mt-2 text-white">© 2025 驼铃电商社出品</p>
                 </div>
             </footer>
         </div>

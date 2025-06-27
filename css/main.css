@@ -21,81 +21,20 @@ body {
     margin: 0;
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background-color: #f3f3f3;
+    background-color: #f5f5f5;
 }
 
-/* 响应式基础设置 */
-html {
-    box-sizing: border-box;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
+/* 共享卡片样式 */
+.card {
+    background: var(--background-white);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease-in-out;
 }
 
-*, *:before, *:after {
-    box-sizing: inherit;
-}
-
-img, video {
-    max-width: 100%;
-    height: auto;
-}
-
-/* 主体布局容器 - 优化响应式 */
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-@media (max-width: 1200px) {
-    .container {
-        max-width: 100%;
-        padding: 0 12px;
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding: 0 10px;
-    }
-}
-
-/* 导航部分容器样式 */
-.navs-section {
-    margin-bottom: 20px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 15px;
-}
-
-@media (max-width: 1200px) {
-    .navs-section {
-        padding: 0 12px;
-    }
-}
-
-@media (max-width: 992px) {
-    .navs-section {
-        padding: 0 10px;
-        margin-bottom: 18px;
-    }
-}
-
-/* 优化主内容区域响应式布局 */
-@media (max-width: 768px) {
-    .navs-section {
-        margin-bottom: 15px;
-        padding: 0 8px;
-    }
-}
-
-@media (max-width: 576px) {
-    .navs-section {
-        margin-bottom: 12px;
-        padding: 0 5px;
-    }
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* 表单元素样式 */
@@ -108,48 +47,120 @@ input, select, textarea, button {
     text-align: center;
 }
 
-.text-white {
-    color: #fff;
+/* 主体布局容器 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
+/* 导航样式 */
+.navs-section {
+    margin-bottom: 20px;
+}
+.sec-panel {
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+.sec-panel-head {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.sec-panel-head h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+.sec-panel-head h2 small {
+    font-size: 14px;
+    color: #999;
+    margin-left: 10px;
+    font-weight: normal;
+}
+.sec-panel-body {
+    padding: 20px;
+}
+.list-navs {
+    display: grid;
+    grid-gap: 15px;
+}
+.list-navs-cols-5 {
+    grid-template-columns: repeat(5, 1fr);
+}
+@media (max-width: 768px) {
+    .list-navs-cols-5 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 576px) {
+    .list-navs-cols-5 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.navs-link {
+    display: flex;
+    padding: 10px 12px;
+    background: #fff;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    border-right: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    height: 100%;
+    position: relative;
+    align-items: center;
+}
+.navs-link:hover {
+    transform: none;
+    background-color: #f9f9f9;
+    box-shadow: none;
+    z-index: 1;
+}
+.navs-link-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navs-link-logo img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.navs-link-info {
+    flex: 1;
+}
+.navs-link-info h3 {
+    font-size: 14px;
+    margin: 0 0 5px;
+    color: #333;
+}
+.navs-link-info p {
+    font-size: 12px;
+    color: #999;
+    margin: 0;
+}
+
+/* 分类卡片样式 - 根据图片UI复现（表格式布局） */
 .category-card {
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     margin-bottom: 20px;
     overflow: hidden;
-}
-
-@media (max-width: 768px) {
-    .category-card {
-        border-radius: 6px;
-        margin-bottom: 15px;
-    }
-}
-
-@media (max-width: 576px) {
-    .category-card {
-        border-radius: 5px;
-        margin-bottom: 12px;
-    }
+    border: 1px solid #f0f0f0;
 }
 
 .category-card-head {
-    padding: 15px 20px;
+    padding: 14px 20px;
     border-bottom: 1px solid #f0f0f0;
     background-color: #fafafa;
-}
-
-@media (max-width: 768px) {
-    .category-card-head {
-        padding: 12px 15px;
-    }
-}
-
-@media (max-width: 576px) {
-    .category-card-head {
-        padding: 10px 12px;
-    }
 }
 
 .category-card-head h2 {
@@ -168,51 +179,36 @@ input, select, textarea, button {
     font-weight: normal;
 }
 
-@media (max-width: 576px) {
-    .category-card-head h2 {
-        font-size: 14px;
-    }
-    .category-card-head h2 small {
-        font-size: 12px;
-    }
-}
-
 .category-card-body {
-    padding: 15px;
-    background-color: #fff;
+    padding: 0;
 }
 
 .category-grid {
     display: grid;
+    grid-gap: 0;
     grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    width: 100%;
+    border-top: none;
+    border-left: none;
 }
 
-@media (max-width: 1100px) {
-    .category-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-    }
-}
-
-@media (max-width: 850px) {
+@media (max-width: 768px) {
     .category-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
     }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 576px) {
     .category-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 6px;
+    }
+    .category-card-body {
+        padding: 0;
     }
 }
 
 .category-item {
     display: flex;
-    padding: 10px 14px;
+    padding: 10px 12px;
     background: #fff;
     transition: all 0.2s ease;
     text-decoration: none;
@@ -233,12 +229,6 @@ input, select, textarea, button {
     z-index: 1;
 }
 
-@media (max-width: 576px) {
-    .category-item {
-        padding: 8px 10px;
-    }
-}
-
 .category-item-icon {
     width: 32px;
     height: 32px;
@@ -247,14 +237,6 @@ input, select, textarea, button {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-}
-
-@media (max-width: 576px) {
-    .category-item-icon {
-        width: 24px;
-        height: 24px;
-        margin-right: 6px;
-    }
 }
 
 .category-item-icon img {
@@ -282,14 +264,6 @@ input, select, textarea, button {
     text-overflow: ellipsis;
 }
 
-@media (max-width: 576px) {
-    .category-item-info h3 {
-        font-size: 12px;
-        margin: 0 0 1px;
-        line-height: 1.2;
-    }
-}
-
 .category-item-info p {
     font-size: 12px;
     color: #999;
@@ -300,124 +274,9 @@ input, select, textarea, button {
     text-overflow: ellipsis;
 }
 
-@media (max-width: 576px) {
-    .category-item-info p {
-        font-size: 11px;
-        line-height: 1.1;
-    }
-}
-
-@media (max-width: 768px) {
-    main {
-        padding: 10px 0;
-    }
-    header {
-        padding: 10px 0;
-        margin-bottom: 15px;
-    }
-    header p.text-format-el strong span {
-        font-size: 16px;
-    }
-    header p.text-format-el span {
-        font-size: 12px;
-    }
-    footer {
-        padding: 10px 0;
-        margin-top: 15px;
-    }
-}
-
-@media (max-width: 576px) {
-    main {
-        padding: 8px 0;
-    }
-    header {
-        padding: 8px 0;
-        margin-bottom: 12px;
-    }
-    header p.text-format-el strong span {
-        font-size: 15px;
-    }
-    header p.text-format-el span {
-        font-size: 11px;
-    }
-    footer {
-        padding: 8px 0;
-        margin-top: 12px;
-    }
-    footer p {
-        font-size: 11px;
-    }
-}
-
-@media (hover: none) {
-    /* 在触摸设备上禁用悬停效果 */
-    .category-item:active {
-        background-color: #f0f0f0;
-    }
-}
-
-/* 头部和底部样式 */
-header.navs-section, footer.navs-section {
-    padding-left: 0;
-    padding-right: 0;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-header.navs-section {
-    margin-bottom: 20px;
-}
-
-footer.navs-section {
-    margin-top: 20px;
-}
-
-@media (max-width: 768px) {
-    header.navs-section {
-        margin-bottom: 15px;
-    }
-    
-    footer.navs-section {
-        margin-top: 15px;
-    }
-}
-
-@media (max-width: 576px) {
-    header.navs-section {
-        margin-bottom: 12px;
-    }
-    
-    footer.navs-section {
-        margin-top: 12px;
-    }
-}
-
-.header-blue {
-    background-color: #007bff;
-    padding: 15px 0;
-}
-
-.footer-blue {
-    background-color: #007bff;
-    padding: 12px 0 10px;
-}
-
-@media (max-width: 768px) {
-    .header-blue {
-        padding: 12px 0;
-    }
-    .footer-blue {
-        padding: 10px 0;
-    }
-}
-
-@media (max-width: 576px) {
-    .header-blue {
-        padding: 10px 0;
-    }
-    .footer-blue {
-        padding: 8px 0;
-    }
-}
+/* 
+ * 2024-06-26 UI样式更新
+ * 所有分类现在使用统一的category-card样式
+ * 统一了分类卡片头部的样式和内容布局
+ * 所有分类项采用表格式布局，更加紧凑，节省空间
+ */ 
