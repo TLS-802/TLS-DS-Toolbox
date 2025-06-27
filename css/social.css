@@ -55,12 +55,18 @@
 footer {
     margin-top: 2rem;
     padding-top: 1.25rem;
-    border-top: 1px solid #e5e7eb;
     text-align: center;
     font-size: 0.875rem;
-    color: #6b7280;
 }
 
 footer p {
     margin-top: 0.75rem;
+    color: #ffffff;
+}
+
+/* 蓝色背景上的社交图标样式调整 */
+footer .social-links img {
+    background-color: #ffffff;
+    padding: 3px;
+    border-radius: 50%;
 } 
