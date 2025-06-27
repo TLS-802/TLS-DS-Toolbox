@@ -24,6 +24,37 @@ body {
     background-color: #f5f5f5;
 }
 
+/* 响应式基础设置 */
+html {
+    box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 主体布局容器 - 优化响应式 */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+}
+
 /* 共享卡片样式 */
 .card {
     background: var(--background-white);
@@ -47,16 +78,28 @@ input, select, textarea, button {
     text-align: center;
 }
 
-/* 主体布局容器 */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+.text-white {
+    color: #fff;
 }
 
 /* 导航样式 */
 .navs-section {
     margin-bottom: 20px;
 }
+
+/* 优化主内容区域响应式布局 */
+@media (max-width: 768px) {
+    .navs-section {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navs-section {
+        margin-bottom: 10px;
+    }
+}
+
 .sec-panel {
     background: #fff;
     border-radius: 5px;
@@ -74,12 +117,30 @@ input, select, textarea, button {
     display: flex;
     align-items: center;
 }
+
+@media (max-width: 576px) {
+    .sec-panel-head {
+        padding: 12px 15px;
+    }
+    .sec-panel-head h2 {
+        font-size: 16px;
+    }
+}
+
 .sec-panel-head h2 small {
     font-size: 14px;
     color: #999;
     margin-left: 10px;
     font-weight: normal;
 }
+
+@media (max-width: 576px) {
+    .sec-panel-head h2 small {
+        font-size: 12px;
+        display: none; /* 在手机上隐藏副标题，节省空间 */
+    }
+}
+
 .sec-panel-body {
     padding: 20px;
 }
@@ -89,6 +150,11 @@ input, select, textarea, button {
 }
 .list-navs-cols-5 {
     grid-template-columns: repeat(5, 1fr);
+}
+@media (max-width: 992px) {
+    .list-navs-cols-5 {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 @media (max-width: 768px) {
     .list-navs-cols-5 {
@@ -115,6 +181,13 @@ input, select, textarea, button {
     position: relative;
     align-items: center;
 }
+
+@media (max-width: 576px) {
+    .navs-link {
+        padding: 8px 10px;
+    }
+}
+
 .navs-link:hover {
     transform: none;
     background-color: #f9f9f9;
@@ -129,6 +202,15 @@ input, select, textarea, button {
     align-items: center;
     justify-content: center;
 }
+
+@media (max-width: 768px) {
+    .navs-link-logo {
+        width: 32px;
+        height: 32px;
+        margin-right: 8px;
+    }
+}
+
 .navs-link-logo img {
     max-width: 100%;
     max-height: 100%;
@@ -141,10 +223,24 @@ input, select, textarea, button {
     margin: 0 0 5px;
     color: #333;
 }
+
+@media (max-width: 768px) {
+    .navs-link-info h3 {
+        font-size: 13px;
+        margin: 0 0 2px;
+    }
+}
+
 .navs-link-info p {
     font-size: 12px;
     color: #999;
     margin: 0;
+}
+
+@media (max-width: 576px) {
+    .navs-link-info p {
+        font-size: 11px;
+    }
 }
 
 /* 分类卡片样式 - 根据图片UI复现（表格式布局） */
@@ -163,6 +259,12 @@ input, select, textarea, button {
     background-color: #fafafa;
 }
 
+@media (max-width: 576px) {
+    .category-card-head {
+        padding: 10px 15px;
+    }
+}
+
 .category-card-head h2 {
     font-size: 16px;
     font-weight: 600;
@@ -179,6 +281,18 @@ input, select, textarea, button {
     font-weight: normal;
 }
 
+@media (max-width: 576px) {
+    .category-card-head h2 {
+        font-size: 15px;
+    }
+    .category-card-head h2 small {
+        font-size: 12px;
+        display: block; /* 在手机上换行显示 */
+        margin-left: 0;
+        margin-top: 2px;
+    }
+}
+
 .category-card-body {
     padding: 0;
 }
@@ -189,6 +303,12 @@ input, select, textarea, button {
     grid-template-columns: repeat(5, 1fr);
     border-top: none;
     border-left: none;
+}
+
+@media (max-width: 992px) {
+    .category-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
@@ -203,6 +323,12 @@ input, select, textarea, button {
     }
     .category-card-body {
         padding: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .category-grid {
+        grid-template-columns: 1fr 1fr; /* 确保在小屏幕上只有两列 */
     }
 }
 
@@ -222,11 +348,24 @@ input, select, textarea, button {
     align-items: center;
 }
 
+@media (max-width: 576px) {
+    .category-item {
+        padding: 8px 10px;
+    }
+}
+
 .category-item:hover {
     transform: none;
     background-color: #f9f9f9;
     box-shadow: none;
     z-index: 1;
+}
+
+@media (hover: none) {
+    /* 在触摸设备上禁用悬停效果 */
+    .category-item:hover {
+        background-color: #fff;
+    }
 }
 
 .category-item-icon {
@@ -237,6 +376,14 @@ input, select, textarea, button {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+}
+
+@media (max-width: 576px) {
+    .category-item-icon {
+        width: 28px;
+        height: 28px;
+        margin-right: 6px;
+    }
 }
 
 .category-item-icon img {
@@ -264,6 +411,14 @@ input, select, textarea, button {
     text-overflow: ellipsis;
 }
 
+@media (max-width: 576px) {
+    .category-item-info h3 {
+        font-size: 12px;
+        margin: 0 0 1px;
+        line-height: 1.2;
+    }
+}
+
 .category-item-info p {
     font-size: 12px;
     color: #999;
@@ -274,9 +429,45 @@ input, select, textarea, button {
     text-overflow: ellipsis;
 }
 
+@media (max-width: 576px) {
+    .category-item-info p {
+        font-size: 11px;
+        line-height: 1.1;
+    }
+}
+
+/* 响应式布局优化 - 页面整体结构 */
+@media (max-width: 768px) {
+    main {
+        padding: 10px !important;
+    }
+    header {
+        padding: 10px 0 !important;
+    }
+    footer {
+        padding: 15px 0 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    main {
+        padding: 8px !important;
+    }
+    header {
+        padding: 8px 0 !important;
+    }
+    footer {
+        padding: 12px 0 8px !important;
+    }
+    footer p {
+        font-size: 11px !important;
+    }
+}
+
 /* 
  * 2024-06-26 UI样式更新
  * 所有分类现在使用统一的category-card样式
  * 统一了分类卡片头部的样式和内容布局
  * 所有分类项采用表格式布局，更加紧凑，节省空间
+ * 2024-06-27 优化响应式布局，适应PC、平板和手机
  */ 
