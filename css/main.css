@@ -55,6 +55,35 @@ img, video {
     }
 }
 
+/* 导航部分容器样式 */
+.navs-section {
+    margin-bottom: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 15px;
+}
+
+@media (max-width: 1200px) {
+    .navs-section {
+        padding: 0 10px;
+    }
+}
+
+/* 优化主内容区域响应式布局 */
+@media (max-width: 768px) {
+    .navs-section {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navs-section {
+        margin-bottom: 10px;
+        padding: 0 5px;
+    }
+}
+
 /* 共享卡片样式 */
 .card {
     background: var(--background-white);
@@ -80,24 +109,6 @@ input, select, textarea, button {
 
 .text-white {
     color: #fff;
-}
-
-/* 导航样式 */
-.navs-section {
-    margin-bottom: 20px;
-}
-
-/* 优化主内容区域响应式布局 */
-@media (max-width: 768px) {
-    .navs-section {
-        margin-bottom: 15px;
-    }
-}
-
-@media (max-width: 576px) {
-    .navs-section {
-        margin-bottom: 10px;
-    }
 }
 
 .sec-panel {
