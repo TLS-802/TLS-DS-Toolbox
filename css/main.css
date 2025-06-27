@@ -168,7 +168,7 @@ input, select, textarea, button {
 }
 .navs-link, .category-item {
     display: flex;
-    padding: 10px 20px;
+    padding: 10px 12px;
     background: #f3f3f3;
     transition: all 0.2s ease;
     text-decoration: none;
@@ -182,7 +182,11 @@ input, select, textarea, button {
     align-items: center;
 }
 
-
+@media (max-width: 576px) {
+    .navs-link {
+        padding: 8px 10px;
+    }
+}
 
 .navs-link:hover, .category-item:hover {
     transform: none;
@@ -267,40 +271,6 @@ input, select, textarea, button {
     .category-card-head {
         padding: 10px 15px;
     }
-    .category-card-head h2 {
-        font-size: 15px;
-    }
-    .category-card-head h2 small {
-        font-size: 12px;
-        display: block; /* 在手机上换行显示 */
-        margin-left: 0;
-        margin-top: 2px;
-    }
-    .category-card-body {
-        padding: 0 15px 0 15px;
-    }
-    .category-grid {
-        grid-template-columns: repeat(2, 1fr);
-        margin-left: -15px;
-        margin-right: -15px;
-    }
-    .navs-link, .category-item {
-        padding: 8px 15px;
-    }
-    .category-item-info h3 {
-        font-size: 12px;
-        margin: 0 0 1px;
-        line-height: 1.2;
-    }
-    .category-item-info p {
-        font-size: 11px;
-        line-height: 1.1;
-    }
-    .category-item-icon {
-        width: 28px;
-        height: 28px;
-        margin-right: 6px;
-    }
 }
 
 .category-card-head h2 {
@@ -319,8 +289,20 @@ input, select, textarea, button {
     font-weight: normal;
 }
 
+@media (max-width: 576px) {
+    .category-card-head h2 {
+        font-size: 15px;
+    }
+    .category-card-head h2 small {
+        font-size: 12px;
+        display: block; /* 在手机上换行显示 */
+        margin-left: 0;
+        margin-top: 2px;
+    }
+}
+
 .category-card-body {
-    padding: 0 20px 0 20px;
+    padding: 0;
 }
 
 .category-grid {
@@ -329,9 +311,6 @@ input, select, textarea, button {
     grid-template-columns: repeat(5, 1fr);
     border-top: none;
     border-left: none;
-    margin-left: -20px;
-    margin-right: -20px;
-    border-top: 1px solid #f0f0f0;
 }
 
 @media (max-width: 992px) {
@@ -349,6 +328,9 @@ input, select, textarea, button {
 @media (max-width: 576px) {
     .category-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .category-card-body {
+        padding: 0;
     }
 }
 
