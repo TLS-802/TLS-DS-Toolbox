@@ -308,12 +308,41 @@
                 font-size: 0.75rem;
             }
         }
+        
+        /* 头部和底部样式 */
+        .header-blue {
+            background-color: #007bff;
+            padding: 15px 0;
+        }
+        
+        .footer-blue {
+            background-color: #007bff;
+            padding: 12px 0 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-blue {
+                padding: 12px 0;
+            }
+            .footer-blue {
+                padding: 10px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-blue {
+                padding: 10px 0;
+            }
+            .footer-blue {
+                padding: 8px 0;
+            }
+        }
     </style>
 </head>
 <body class="bg-[#f3f3f3]">
     <main class="min-h-screen p-0">
         <div>
-            <header class="navs-section section wpcom-modules modules-fullwidth mb-3" style="background-color: #007bff; padding: 15px 0;">
+            <header class="navs-section section wpcom-modules mb-3 header-blue">
                 <div class="container text-center">
                     <section class="section wpcom-modules modules-text-format" style="margin-bottom: 6px;">
                         <p class="text-format-el"><strong><span style="color: #ffffff; font-size: 18px; line-height: 1.3;">驼铃电商工具百宝箱</span></strong></p>
@@ -1206,7 +1235,7 @@
             </section>
 
             </div>
-            <footer class="navs-section mt-4 text-center text-xs section wpcom-modules modules-fullwidth" style="background-color: #007bff; padding: 12px 0 10px;">
+            <footer class="navs-section mt-4 text-center text-xs section wpcom-modules footer-blue">
                 <div class="container text-center">
                     <!-- 社交媒体链接 -->
                     <div class="social-links mb-2">

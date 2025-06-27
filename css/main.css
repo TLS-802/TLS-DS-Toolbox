@@ -674,6 +674,32 @@ footer.navs-section {
     }
 }
 
+.header-blue {
+    padding: 15px 0;
+}
+
+.footer-blue {
+    padding: 12px 0 10px;
+}
+
+@media (max-width: 768px) {
+    .header-blue {
+        padding: 12px 0;
+    }
+    .footer-blue {
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-blue {
+        padding: 10px 0;
+    }
+    .footer-blue {
+        padding: 8px 0;
+    }
+}
+
 /* 
  * 2024-06-26 UI样式更新
  * 所有分类现在使用统一的category-card样式
