@@ -15,7 +15,577 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/social.css">
     <link rel="stylesheet" href="css/mobile-fix.css">
-    <link rel="stylesheet" href="css/index.css">
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #f1f2f4;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+        }
+        .platform-card-link:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.4);
+        }
+        /* 添加移动端优化样式 */
+        @media (max-width: 640px) {
+            .card-title {
+                font-size: 0.8rem;
+                line-height: 1.1rem;
+                margin-bottom: 0.3rem;
+            }
+            .card-action {
+                font-size: 0.7rem;
+            }
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 0.5rem;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        @media (min-width: 640px) {
+            .card-grid {
+                gap: 0.65rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .card-grid {
+                gap: 0.85rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            .card-grid {
+                gap: 1rem;
+                max-width: 100%;
+            }
+        }
+        .platform-card-link {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0.35rem;
+        }
+        @media (min-width: 640px) {
+            .platform-card-link {
+                padding: 0.65rem 0.5rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .platform-card-link {
+                padding: 0.85rem 0.65rem;
+            }
+        }
+        .card-description {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 0.4rem;
+        }
+
+        /* 导航样式 */
+        .navs-section {
+            margin-bottom: 20px;
+            scroll-margin-top: 20px; /* 添加滚动边距，避免导航栏遮挡内容 */
+        }
+        .sec-panel {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .sec-panel-head {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            background-color: #fafafa;
+        }
+        .sec-panel-head h2 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            color: #333;
+        }
+        .sec-panel-head h2 small {
+            font-size: 13px;
+            color: #999;
+            margin-left: 10px;
+            font-weight: normal;
+        }
+        .sec-panel-body {
+            padding: 15px;
+        }
+        .list-navs {
+            display: grid;
+            grid-gap: 12px;
+        }
+        .list-navs-cols-5 {
+            grid-template-columns: repeat(5, 1fr);
+        }
+        @media (max-width: 768px) {
+            .list-navs-cols-5 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 576px) {
+            .list-navs-cols-5 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .sec-panel-body {
+                padding: 10px;
+            }
+            .list-navs {
+                grid-gap: 8px;
+            }
+        }
+        
+        /* 所有卡片链接样式统一，适用于图片中的样式 */
+        .navs-link, .category-item {
+            display: flex;
+            padding: 10px 14px;
+            background: #fff;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            border-right: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
+            height: 100%;
+            position: relative;
+        }
+        .navs-link:hover, .category-item:hover {
+            transform: none;
+            background-color: #f9f9f9;
+            box-shadow: none;
+            z-index: 1;
+        }
+        .navs-link-logo, .category-item-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .navs-link-logo img, .category-item-icon img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 4px;
+        }
+        .navs-link-info, .category-item-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0; /* 防止文本溢出 */
+        }
+        .navs-link-info h3, .category-item-info h3 {
+            font-size: 13px;
+            margin: 0 0 2px;
+            color: #333;
+            font-weight: 600;
+            line-height: 1.3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .navs-link-info p, .category-item-info p {
+            font-size: 12px;
+            color: #999;
+            margin: 0;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .platform-card-link .w-10 {
+            width: 2.25rem;
+        }
+        .platform-card-link .h-10 {
+            height: 2.25rem;
+        }
+        @media (min-width: 640px) {
+            .platform-card-link .w-12 {
+                width: 2.5rem;
+            }
+            .platform-card-link .h-12 {
+                height: 2.5rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .platform-card-link .w-14 {
+                width: 2.75rem;
+            }
+            .platform-card-link .h-14 {
+                height: 2.75rem;
+            }
+            .platform-card-link .w-7 {
+                width: 1.5rem;
+            }
+            .platform-card-link .h-7 {
+                height: 1.5rem;
+            }
+        }
+        .platform-card-link svg.w-6 {
+            width: 1.25rem;
+        }
+        .platform-card-link svg.h-6 {
+            height: 1.25rem;
+        }
+        @media (min-width: 640px) {
+            .platform-card-link svg.w-7 {
+                width: 1.4rem;
+            }
+            .platform-card-link svg.h-7 {
+                height: 1.4rem;
+            }
+        }
+        .card-title {
+            font-size: 0.85rem;
+            line-height: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+        @media (min-width: 640px) {
+            .card-title {
+                font-size: 0.9rem;
+                line-height: 1.25rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .card-title {
+                font-size: 0.95rem;
+                line-height: 1.3rem;
+            }
+        }
+        .card-description p {
+            font-size: 0.7rem;
+            line-height: 1rem;
+        }
+        .card-action {
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+        }
+        @media (min-width: 640px) {
+            .card-action {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* 确保页面容器在移动设备上正确显示 */
+        .container {
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        /* 确保header和footer在移动设备上正确显示 */
+        header, footer {
+            width: 100% !important;
+            position: relative !important;
+        }
+        
+        /* 侧边栏样式 - 修改为固定左侧布局，优化样式 */
+        .sidebar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100vh;
+            background-color: #222;
+            z-index: 100;
+            overflow-y: auto;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar-header {
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            background-color: #222;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #333;
+        }
+        
+        .sidebar-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .sidebar-header h3::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>');
+            background-repeat: no-repeat;
+            margin-right: 10px;
+        }
+        
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        
+        .sidebar-nav li {
+            margin-bottom: 1px;
+        }
+        
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .sidebar-nav a::before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-repeat: no-repeat;
+            margin-right: 10px;
+            opacity: 0.7;
+        }
+        
+        .sidebar-nav a[href="#common-tools"]::before {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>');
+        }
+        
+        .sidebar-nav a[href="#shop-software"]::before {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>');
+        }
+        
+        .sidebar-nav a[href="#live-software"]::before {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>');
+        }
+        
+        .sidebar-nav a[href="#ecommerce-plugins"]::before {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>');
+        }
+        
+        .sidebar-nav a[href="#video-tools"]::before {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>');
+        }
+        
+        .sidebar-nav a[href="#design-tools"]::before {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>');
+        }
+        
+        .sidebar-nav a[href="#shop-entry"]::before {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>');
+        }
+        
+        .sidebar-nav a[href="#ad-platforms"]::before {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>');
+        }
+        
+        .sidebar-nav a[href="#data-analysis"]::before {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>');
+        }
+        
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            background-color: #333;
+            border-left-color: #007bff;
+            color: #fff;
+        }
+        
+        .sidebar-nav a:hover::before, .sidebar-nav a.active::before {
+            opacity: 1;
+        }
+        
+        /* 主内容区样式 - 修改为占满右侧空间 */
+        .page-wrapper {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 0;
+            background-color: #f1f2f4;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .content-container {
+            padding: 20px;
+            width: 100%;
+            flex: 1;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .page-wrapper {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                max-height: 300px;
+            }
+            
+            .main-content {
+                width: 100%;
+            }
+            
+            .content-container {
+                padding: 10px;
+            }
+        }
+        
+        /* 分类卡片样式优化 */
+        .category-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .category-card-head {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            background-color: #fafafa;
+        }
+        
+        .category-card-head h2 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            color: #333;
+        }
+        
+        .category-card-body {
+            padding: 15px;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .category-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+        
+        /* 页面顶部标题样式 */
+        .page-title {
+            background-color: #ffffff;
+            color: #333;
+            padding: 0;
+            text-align: center;
+            margin-bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .page-title .footer-content {
+            padding: 15px 0;
+            width: 100%;
+        }
+
+        .page-title h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+            color: #333;
+        }
+
+        .page-title p {
+            font-size: 14px;
+            margin: 5px 0 0;
+            color: #666;
+        }
+        
+        /* 页脚样式 */
+        .site-footer {
+            background-color: #ffffff;
+            color: #333;
+            padding: 0;
+            margin-top: auto;
+            width: 100%;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
+        }
+
+        .footer-content {
+            text-align: center;
+            padding: 15px 0;
+            width: 100%;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            margin: 0 5px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .copyright {
+            font-size: 12px;
+            opacity: 0.8;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
     <div class="page-wrapper">
@@ -50,7 +620,941 @@
             <div class="content-container">
                 <!-- 内容区域 -->
                 <div class="content-area">
-                    <!-- 模块内容将通过JavaScript动态加载 -->
+                    <!-- 常用工具 -->
+                    <section id="common-tools" class="navs-section">
+                        <div class="category-card">
+                            <div class="category-card-head">
+                                <h2>
+                                    <span>常用工具</span> <small>一站式电商运营工具集合</small>
+                                </h2>
+                            </div>
+                            <div class="category-card-body">
+                                <div class="category-grid">
+                                    <!-- 驼铃电商知识库 -->
+                                    <a class="category-item" href="https://fbjvryq00y.feishu.cn/docx/doxcnoAkUCQ27nY31F2PU9bTNPW?from=from_copylink" target="_blank" rel="noopener noreferrer">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="电商知识库">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>驼铃电商知识库</h3>
+                                            <p>电商知识，从新手到高手</p>
+                                        </div>
+                                    </a>
+                                    
+                                    <!-- 电商黑科技工具 -->
+                                    <a class="category-item" href="https://fbjvryq00y.feishu.cn/docx/doxcnoAkUCQ27nY31F2PU9bTNPW#doxcnLcm9ZsvM68CWncjGvs7Wfb" target="_blank" rel="noopener noreferrer">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="电商黑科技">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>驼铃电商黑科技</h3>
+                                            <p>品退、差评方法等等</p>
+                                        </div>
+                                    </a>
+
+                                    <!-- 驼铃社电商礼品网 -->
+                                    <a class="category-item" href="https://tb.88daifa.com/" target="_blank" rel="noopener noreferrer">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="电商礼品网">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>驼铃电商礼品网</h3>
+                                            <p>优质礼品资源，满足需求</p>
+                                        </div>
+                                    </a>
+                                    
+                                    <!-- 驼铃补单计算器 -->
+                                    <a class="category-item" href="pages/budan.html">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="补单计算器">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>驼铃补单计算器</h3>
+                                            <p>计算补单数量，提升指标</p>
+                                        </div>
+                                    </a>
+
+                                    <!-- 驼铃ROI计算器 -->
+                                    <a class="category-item" href="pages/roi.html">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="千川计算器">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>驼铃千川计算器</h3>
+                                            <p>计算出价，提升投放效果</p>
+                                        </div>
+                                    </a>
+                                    
+                                    <!-- 驼铃直播中控工具 -->
+                                    <a class="category-item" href="https://fbjvryq00y.feishu.cn/drive/folder/K7zIfP4IOlI5PxdberKcNgqOnCc?from=from_copylink" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="直播中控工具">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>驼铃直播中控工具</h3>
+                                            <p>自动弹窗、自动发言等</p>
+                                        </div>
+                                    </a>
+
+                                    <!-- 直播录制工具 -->
+                                    <a class="category-item" href="https://fbjvryq00y.feishu.cn/drive/folder/Y0BTfqMWoleXphdT1cNci3fDnUg?from=from_copylink" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="直播录制工具">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>直播间录制工具</h3>
+                                            <p>批量录制、自动转码等</p>
+                                        </div>
+                                    </a>
+
+                                    <!-- AuTox视频搬运 -->
+                                    <a class="category-item" href="https://fbjvryq00y.feishu.cn/drive/folder/LeM2f5tuZlbF3GdeKV9cYqGlnke?from=from_copylink" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="AuTox视频搬运">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>AuTox视频搬运</h3>
+                                            <p>视频一键搬运发布</p>
+                                        </div>
+                                    </a>
+
+                                    <!-- 驼铃规则中心 -->
+                                    <a class="category-item" href="pages/rules.html">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="千川计算器">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>驼铃规则中心</h3>
+                                            <p>集合多平台规则中心</p>
+                                        </div>
+                                    </a>
+                                    
+                                    <!-- YTPPTV - 观影 -->
+                                    <a class="category-item" href="https://tv.199908.top/" target="_blank" rel="noopener noreferrer">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/J6qYXZnL3WNR5WcBsc0tZ52GwUyJxiX5.png" alt="YTPPTV">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>YTPPTV - 观影</h3>
+                                            <p>免费影视资源，无需注册</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 导航部分开始 -->
+                    <section id="shop-software" class="navs-section">
+                        <div class="category-card">
+                            <div class="category-card-head">
+                                <h2>
+                                    <span>店铺软件</span> <small>各大平台店铺客户端</small>
+                                </h2>
+                            </div>
+                            <div class="category-card-body">
+                                <div class="category-grid">
+                                    <a class="category-item" href="https://im.jinritemai.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/b9K62gnP3WNR5WdDsc0tTQXXu9n4QU7c.png" alt="飞鸽工作台">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>抖店</h3>
+                                            <p>抖音商家工具</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://loginmyseller.taobao.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/N32EhWnX3WNR5WcIsc0tDGciEvaoSmmz.png" alt="淘宝商家工作台">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>千牛</h3>
+                                            <p>淘宝商家工具</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://login.kwaixiaodian.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/8Rd3Q3nu3WNR5WcIsc0qRhSV4hba84Yq.png" alt="快手商家工作台">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>快手</h3>
+                                            <p>快手商家工具</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://passport.shop.jd.com/login/index.action/jdm" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/wgcsFJn13WNR5WcHsc0tFtQbcDGUTJrJ.png" alt="京东商家工作台">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>京麦</h3>
+                                            <p>京东商家工具</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://store.weixin.qq.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/rgPy6Nnp3WNR5WcFsc0tQLgJi9viAMaa.png" alt="视频号商家工作台">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>视频号</h3>
+                                            <p>视频号商家工具</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://customer.xiaohongshu.com/login?service=https://ark.xiaohongshu.com/app-system/home" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/lMOMlznL3WNR5WdEsc0tNFEufOpAoep5.png" alt="快手商家工作台">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>千帆</h3>
+                                            <p>小红书商家工具</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://mms.pinduoduo.com/login/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/vGWqfcnr3WNR5WfAsc0tSu3BZXAOlAXv.png" alt="快手商家工作台">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>拼多多</h3>
+                                            <p>拼多多商家工具</p>
+                                        </div>
+                                    <a class="category-item" href="https://e.douyin.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/Pb0EDPnj3WNR5WcDsc0thgzOesUKxi1i.png" alt="抖音企业号">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>抖音企业号</h3>
+                                            <p>抖音企业号数据管理</p>
+                                        </div>
+                                        </a>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 直播软件 -->
+                    <section id="live-software" class="navs-section">
+                        <div class="category-card">
+                            <div class="category-card-head">
+                                <h2>
+                                    <span>直播软件</span> <small>各大平台直播软件</small>
+                                </h2>
+                            </div>
+                            <div class="category-card-body">
+                                <div class="category-grid">
+                                    <a class="category-item" href="https://fbjvryq00y.feishu.cn/drive/folder/K7zIfP4IOlI5PxdberKcNgqOnCc?from=from_copylink" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/0bkSDrnz3WNR5WdGsc0tZVuOLCq4eMHL.png" alt="直播中控工具">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>驼铃直播中控工具</h3>
+                                            <p>自动弹窗、自动发言等</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://streamingtool.douyin.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/jUvSchne3WNR5WcAsc0tfCPfAlKNRXEM.png" alt="抖音直播伴侣">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>抖音直播伴侣</h3>
+                                            <p>抖音、火山官方直播工具</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://live.kuaishou.com/live-partner" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/6gzjv3nL3WNR5WcCsc0tVR4fYD2xXChk.png" alt="快手直播伴侣">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>快手直播伴侣</h3>
+                                            <p>快手平台直播软件</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://www.xiaohongshu.com/zhibo/robs" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/FDs7uUnX3WNR5WcEsc0qX0D3DnUmq5kH.png" alt="小红书直播助手">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>小红书直播助手</h3>
+                                            <p>小红书电脑直播助手</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://obsproject.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/oVlnsjn53WNR5WdAsc0tK1WlfBft5mPD.png" alt="OBS">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>OBS</h3>
+                                            <p>多平台直播推流工具</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 电商插件/工具 -->
+                    <section id="ecommerce-plugins" class="navs-section">
+                        <div class="category-card">
+                            <div class="category-card-head">
+                                <h2>
+                                    <span>电商插件/工具</span> <small>电商插件工具</small>
+                                </h2>
+                            </div>
+                            <div class="category-card-body">
+                                <div class="category-grid">
+                                    <a class="category-item" href="https://virtualbrowser.cc/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/VjYEN1nk3WNR5WcDsc0tJRlpmxhXpBdj.png" alt="指纹浏览器">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>指纹浏览器</h3>
+                                            <p>多店铺电商卖家必备，隔离ip</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://hsq.dangxun.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/4ard4ZnB3WNR5WfIsc0tZdlZWT00xOSZ.png" alt="哈士奇">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>哈士奇</h3>
+                                            <p>多平台电商运营插件</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://zzbtool.com/index.html" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/08yFbQnL3WNR5WdEsc0ta8YDsQRhYg1Q.png" alt="至尊宝">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>至尊宝</h3>
+                                            <p>多平台电商运营插件</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://tool.kollink.net/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/u7yYLMna3WNR5WcAsc0tqmkwQLNx3lYT.png" alt="达连">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>达连</h3>
+                                            <p>TikTok达人邀约插件</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://limob.cn/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/kMWbgNnm3WNR5WcDsc0tXdOQRwRX18H3.png" alt="灵邀AI">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>灵邀AI</h3>
+                                            <p>抖音微信达人邀约软件</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://cat-catch.bmmmd.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/ldivFxnC3WNR5WcGsc0tE8vydlqrSpZY.png" alt="猫爪">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>猫爪</h3>
+                                            <p>网页视频嗅探与下载插件</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://www.fatkun.net/zh-CN/download" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/gp4OX3nL3WNR5WcCsc0t5QyKsaYYcf6B.png" alt="Fatkun图片下载">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>Fatkun图片下载</h3>
+                                            <p>一键下载页面上所有图片</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://smc.iszhouhua.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/95UDaJn33WNR5WkFsc0tJPuTYuhqFQVK.png" alt="社媒助手">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>社媒助手</h3>
+                                            <p>多平台数据采集插件</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 视频工具 -->
+                    <section id="video-tools" class="navs-section">
+                        <div class="category-card">
+                            <div class="category-card-head">
+                                <h2>
+                                    <span>视频工具</span> <small>视频剪辑工具和素材</small>
+                                </h2>
+                            </div>
+                            <div class="category-card-body">
+                                <div class="category-grid">
+                                    <a class="category-item" href="https://www.capcut.cn/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/RQEJSTn23WNR5WcBsc0tgRWMwCxSPHGF.png" alt="剪映">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>剪映</h3>
+                                            <p>全能易用的视频剪辑软件</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://jimeng.jianying.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/oDsmYDn13WNR5WcDsc0tYgONkzRLfsed.png" alt="即梦AI">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>即梦AI</h3>
+                                            <p>一站式AI视频创作平台</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://www.vidu.cn/create" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/cW2iT8nz3WNR5WcGsc0tU5y2U183SDwk.png" alt="Vidu">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>Vidu</h3>
+                                            <p>一站式AI视频创作平台</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://www.skyreels.ai/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/W2s2LMnk3WNR5WcFsc0tZhYOSZCZesFP.png" alt="SkyReels Tutorial">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>SkyReels Tutorial</h3>
+                                            <p>一站式AI视频创作平台</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://viggle.ai/app" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/j1nIAin83WNR5WcEsc0urTMYzYSGtWlH.png" alt="Viggle AI">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>Viggle AI</h3>
+                                            <p>生成高质量、可控的动态视频</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://xiaobaituai.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/dBcHLMn13WNR5WcDsc0uY4kcMSSVPdgh.png" alt="小白兔 AI">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>小白兔 AI</h3>
+                                            <p>一站式AI视频创作软件</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://www.jianghudata.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/bZvoj8nC3WNR5WcEsc0tnucYMe1r85pO.png" alt="江湖工具箱">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>江湖工具箱</h3>
+                                            <p>电商多功能软件</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://api.yyy001.com/tools/demo-videoparse.html#" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/FW0N6wnF3WNR5WcBsc0tDb78ZQBqGhYC.png" alt="山海云端短视频解析">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>山海云端短视频解析</h3>
+                                            <p>多平台视频解析下载</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://www.bestvideow.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/FW0N6wnF3WNR5WcBsc0tDb78ZQBqGhYC.png" alt="Best视频下载器">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>Best视频下载器</h3>
+                                            <p>多平台视频解析下载</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://hd.jianliai.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/LqVYI3n03WNR5WcAsc0uS6tYq9bkZoCP.png" alt="红抖AI助手">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>红抖AI助手</h3>
+                                            <p>最全的AI创作工具箱</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://cc.oceanengine.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/YoskgPnn3WNR5WcGsc0t3rVdgaKg3PsC.png" alt="巨量创意">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>巨量创意</h3>
+                                            <p>激发创意灵感</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://www.aigei.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/TIQpasnb3WNR5WcAsc0tBekcfx1pChQH.png" alt="爱给网">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>爱给网</h3>
+                                            <p>音效配乐、视频素材</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://fbjvryq00y.feishu.cn/drive/folder/Y0BTfqMWoleXphdT1cNci3fDnUg?from=from_copylink" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/sv8NhYnH3WNR5WcEsc0t02ZLnWL6bTeS.png" alt="直播录制工具">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>直播间录制工具</h3>
+                                            <p>批量录制、自动转码等</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://fbjvryq00y.feishu.cn/drive/folder/Y0BTfqMWoleXphdT1cNci3fDnUg?from=from_copylink" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/cX9WP8nk3WNR5WcBsc0topnvXZw9EEe0.png" alt="小绿点直播录屏">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>小绿点直播录屏</h3>
+                                            <p>多平台直播录屏软件</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://fbjvryq00y.feishu.cn/drive/folder/LeM2f5tuZlbF3GdeKV9cYqGlnke?from=from_copylink" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/Mb9Mw6ny3WNR5WcIsc0tS5jkID10VaMH.png" alt="AuTox视频搬运">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>AuTox视频搬运</h3>
+                                            <p>视频一键搬运发布</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://www.soundems.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/eenjG3nc3WNR5WcGsc0t9eiPzu15ORvg.png" alt="闪电配音">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>闪电配音</h3>
+                                            <p>配音平台</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://zenvideo.qq.com/home" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/Fjj1IsnI3WNR5WcAsc0tDnH2HNXz7YTB.png" alt="腾讯智影">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>腾讯智影</h3>
+                                            <p>腾讯AI智能创作平台</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://jollytoday.com/index/cn" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/rqLl3Inh3WNR5WcCsc0txqzbbiF0VGw1.png" alt="鬼手剪辑">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>鬼手剪辑</h3>
+                                            <p>硬字幕翻译、视频去字幕</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://azure.microsoft.com/zh-cn/products/ai-services/text-to-speech/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/HnBdAJno3WNR5Wc9sc0t5lTtdgvd05m0.png" alt="微软文本转语音">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>微软文本转语音</h3>
+                                            <p>微软文本转语音</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://peiyin.xunfei.cn/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/eUC8BFnZ3WNR5WcEsc0tlFtXTKTLXorQ.png" alt="讯飞智作">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>讯飞智作</h3>
+                                            <p>讯飞AI配音</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://www.67tool.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/SGRJOyn73WNR5WcBsc0teKKtrYXMeX9S.png" alt="即时工具">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>即时工具</h3>
+                                            <p>视频、图片处理工具箱</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 平面设计 -->
+                    <section id="design-tools" class="navs-section">
+                        <div class="category-card">
+                            <div class="category-card-head">
+                                <h2>
+                                    <span>平面设计</span> <small>平面设计软件</small>
+                                </h2>
+                            </div>
+                            <div class="category-card-body">
+                                <div class="category-grid">
+                                    <a class="category-item" href="https://www.gaoding.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/8AfNExnX3WNR5WcAsc0uaHZf0l9GQ9f3.png" alt="稿定">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>稿定</h3>
+                                            <p>在线制图</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://www.chuangkit.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/5ix2cZnQ3WNR5WcEsc0tlG2aNWAe3oSb.png" alt="创客贴">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>创客贴</h3>
+                                            <p>在线制图</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://huaban.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/J6jreqnq3WNR5WcDsc0tckKizuIgM3CX.png" alt="花瓣网">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>花瓣网</h3>
+                                            <p>图片素材</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://picwish.cn/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/cdbp1rnL3WNR5WcDsc0tf6siZbTlrlRn.png" alt="佐糖-AI在线抠图">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>佐糖-AI在线抠图</h3>
+                                            <p>AI在线抠图</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://www.fotor.com.cn/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/Zltuuun13WNR5WcEsc0t1Y0f9TjxyYEh.png" alt="懒设计">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>懒设计</h3>
+                                            <p>在线设计网站</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://colordrop.io/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/NpWhJ9n83WNR5WcEsc0t8ggdjeLOtKzN.png" alt="配色网站">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>配色网站</h3>
+                                            <p>配色网站</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://color.adobe.com/zh/create/color-wheel" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/TqCEGLnO3WNR5WcCsc0t4zvj5XbQlbBN.png" alt="adobe色卡">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>adobe色卡</h3>
+                                            <p>adobe色卡</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://bytedance.feishu.cn/docx/OqlYd1X3goVp5ZxhZd0c7NnPnzc" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/jzURTpnJ3WNR5WcCsc0tKRmPYS1TvwV0.png" alt="商品卡主图模板">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>商品卡主图模板</h3>
+                                            <p>商品卡主图模板</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://www.iconfont.cn/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/UnjRvkn13WNR5WdBsc0tA2Qtv6sMDZOD.png" alt="图标下载">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>图标下载</h3>
+                                            <p>图标下载</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 店铺入驻 -->
+                    <section id="shop-entry" class="navs-section">
+                        <div class="category-card">
+                            <div class="category-card-head">
+                                <h2>
+                                    <span>店铺入驻</span> <small>各大平台店铺入驻</small>
+                                </h2>
+                            </div>
+                            <div class="category-card-body">
+                                <div class="category-grid">
+                                    <a class="category-item" href="https://fxg.jinritemai.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/b9K62gnP3WNR5WdDsc0tTQXXu9n4QU7c.png" alt="抖音小店">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>抖音小店</h3>
+                                            <p>抖音小店申请入驻</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://channels.weixin.qq.com/shop" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/rgPy6Nnp3WNR5WcFsc0tQLgJi9viAMaa.png" alt="视频号小店">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>视频号小店</h3>
+                                            <p>腾讯视频号小店入驻</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://www.kwaixiaodian.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/2GL5qgnp3WNR5WdFsc0tJQldjEBsDUYT.png" alt="快手小店">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>快手小店</h3>
+                                            <p>快手小店入驻</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://ark.xiaohongshu.com/merchant/login" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/FDs7uUnX3WNR5WcEsc0qX0D3DnUmq5kH.png" alt="小红书店铺">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>小红书店铺</h3>
+                                            <p>小红书商家入驻</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://zhaoshang.tmall.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/5Xox5PnZ3WNR5WdGsc0txYXjFT9ro1yS.png" alt="天猫入驻">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>天猫入驻</h3>
+                                            <p>天猫入驻</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://zhaoshang.jd.com/index/home" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/2EtN4AnQ3WNR5WdBsc0tyQlpXwnkoR0Y.png" alt="京东入驻">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>京东入驻</h3>
+                                            <p>京东入驻</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://ims.pinduoduo.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/g8twjOnl3WNR5WfEsc0tw6XXcGXya4Wq.png" alt="拼多多入驻">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>拼多多入驻</h3>
+                                            <p>拼多多入驻</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://ishop.taobao.com/openshop/tb_open_shop_landing.htm#/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/CK7hicnr3WNR5WfFsc0tUMkdeV0ppLHH.png" alt="淘宝入驻">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>淘宝入驻</h3>
+                                            <p>淘宝店铺入驻</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="ad-platforms" class="navs-section">
+                        <div class="category-card">
+                            <div class="category-card-head">
+                                <h2>
+                                    <span>广告投放</span> <small>广告投放后台与工具</small>
+                                </h2>
+                            </div>
+                            <div class="category-card-body">
+                                <div class="category-grid">
+                                    <a class="category-item" href="https://www.oceanengine.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/Udq131nl3WNR5WcGsc0tzWdi4PtgNGkc.png" alt="巨量引擎">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>巨量引擎</h3>
+                                            <p>抖音所有类型广告</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://qianchuan.jinritemai.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/pCSGVLn53WNR5WcEsc0tfVkpAiXgBFct.png" alt="巨量千川">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>巨量千川</h3>
+                                            <p>抖音广告投放平台</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://e.kuaishou.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/kvO4P0n63WNR5WcDsc0tNPkSTvbqijze.png" alt="磁力引擎">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>磁力引擎</h3>
+                                            <p>快手开屏、信息流、粉条</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://ad.e.kuaishou.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/Co4EtUnP3WNR5WcEsc0t8lUq9FBnFWFG.png" alt="磁力智投">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>磁力智投</h3>
+                                            <p>快手广告投放平台</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://ad.xiaohongshu.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/HdPvbbnA3WNR5WdAsc0tTfFy7GBWTbmo.png" alt="聚光平台">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>聚光平台</h3>
+                                            <p>小红书广告投放平台</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://zgzt.v-ma.com/#/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/l4UMaWnG3WNR5WcAsc0tLDl83NMiQUjd.png" alt="诸葛智投">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>诸葛智投</h3>
+                                            <p>视频号投放管理工具</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="http://www.xiaohuolong.com" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/UAeoz1nd3WNR5WcAsc0tHphBuDp9S3F1.png" alt="小火龙">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>小火龙</h3>
+                                            <p>抖音随心推投放工具</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://zs.doulaoban.com/login" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/XxkAXKnj3WNR5WcDsc0taSOsqo9YxZMw.png" alt="抖老板带货助手">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>抖老板带货助手</h3>
+                                            <p>多平台数据管理</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="data-analysis" class="navs-section">
+                        <div class="category-card">
+                            <div class="category-card-head">
+                                <h2>
+                                    <span>数据分析·选品</span> <small>直播大数据网站推荐</small>
+                                </h2>
+                            </div>
+                            <div class="category-card-body">
+                                <div class="category-grid">
+                                    <a class="category-item" href="http://www.chanmama.com" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/ALAac4n83WNR5WdAsc0t91yH83HETMEu.png" alt="蝉妈妈">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>蝉妈妈</h3>
+                                            <p>抖音直播数据、选品平台</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://www.kaogujia.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/qUhvulny3WNR5WcFsc0tWXHHZDYI4b9D.png" alt="考古加">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>考古加</h3>
+                                            <p>专业数据服务平台</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://youshu.youcloud.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/fWMrjCnO3WNR5WcCsc0tvis6gARhoX8R.png" alt="有米有数">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>有米有数</h3>
+                                            <p>广告投放数据分析工具</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://trendinsight.oceanengine.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/ZvqK3Hnc3WNR5WcFsc0tpVfX1uJXJB8z.png" alt="巨量算数">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>巨量算数</h3>
+                                            <p>抖音官方大数据平台</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://dy.huitun.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/4hsqWRnZ3WNR5Wd9sc0taODcY05DpKcV.png" alt="灰豚数据-抖音">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>灰豚数据-抖音</h3>
+                                            <p>灰豚数据抖音</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://ks.huitun.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/4hsqWRnZ3WNR5Wd9sc0taODcY05DpKcV.png" alt="灰豚数据-快手">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>灰豚数据-快手</h3>
+                                            <p>灰豚数据快手版</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="http://www.dataoke.com" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/d80DPCnN3WNR5WdIsc0tSaL7WRPuYalf.png" alt="大淘客">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>大淘客</h3>
+                                            <p>淘客选品平台</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://mixuan.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/MspICbnX3WNR5WcBsc0tnIoGmRY6Ayaj.png" alt="米选">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>米选</h3>
+                                            <p>飞瓜旗下选品平台</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://www.douchacha.com/" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/OqsFPjnJ3WNR5WfIsc0tBppnm2gQIc66.png" alt="抖查查">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>抖查查</h3>
+                                            <p>数据、达人与选品平台</p>
+                                        </div>
+                                    </a>
+                                    <a class="category-item" href="https://bytedance.feishu.cn/docx/FCCxdKMarouWw3xrR87cNKeRn3b" target="_blank">
+                                        <div class="category-item-icon">
+                                            <img src="https://www.nodeimage.com/i/32451/Mb9Mw6ny3WNR5WcIsc0tS5jkID10VaMH.png" alt="抖音官方选品工具">
+                                        </div>
+                                        <div class="category-item-info">
+                                            <h3>抖音官方选品工具</h3>
+                                            <p>抖音官方选品工具</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
                 </div>
             </div>
             
@@ -68,7 +1572,45 @@
 
     <script src="js/main.js"></script>
     <script src="js/social.js"></script>
-    <script src="js/sidebar.js"></script>
-    <script src="js/modules-loader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有侧边栏链接
+            const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+            
+            // 获取所有分类区域
+            const sections = document.querySelectorAll('.navs-section');
+            
+            // 点击侧边栏链接事件
+            sidebarLinks.forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    // 添加活动状态
+                    sidebarLinks.forEach(function(l) {
+                        l.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+            
+            // 滚动监听，高亮当前查看的分类
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(function(section) {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                sidebarLinks.forEach(function(link) {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html> 
