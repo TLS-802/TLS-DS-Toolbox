@@ -508,17 +508,26 @@
         .page-title {
             background-color: #007bff;
             color: white;
-            padding: 15px 0;
+            padding: 0;
             text-align: center;
             margin-bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        
+
+        .page-title .footer-content {
+            padding: 15px 0;
+            width: 100%;
+        }
+
         .page-title h1 {
             font-size: 20px;
             font-weight: 600;
             margin: 0;
         }
-        
+
         .page-title p {
             font-size: 14px;
             margin: 5px 0 0;
@@ -528,16 +537,21 @@
         .site-footer {
             background-color: #007bff;
             color: white;
-            padding: 15px 0;
+            padding: 0;
             margin-top: auto;
             width: 100%;
             flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        
+
         .footer-content {
             text-align: center;
+            padding: 15px 0;
+            width: 100%;
         }
-        
+
         .social-links {
             display: flex;
             justify-content: center;
@@ -590,13 +604,15 @@
 
         <!-- 主内容区 -->
         <div class="main-content">
-            <div class="content-container">
-                <!-- 页面标题 -->
-                <div class="page-title">
+            <!-- 页面标题 -->
+            <div class="page-title">
+                <div class="footer-content">
                     <h1>驼铃电商工具百宝箱</h1>
                     <p>一站式电商运营工具集合，助力商家高效经营</p>
                 </div>
-
+            </div>
+            
+            <div class="content-container">
                 <!-- 内容区域 -->
                 <div class="content-area">
                     <!-- 常用工具 -->
