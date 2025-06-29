@@ -12,10 +12,12 @@
     justify-content: center;
     text-decoration: none;
     transition: all 0.3s ease;
-    width: 48px;
-    height: 48px;
-    padding: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
     box-sizing: border-box;
+    border-radius: 50%;
+    background-color: #ffffff;
 }
 
 .social-links a:hover {
@@ -24,8 +26,8 @@
 
 /* 社交媒体图标 */
 .social-links img {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     display: block;
     transition: all 0.3s ease;
     object-fit: contain;
@@ -65,7 +67,18 @@ footer p {
 }
 
 /* 蓝色背景上的社交图标样式调整 */
-footer .social-links img {
+footer .social-links a {
     background-color: #ffffff;
     border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+footer .social-links img {
+    width: 24px;
+    height: 24px;
 } 
