@@ -445,16 +445,50 @@
             .sidebar {
                 width: 100%;
                 height: auto;
-                position: relative;
-                max-height: 300px;
+                position: fixed;
+                top: 0;
+                left: -100%;
+                max-height: 100vh;
+                z-index: 1001;
+                transition: left 0.3s ease;
+                background-color: #222;
+            }
+
+            .sidebar.show {
+                left: 0;
+            }
+
+            .sidebar.collapsed {
+                left: -100%;
             }
             
             .main-content {
                 width: 100%;
+                margin-left: 0;
             }
             
             .content-container {
                 padding: 10px;
+            }
+
+            .sidebar-toggle {
+                display: flex;
+            }
+
+            /* 添加遮罩层样式 */
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+            }
+
+            .sidebar-overlay.show {
+                display: block;
             }
         }
         
@@ -506,6 +540,10 @@
         
         /* 页面顶部标题样式 */
         .page-title {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background-color: #fff;
             background-color: #ffffff;
             color: #333;
             padding: 0;
@@ -640,7 +678,7 @@
 <body>
     <div class="page-wrapper">
         <!-- 侧边栏 -->
-        <div class="sidebar" id="sidebar">
+        <div class="sidebar collapsed" id="sidebar">
             <div class="sidebar-header">
                 <h3>分类导航</h3>
             </div>
@@ -656,6 +694,9 @@
                 <li><a href="#data-analysis"><span>数据分析·选品</span></a></li>
             </ul>
         </div>
+
+        <!-- 添加遮罩层 -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
         <!-- 主内容区 -->
         <div class="main-content">
@@ -697,55 +738,78 @@
     <script src="js/social.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 获取所有侧边栏链接
             const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
             const sidebarToggle = document.getElementById('sidebarToggle');
             const sidebar = document.querySelector('.sidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const isMobile = window.innerWidth <= 992;
             
             // 添加侧边栏切换功能
             sidebarToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('collapsed');
+                if (isMobile) {
+                    sidebar.classList.toggle('show');
+                    sidebarOverlay.classList.toggle('show');
+                } else {
+                    sidebar.classList.toggle('collapsed');
+                }
                 // 保存状态到localStorage
                 localStorage.setItem('sidebarState', sidebar.classList.contains('collapsed') ? 'collapsed' : 'expanded');
             });
             
-            // 恢复上次的侧边栏状态
-            const savedState = localStorage.getItem('sidebarState');
-            if (savedState === 'collapsed') {
-                sidebar.classList.add('collapsed');
+            // 点击遮罩层关闭侧边栏
+            sidebarOverlay.addEventListener('click', function() {
+                sidebar.classList.remove('show');
+                sidebarOverlay.classList.remove('show');
+            });
+
+            // 点击链接后关闭侧边栏（移动端）
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (isMobile) {
+                        sidebar.classList.remove('show');
+                        sidebarOverlay.classList.remove('show');
+                    }
+                });
+            });
+
+            // 恢复上次的侧边栏状态（仅在桌面端）
+            if (!isMobile) {
+                const savedState = localStorage.getItem('sidebarState');
+                if (savedState === 'collapsed') {
+                    sidebar.classList.add('collapsed');
+                }
             }
+            
+            // 监听窗口大小变化
+            window.addEventListener('resize', function() {
+                const newIsMobile = window.innerWidth <= 992;
+                if (newIsMobile !== isMobile) {
+                    location.reload();
+                }
+            });
             
             // 获取所有分类区域
             const sections = document.querySelectorAll('.navs-section');
             
-            // 点击侧边栏链接事件
-            sidebarLinks.forEach(function(link) {
-                link.addEventListener('click', function(e) {
-                    // 添加活动状态
-                    sidebarLinks.forEach(function(l) {
-                        l.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                });
-            });
-            
             // 滚动监听，高亮当前查看的分类
-            window.addEventListener('scroll', function() {
-                let current = '';
-                
-                sections.forEach(function(section) {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (pageYOffset >= (sectionTop - 200)) {
-                        current = section.getAttribute('id');
-                    }
-                });
-                
-                sidebarLinks.forEach(function(link) {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').substring(1) === current) {
-                        link.classList.add('active');
-                    }
+            sections.forEach(function(section) {
+                section.addEventListener('scroll', function() {
+                    let current = '';
+                    
+                    sections.forEach(function(s) {
+                        const sectionTop = s.offsetTop;
+                        const sectionHeight = s.clientHeight;
+                        if (this.scrollTop >= (sectionTop - 200)) {
+                            current = s.getAttribute('id');
+                        }
+                    });
+                    
+                    sidebarLinks.forEach(function(link) {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href').substring(1) === current) {
+                            link.classList.add('active');
+                        }
+                    });
                 });
             });
         });
