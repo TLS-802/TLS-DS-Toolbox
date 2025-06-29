@@ -63,10 +63,10 @@ footer {
 
 footer p {
     margin-top: 0.75rem;
-    color: #ffffff;
+    color: #666;
 }
 
-/* 蓝色背景上的社交图标样式调整 */
+/* 社交图标样式调整 */
 footer .social-links a {
     background-color: #ffffff;
     border-radius: 50%;
@@ -75,7 +75,7 @@ footer .social-links a {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 footer .social-links img {
