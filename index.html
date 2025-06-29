@@ -516,6 +516,7 @@
             justify-content: center;
             align-items: center;
             box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            position: relative;
         }
 
         .page-title .footer-content {
@@ -585,6 +586,55 @@
             opacity: 0.8;
             color: #666;
         }
+
+        /* 添加汉堡菜单按钮样式 */
+        .sidebar-toggle {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+
+        /* 侧边栏收起状态的样式 */
+        .sidebar.collapsed {
+            width: 60px;
+        }
+
+        .sidebar.collapsed .sidebar-header h3,
+        .sidebar.collapsed .sidebar-nav a span {
+            display: none;
+        }
+
+        .sidebar.collapsed .sidebar-nav a {
+            padding: 12px;
+            justify-content: center;
+        }
+
+        .sidebar.collapsed .sidebar-nav a::before {
+            margin-right: 0;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 992px) {
+            .sidebar-toggle {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -595,15 +645,15 @@
                 <h3>分类导航</h3>
             </div>
             <ul class="sidebar-nav">
-                <li><a href="#common-tools">常用工具</a></li>
-                <li><a href="#shop-software">店铺软件</a></li>
-                <li><a href="#live-software">直播软件</a></li>
-                <li><a href="#ecommerce-plugins">电商插件/工具</a></li>
-                <li><a href="#video-tools">视频工具</a></li>
-                <li><a href="#design-tools">平面设计</a></li>
-                <li><a href="#shop-entry">店铺入驻</a></li>
-                <li><a href="#ad-platforms">广告投放</a></li>
-                <li><a href="#data-analysis">数据分析·选品</a></li>
+                <li><a href="#common-tools"><span>常用工具</span></a></li>
+                <li><a href="#shop-software"><span>店铺软件</span></a></li>
+                <li><a href="#live-software"><span>直播软件</span></a></li>
+                <li><a href="#ecommerce-plugins"><span>电商插件/工具</span></a></li>
+                <li><a href="#video-tools"><span>视频工具</span></a></li>
+                <li><a href="#design-tools"><span>平面设计</span></a></li>
+                <li><a href="#shop-entry"><span>店铺入驻</span></a></li>
+                <li><a href="#ad-platforms"><span>广告投放</span></a></li>
+                <li><a href="#data-analysis"><span>数据分析·选品</span></a></li>
             </ul>
         </div>
 
@@ -611,6 +661,13 @@
         <div class="main-content">
             <!-- 页面标题 -->
             <div class="page-title">
+                <button id="sidebarToggle" class="sidebar-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
                 <div class="footer-content">
                     <h1>驼铃电商工具百宝箱</h1>
                     <p>一站式电商运营工具集合，助力商家高效经营</p>
@@ -642,6 +699,21 @@
         document.addEventListener('DOMContentLoaded', function() {
             // 获取所有侧边栏链接
             const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebar = document.querySelector('.sidebar');
+            
+            // 添加侧边栏切换功能
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('collapsed');
+                // 保存状态到localStorage
+                localStorage.setItem('sidebarState', sidebar.classList.contains('collapsed') ? 'collapsed' : 'expanded');
+            });
+            
+            // 恢复上次的侧边栏状态
+            const savedState = localStorage.getItem('sidebarState');
+            if (savedState === 'collapsed') {
+                sidebar.classList.add('collapsed');
+            }
             
             // 获取所有分类区域
             const sections = document.querySelectorAll('.navs-section');
