@@ -90,6 +90,7 @@
         /* 导航样式 */
         .navs-section {
             margin-bottom: 20px;
+            scroll-margin-top: 20px; /* 添加滚动边距，避免导航栏遮挡内容 */
         }
         .sec-panel {
             background: #fff;
@@ -311,10 +312,151 @@
                 margin-bottom: -1px !important;
             }
         }
+
+        /* 侧边栏样式 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 200px;
+            background-color: #fff;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar-header {
+            padding: 0 15px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 15px;
+        }
+        
+        .sidebar-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #007bff;
+            margin: 0;
+        }
+        
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-nav li {
+            margin-bottom: 2px;
+        }
+        
+        .sidebar-nav a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            background-color: #f8f9fa;
+            border-left-color: #007bff;
+            color: #007bff;
+        }
+        
+        .main-content {
+            margin-left: 200px;
+            transition: margin-left 0.3s ease;
+        }
+        
+        .sidebar-toggle {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1001;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            width: 40px;
+            height: 40px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .sidebar-toggle {
+                display: flex;
+            }
+            
+            body.sidebar-open .main-overlay {
+                display: block;
+            }
+        }
+        
+        .main-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <main class="min-h-screen flex items-center justify-center p-4 sm:p-4 lg:p-6">
+    <!-- 添加侧边栏切换按钮 -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+    
+    <!-- 添加遮罩层 -->
+    <div class="main-overlay" id="mainOverlay"></div>
+    
+    <!-- 添加侧边栏 -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>分类导航</h3>
+        </div>
+        <ul class="sidebar-nav">
+            <li><a href="#common-tools">常用工具</a></li>
+            <li><a href="#shop-software">店铺软件</a></li>
+            <li><a href="#live-software">直播软件</a></li>
+            <li><a href="#ecommerce-plugins">电商插件/工具</a></li>
+            <li><a href="#video-tools">视频工具</a></li>
+            <li><a href="#design-tools">平面设计</a></li>
+            <li><a href="#shop-entry">店铺入驻</a></li>
+            <li><a href="#ad-platforms">广告投放</a></li>
+            <li><a href="#data-analysis">数据分析·选品</a></li>
+        </ul>
+    </div>
+
+    <main class="min-h-screen flex items-center justify-center p-4 sm:p-4 lg:p-6 main-content">
         <div class="container max-w-6xl bg-white w-full mx-auto p-0 rounded-lg shadow-md border border-gray-200">
             <header class="section wpcom-modules modules-fullwidth mb-2 sm:mb-3 md:mb-4" style="background-color: #007bff; padding: 15px 0; width: 100%; margin-left: 0; margin-right: 0; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem; overflow: hidden;">
                 <div class="container text-center">
@@ -329,8 +471,8 @@
             <div class="p-2 sm:p-3 md:p-4">
 
 
-            <!-- 修改主要工具卡片区域为导航样式 -->
-            <section class="navs-section">
+            <!-- 修改主要工具卡片区域为导航样式，添加id -->
+            <section id="common-tools" class="navs-section">
                 <div class="category-card">
                     <div class="category-card-head">
                         <h2>
@@ -454,7 +596,7 @@
             </section>
 
             <!-- 导航部分开始 -->
-            <section class="navs-section">
+            <section id="shop-software" class="navs-section">
                 <div class="category-card">
                     <div class="category-card-head">
                         <h2>
@@ -541,7 +683,7 @@
             </section>
 
             <!-- 直播软件 -->
-            <section class="navs-section">
+            <section id="live-software" class="navs-section">
                 <div class="category-card">
                     <div class="category-card-head">
                         <h2>
@@ -601,7 +743,7 @@
             </section>
 
             <!-- 电商插件/工具 -->
-            <section class="navs-section">
+            <section id="ecommerce-plugins" class="navs-section">
                 <div class="category-card">
                     <div class="category-card-head">
                         <h2>
@@ -688,7 +830,7 @@
             </section>
 
             <!-- 视频工具 -->
-            <section class="navs-section">
+            <section id="video-tools" class="navs-section">
                 <div class="category-card">
                     <div class="category-card-head">
                         <h2>
@@ -892,7 +1034,7 @@
             </section>
 
             <!-- 平面设计 -->
-            <section class="navs-section">
+            <section id="design-tools" class="navs-section">
                 <div class="category-card">
                     <div class="category-card-head">
                         <h2>
@@ -988,7 +1130,7 @@
             </section>
 
             <!-- 店铺入驻 -->
-            <section class="navs-section">
+            <section id="shop-entry" class="navs-section">
                 <div class="category-card">
                     <div class="category-card-head">
                         <h2>
@@ -1074,7 +1216,7 @@
                 </div>
             </section>
 
-            <section class="navs-section">
+            <section id="ad-platforms" class="navs-section">
                 <div class="category-card">
                     <div class="category-card-head">
                         <h2>
@@ -1160,7 +1302,7 @@
                 </div>
             </section>
 
-            <section class="navs-section">
+            <section id="data-analysis" class="navs-section">
                 <div class="category-card">
                     <div class="category-card-head">
                         <h2>
@@ -1280,5 +1422,64 @@
 
     <script src="js/main.js"></script>
     <script src="js/social.js"></script>
+    <script>
+        // 侧边栏切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const mainOverlay = document.getElementById('mainOverlay');
+            const body = document.body;
+            
+            // 切换侧边栏显示/隐藏
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+                body.classList.toggle('sidebar-open');
+            });
+            
+            // 点击遮罩层关闭侧边栏
+            mainOverlay.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+                body.classList.remove('sidebar-open');
+            });
+            
+            // 点击侧边栏链接后关闭侧边栏（在移动设备上）
+            const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+            sidebarLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 992) {
+                        sidebar.classList.remove('active');
+                        body.classList.remove('sidebar-open');
+                    }
+                    
+                    // 添加活动状态
+                    sidebarLinks.forEach(function(l) {
+                        l.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+            
+            // 滚动监听，高亮当前查看的分类
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('.navs-section');
+                let current = '';
+                
+                sections.forEach(function(section) {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                sidebarLinks.forEach(function(link) {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html> 
