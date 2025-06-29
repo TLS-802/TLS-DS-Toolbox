@@ -93,3 +93,63 @@ const utils = {
 if (typeof window !== 'undefined') {
     window.dsToolboxUtils = utils;
 } 
+
+// 加载工具数据
+async function loadToolsData() {
+    try {
+        const response = await fetch('/data/tools.json');
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error loading tools data:', error);
+        return null;
+    }
+}
+
+// 渲染工具卡片
+function renderToolCard(tool) {
+    return `
+        <a class="category-item" href="${tool.url}" target="_blank" rel="noopener noreferrer">
+            <div class="category-item-icon">
+                <img src="${tool.icon}" alt="${tool.name}">
+            </div>
+            <div class="category-item-info">
+                <h3>${tool.name}</h3>
+                <p>${tool.description}</p>
+            </div>
+        </a>
+    `;
+}
+
+// 渲染分类区域
+function renderCategory(category) {
+    return `
+        <section id="${category.id}" class="navs-section">
+            <div class="category-card">
+                <div class="category-card-head">
+                    <h2>
+                        <span>${category.name}</span> <small>${category.description}</small>
+                    </h2>
+                </div>
+                <div class="category-card-body">
+                    <div class="category-grid">
+                        ${category.tools.map(tool => renderToolCard(tool)).join('')}
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+}
+
+// 初始化页面
+async function initializePage() {
+    const contentArea = document.querySelector('.content-area');
+    const data = await loadToolsData();
+    
+    if (data && data.categories) {
+        contentArea.innerHTML = data.categories.map(category => renderCategory(category)).join('');
+    }
+}
+
+// 当DOM加载完成后初始化页面
+document.addEventListener('DOMContentLoaded', initializePage); 
