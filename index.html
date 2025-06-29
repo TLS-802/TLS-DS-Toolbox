@@ -291,9 +291,69 @@
             position: relative !important;
         }
         
-        /* 侧边栏样式 - 修改为固定左侧布局，优化样式 */
+        /* 汉堡菜单按钮样式 */
+        .hamburger-btn {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #222;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-btn:hover {
+            background: #333;
+        }
+
+        .hamburger-btn .icon {
+            position: relative;
+            width: 20px;
+            height: 2px;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-btn .icon::before,
+        .hamburger-btn .icon::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 2px;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-btn .icon::before {
+            transform: translateY(-6px);
+        }
+
+        .hamburger-btn .icon::after {
+            transform: translateY(6px);
+        }
+
+        .hamburger-btn.active .icon {
+            background: transparent;
+        }
+
+        .hamburger-btn.active .icon::before {
+            transform: rotate(45deg);
+        }
+
+        .hamburger-btn.active .icon::after {
+            transform: rotate(-45deg);
+        }
+
+        /* 修改侧边栏样式 */
         .sidebar {
-            position: sticky;
+            position: fixed;
             top: 0;
             left: 0;
             width: 200px;
@@ -304,157 +364,71 @@
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
+            transform: translateX(-200px);
+            transition: transform 0.3s ease;
         }
-        
-        .sidebar-header {
-            padding: 15px 20px;
-            margin-bottom: 15px;
+
+        .sidebar.expanded {
+            transform: translateX(0);
+        }
+
+        .sidebar-collapsed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 60px;
+            height: 100vh;
             background-color: #222;
-            color: white;
+            z-index: 99;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 70px;
+        }
+
+        .sidebar-collapsed .nav-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 1px solid #333;
-        }
-        
-        .sidebar-header h3 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #ffffff;
-            margin: 0;
-            display: flex;
-            align-items: center;
-        }
-        
-        .sidebar-header h3::before {
-            content: "";
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>');
-            background-repeat: no-repeat;
-            margin-right: 10px;
-        }
-        
-        .sidebar-nav {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            flex-grow: 1;
-        }
-        
-        .sidebar-nav li {
-            margin-bottom: 1px;
-        }
-        
-        .sidebar-nav a {
-            display: flex;
-            align-items: center;
-            padding: 12px 20px;
             color: #ccc;
-            text-decoration: none;
-            font-size: 14px;
+            cursor: pointer;
             transition: all 0.2s ease;
-            border-left: 3px solid transparent;
         }
-        
-        .sidebar-nav a::before {
-            content: "";
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            background-repeat: no-repeat;
-            margin-right: 10px;
-            opacity: 0.7;
-        }
-        
-        .sidebar-nav a[href="#common-tools"]::before {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>');
-        }
-        
-        .sidebar-nav a[href="#shop-software"]::before {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>');
-        }
-        
-        .sidebar-nav a[href="#live-software"]::before {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>');
-        }
-        
-        .sidebar-nav a[href="#ecommerce-plugins"]::before {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>');
-        }
-        
-        .sidebar-nav a[href="#video-tools"]::before {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>');
-        }
-        
-        .sidebar-nav a[href="#design-tools"]::before {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>');
-        }
-        
-        .sidebar-nav a[href="#shop-entry"]::before {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>');
-        }
-        
-        .sidebar-nav a[href="#ad-platforms"]::before {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>');
-        }
-        
-        .sidebar-nav a[href="#data-analysis"]::before {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>');
-        }
-        
-        .sidebar-nav a:hover, .sidebar-nav a.active {
-            background-color: #333;
-            border-left-color: #007bff;
+
+        .sidebar-collapsed .nav-icon:hover {
             color: #fff;
+            background: #333;
+            border-radius: 50%;
         }
-        
-        .sidebar-nav a:hover::before, .sidebar-nav a.active::before {
-            opacity: 1;
-        }
-        
-        /* 主内容区样式 - 修改为占满右侧空间 */
-        .page-wrapper {
-            display: flex;
-            width: 100%;
-            min-height: 100vh;
-        }
-        
+
+        /* 修改主内容区域样式 */
         .main-content {
+            margin-left: 60px;
             flex: 1;
             padding: 0;
             background-color: #f1f2f4;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
+            transition: margin-left 0.3s ease;
         }
-        
-        .content-container {
-            padding: 20px;
-            width: 100%;
-            flex: 1;
+
+        .main-content.expanded {
+            margin-left: 200px;
         }
-        
-        /* 响应式设计 */
+
         @media (max-width: 992px) {
-            .page-wrapper {
-                flex-direction: column;
-            }
-            
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                max-height: 300px;
-            }
-            
             .main-content {
-                width: 100%;
+                margin-left: 0;
             }
-            
-            .content-container {
-                padding: 10px;
+            .main-content.expanded {
+                margin-left: 0;
+            }
+            .sidebar-collapsed {
+                display: none;
             }
         }
         
@@ -588,8 +562,26 @@
     </style>
 </head>
 <body>
+    <!-- 汉堡菜单按钮 -->
+    <button class="hamburger-btn" id="hamburger-btn">
+        <span class="icon"></span>
+    </button>
+
     <div class="page-wrapper">
-        <!-- 侧边栏 -->
+        <!-- 收缩版侧边栏 -->
+        <div class="sidebar-collapsed" id="sidebar-collapsed">
+            <div class="nav-icon" data-section="common-tools">🛠️</div>
+            <div class="nav-icon" data-section="shop-software">🏪</div>
+            <div class="nav-icon" data-section="live-software">📱</div>
+            <div class="nav-icon" data-section="ecommerce-plugins">🔌</div>
+            <div class="nav-icon" data-section="video-tools">🎥</div>
+            <div class="nav-icon" data-section="design-tools">🎨</div>
+            <div class="nav-icon" data-section="shop-entry">🏢</div>
+            <div class="nav-icon" data-section="ad-platforms">📢</div>
+            <div class="nav-icon" data-section="data-analysis">📊</div>
+        </div>
+
+        <!-- 完整侧边栏 -->
         <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <h3>分类导航</h3>
@@ -608,7 +600,7 @@
         </div>
 
         <!-- 主内容区 -->
-        <div class="main-content">
+        <div class="main-content" id="main-content">
             <!-- 页面标题 -->
             <div class="page-title">
                 <div class="footer-content">
@@ -640,6 +632,30 @@
     <script src="js/social.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            const sidebarCollapsed = document.getElementById('sidebar-collapsed');
+            const navIcons = document.querySelectorAll('.nav-icon');
+            
+            // 汉堡菜单点击事件
+            hamburgerBtn.addEventListener('click', function() {
+                this.classList.toggle('active');
+                sidebar.classList.toggle('expanded');
+                mainContent.classList.toggle('expanded');
+            });
+
+            // 收缩版侧边栏图标点击事件
+            navIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const section = this.getAttribute('data-section');
+                    const targetElement = document.getElementById(section);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
             // 获取所有侧边栏链接
             const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
             
@@ -654,6 +670,13 @@
                         l.classList.remove('active');
                     });
                     this.classList.add('active');
+                    
+                    // 在移动端点击链接后自动收起侧边栏
+                    if (window.innerWidth <= 992) {
+                        hamburgerBtn.classList.remove('active');
+                        sidebar.classList.remove('expanded');
+                        mainContent.classList.remove('expanded');
+                    }
                 });
             });
             
@@ -675,6 +698,23 @@
                         link.classList.add('active');
                     }
                 });
+
+                // 同时更新收缩版侧边栏的活动状态
+                navIcons.forEach(icon => {
+                    icon.classList.remove('active');
+                    if (icon.getAttribute('data-section') === current) {
+                        icon.classList.add('active');
+                    }
+                });
+            });
+
+            // 响应式处理
+            window.addEventListener('resize', function() {
+                if (window.innerWidth <= 992) {
+                    sidebar.classList.remove('expanded');
+                    mainContent.classList.remove('expanded');
+                    hamburgerBtn.classList.remove('active');
+                }
             });
         });
     </script>
