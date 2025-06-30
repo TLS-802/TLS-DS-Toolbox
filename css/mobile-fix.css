@@ -189,4 +189,16 @@
 /* 设置数据分析·选品卡片与多媒体信息模块之间的间距为0 */
 #data-analysis {
     margin-bottom: 0 !important;
+}
+
+/* 2024-07-26 新增样式：调整页面标题模块下边距和多媒体信息模块上边距 */
+
+/* 为页面标题模块增加下边距 */
+.page-title {
+    margin-bottom: var(--spacing-lg) !important;
+}
+
+/* 为多媒体信息模块增加上边距 */
+#video-tools {
+    margin-top: var(--spacing-lg) !important;
 } 

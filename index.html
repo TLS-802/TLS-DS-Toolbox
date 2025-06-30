@@ -881,6 +881,17 @@
                 if (dataAnalysisSection) {
                     dataAnalysisSection.style.marginBottom = '0';
                 }
+                
+                // 设置页面标题模块下边距
+                if (pageTitle) {
+                    pageTitle.style.marginBottom = 'var(--spacing-lg)';
+                }
+                
+                // 设置多媒体信息模块上边距
+                const videoToolsSection = document.getElementById('video-tools');
+                if (videoToolsSection) {
+                    videoToolsSection.style.marginTop = 'var(--spacing-lg)';
+                }
             });
         });
     </script>

@@ -306,6 +306,18 @@ function ensureUniformSpacing() {
     if (dataAnalysis) {
         dataAnalysis.style.marginBottom = '0';
     }
+    
+    // 为页面标题模块增加下边距
+    const pageTitle = document.querySelector('.page-title');
+    if (pageTitle) {
+        pageTitle.style.marginBottom = 'var(--spacing-lg)';
+    }
+    
+    // 为多媒体信息模块增加上边距
+    const videoTools = document.getElementById('video-tools');
+    if (videoTools) {
+        videoTools.style.marginTop = 'var(--spacing-lg)';
+    }
 }
 
 // 监听窗口大小变化，重新应用统一间距
