@@ -437,6 +437,7 @@
         
         .content-container {
             padding: var(--spacing-lg);
+            padding-bottom: 0;
             width: 100%;
             flex: 1;
             margin-top: 70px;
@@ -453,6 +454,16 @@
             margin-top: 0;
         }
         
+        /* 最后一个区域与页脚的间距 */
+        .content-container .navs-section:last-child {
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        /* 确保内容区无多余间距 */
+        .content-area {
+            margin-bottom: 0;
+        }
+        
         /* 页脚样式 */
         .site-footer {
             background-color: #ffffff;
@@ -465,6 +476,7 @@
             justify-content: center;
             align-items: center;
             box-shadow: 0 -1px 3px rgba(30, 41, 59, 0.1);
+            border-top: var(--card-border);
         }
         
         .footer-content {
@@ -639,6 +651,7 @@
             
             .content-container {
                 padding: var(--spacing-sm);
+                padding-bottom: 0;
                 margin-top: 70px;
             }
             
@@ -648,7 +661,11 @@
             }
             
             .navs-section {
-                margin-bottom: 0;
+                margin-bottom: var(--spacing-md);
+            }
+            
+            .navs-section:last-child {
+                margin-bottom: var(--spacing-sm);
             }
             
             .site-footer {

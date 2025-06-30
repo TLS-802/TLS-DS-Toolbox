@@ -144,4 +144,22 @@
     }
 }
 
+/* 修复底部多余间距问题 */
+.content-container {
+    padding-bottom: 0 !important; /* 减少底部内容与页脚之间的间距 */
+}
+
+.content-area {
+    margin-bottom: 0 !important; /* 移除内容区域底部边距 */
+}
+
+.navs-section:last-child {
+    margin-bottom: var(--spacing-sm) !important; /* 最后一个分类与页脚的间距减小 */
+}
+
+/* 确保最后一行卡片底部间距统一 */
+.category-card:last-child, .sec-panel:last-child {
+    margin-bottom: var(--spacing-sm) !important;
+}
+
 /* 2024-07-05 统一所有间距为CSS变量系统，确保一致性 */ 

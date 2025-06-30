@@ -229,6 +229,28 @@ function ensureUniformSpacing() {
         card.style.marginBottom = 'var(--spacing-lg)';
     });
     
+    // 最后一个卡片特殊处理
+    const lastSection = document.querySelector('.navs-section:last-child');
+    if (lastSection) {
+        lastSection.style.marginBottom = 'var(--spacing-sm)';
+        
+        const lastCards = lastSection.querySelectorAll('.sec-panel, .category-card');
+        if (lastCards.length > 0) {
+            lastCards[lastCards.length - 1].style.marginBottom = 'var(--spacing-sm)';
+        }
+    }
+    
+    // 确保内容区域与页脚间距正确
+    const contentContainer = document.querySelector('.content-container');
+    if (contentContainer) {
+        contentContainer.style.paddingBottom = '0';
+    }
+    
+    const contentArea = document.querySelector('.content-area');
+    if (contentArea) {
+        contentArea.style.marginBottom = '0';
+    }
+    
     // 统一卡片头部
     document.querySelectorAll('.sec-panel-head, .category-card-head').forEach(head => {
         head.style.padding = window.innerWidth <= 768 
@@ -282,6 +304,12 @@ function ensureUniformSpacing() {
     document.querySelectorAll('.social-links a').forEach(link => {
         link.style.margin = `0 var(--spacing-xs)`;
     });
+    
+    // 修复页脚与内容之间的间距
+    const siteFooter = document.querySelector('.site-footer');
+    if (siteFooter) {
+        siteFooter.style.marginTop = '0';
+    }
 }
 
 // 监听窗口大小变化，重新应用统一间距
