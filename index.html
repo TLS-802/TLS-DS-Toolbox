@@ -45,6 +45,7 @@
             display: flex;
             flex-direction: column;
             transition: all 0.3s ease;
+            will-change: width;
         }
         
         .sidebar-header {
@@ -169,6 +170,7 @@
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
+            transition: margin-left 0.3s ease;
         }
         
         .content-container {
@@ -276,6 +278,7 @@
         /* 侧边栏收起状态的样式 */
         .sidebar.collapsed {
             width: 60px;
+            overflow: hidden;
         }
 
         .sidebar.collapsed .sidebar-header h3,
@@ -290,6 +293,18 @@
 
         .sidebar.collapsed .sidebar-nav a::before {
             margin-right: 0;
+        }
+
+        /* 添加CSS优化过渡效果 */
+        .sidebar-header h3,
+        .sidebar-nav a span {
+            transition: opacity 0.2s;
+        }
+
+        .sidebar.collapsed .sidebar-header h3,
+        .sidebar.collapsed .sidebar-nav a span {
+            opacity: 0;
+            transition: opacity 0.2s;
         }
 
         /* 添加遮罩层样式 */
@@ -424,9 +439,12 @@
                     sidebarOverlay.classList.toggle('show');
                 } else {
                     // 桌面端切换collapsed类
-                    sidebar.classList.toggle('collapsed');
-                    // 保存状态到localStorage
-                    localStorage.setItem('sidebarState', sidebar.classList.contains('collapsed') ? 'collapsed' : 'expanded');
+                    // 使用CSS过渡效果，防止跳动
+                    requestAnimationFrame(() => {
+                        sidebar.classList.toggle('collapsed');
+                        // 保存状态到localStorage
+                        localStorage.setItem('sidebarState', sidebar.classList.contains('collapsed') ? 'collapsed' : 'expanded');
+                    });
                 }
             });
             
