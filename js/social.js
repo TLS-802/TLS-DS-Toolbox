@@ -28,12 +28,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-    // 渲染社交媒体链接
+    // 获取所有社交媒体链接容器
     const socialLinksContainers = document.querySelectorAll('.social-links');
-    
+
+    // 为每个容器生成社交媒体链接
     socialLinksContainers.forEach(container => {
+        // 清空容器
         container.innerHTML = '';
         
+        // 添加社交媒体链接
         socialLinks.forEach(social => {
             const link = document.createElement('a');
             link.href = social.url;
@@ -42,11 +45,13 @@ document.addEventListener('DOMContentLoaded', function() {
             link.className = 'bounce-animation';
             link.setAttribute('aria-label', social.ariaLabel);
             
+            // 使用图片而不是SVG
             const img = document.createElement('img');
             img.src = social.imgSrc;
             img.alt = social.platform;
             img.width = 24;
             img.height = 24;
+            // 添加图片加载错误处理
             img.onerror = function() {
                 this.onerror = null;
                 this.src = 'https://placehold.co/24x24/cccccc/333333?text=' + encodeURIComponent(social.platform);

@@ -80,33 +80,4 @@
     max-height: 100% !important;
     border-radius: 4px !important;
     object-fit: contain !important;
-}
-
-/* 移动设备显示特定样式 */
-@media (max-width: 992px) {
-    /* 确保图片适当加载和显示 */
-    .category-item-icon img {
-        object-fit: contain !important;
-        border-radius: 4px !important;
-    }
-    
-    /* 确保文本不溢出 */
-    .category-item-info {
-        min-width: 0 !important; /* 防止文本溢出 */
-    }
-}
-
-@media (max-width: 576px) {
-    /* 小屏幕特殊处理 */
-    .category-item-info h3 {
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-    }
-    
-    .category-item-info p {
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-    }
 } 

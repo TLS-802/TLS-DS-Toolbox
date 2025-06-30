@@ -22,10 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // 响应式布局处理
     function initResponsiveLayout() {
         // 检测设备类型 - 与CSS断点保持一致
-        const width = window.innerWidth;
-        const isMobile = width <= 650;
-        const isTablet = width > 650 && width <= 1024;
-        const isDesktop = width > 1024;
+        const isMobile = window.innerWidth <= 650;
+        const isTablet = window.innerWidth > 650 && window.innerWidth <= 1024;
+        const isDesktop = window.innerWidth > 1024;
         
         // 为body添加设备类
         document.body.classList.remove('is-mobile', 'is-tablet', 'is-desktop');
@@ -46,16 +45,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 img.style.maxHeight = '32px';
             }
         });
+        
+        // 控制网格布局 - 确保与CSS媒体查询一致
+        document.querySelectorAll('.category-grid').forEach(grid => {
+            if (isMobile) {
+                // 手机显示2列
+                grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            } else {
+                // 平板和PC显示5列
+                grid.style.gridTemplateColumns = 'repeat(5, 1fr)';
+            }
+        });
     }
     
     // 初始化响应式布局
     initResponsiveLayout();
     
     // 监听窗口大小变化
-    window.addEventListener('resize', initResponsiveLayout);
-    
-    // 初始化页面
-    initializePage();
+    window.addEventListener('resize', function() {
+        initResponsiveLayout();
+    });
 });
 
 // 工具函数
@@ -140,4 +149,7 @@ async function initializePage() {
     if (data && data.categories) {
         contentArea.innerHTML = data.categories.map(category => renderCategory(category)).join('');
     }
-} 
+}
+
+// 当DOM加载完成后初始化页面
+document.addEventListener('DOMContentLoaded', initializePage); 
