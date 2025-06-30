@@ -44,8 +44,8 @@
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            transition: all 0.3s ease;
-            will-change: width;
+            transition: transform 0.3s ease;
+            transform-origin: left center;
         }
         
         .sidebar-header {
@@ -170,7 +170,6 @@
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            transition: margin-left 0.3s ease;
         }
         
         .content-container {
@@ -185,20 +184,30 @@
                 flex-direction: column;
             }
             
-            .sidebar {
-                width: 100%;
-                height: auto;
+            .sidebar-wrapper {
+                width: 0;
+                height: 100vh;
                 position: fixed;
                 top: 0;
-                left: -100%;
+                left: 0;
+                z-index: 1001;
+            }
+            
+            .sidebar {
+                width: 250px;
+                height: 100vh;
+                position: fixed;
+                top: 0;
+                left: -250px;
                 max-height: 100vh;
                 z-index: 1001;
-                transition: left 0.3s ease;
+                transition: transform 0.3s ease;
                 background-color: #1e293b;
+                transform: translateX(0);
             }
 
             .sidebar.show {
-                left: 0;
+                transform: translateX(250px);
             }
             
             .main-content {
@@ -216,7 +225,7 @@
 
             /* 移动端不使用collapsed类，改用show类控制 */
             .sidebar.collapsed {
-                width: 60px;
+                transform: translateX(0);
             }
         }
         
@@ -276,19 +285,27 @@
         }
 
         /* 侧边栏收起状态的样式 */
-        .sidebar.collapsed {
-            width: 60px;
+        .sidebar-wrapper {
+            position: relative;
+            width: 200px;
+            height: 100vh;
             overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .sidebar.collapsed {
+            transform: translateX(-140px);
         }
 
         .sidebar.collapsed .sidebar-header h3,
         .sidebar.collapsed .sidebar-nav a span {
-            display: none;
+            opacity: 0;
+            pointer-events: none;
         }
 
         .sidebar.collapsed .sidebar-nav a {
             padding: 12px;
-            justify-content: center;
+            justify-content: flex-end;
         }
 
         .sidebar.collapsed .sidebar-nav a::before {
@@ -298,13 +315,7 @@
         /* 添加CSS优化过渡效果 */
         .sidebar-header h3,
         .sidebar-nav a span {
-            transition: opacity 0.2s;
-        }
-
-        .sidebar.collapsed .sidebar-header h3,
-        .sidebar.collapsed .sidebar-nav a span {
-            opacity: 0;
-            transition: opacity 0.2s;
+            transition: opacity 0.3s ease;
         }
 
         /* 添加遮罩层样式 */
@@ -350,21 +361,23 @@
 <body>
     <div class="page-wrapper">
         <!-- 侧边栏 -->
-        <div class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <h3>分类导航</h3>
+        <div class="sidebar-wrapper">
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h3>分类导航</h3>
+                </div>
+                <ul class="sidebar-nav">
+                    <li><a href="#common-tools"><span>常用工具</span></a></li>
+                    <li><a href="#shop-software"><span>店铺软件</span></a></li>
+                    <li><a href="#live-software"><span>直播软件</span></a></li>
+                    <li><a href="#ecommerce-plugins"><span>电商插件/工具</span></a></li>
+                    <li><a href="#video-tools"><span>视频工具</span></a></li>
+                    <li><a href="#design-tools"><span>平面设计</span></a></li>
+                    <li><a href="#shop-entry"><span>店铺入驻</span></a></li>
+                    <li><a href="#ad-platforms"><span>广告投放</span></a></li>
+                    <li><a href="#data-analysis"><span>数据分析·选品</span></a></li>
+                </ul>
             </div>
-            <ul class="sidebar-nav">
-                <li><a href="#common-tools"><span>常用工具</span></a></li>
-                <li><a href="#shop-software"><span>店铺软件</span></a></li>
-                <li><a href="#live-software"><span>直播软件</span></a></li>
-                <li><a href="#ecommerce-plugins"><span>电商插件/工具</span></a></li>
-                <li><a href="#video-tools"><span>视频工具</span></a></li>
-                <li><a href="#design-tools"><span>平面设计</span></a></li>
-                <li><a href="#shop-entry"><span>店铺入驻</span></a></li>
-                <li><a href="#ad-platforms"><span>广告投放</span></a></li>
-                <li><a href="#data-analysis"><span>数据分析·选品</span></a></li>
-            </ul>
         </div>
 
         <!-- 添加遮罩层 -->
@@ -425,7 +438,10 @@
                 // 桌面端根据localStorage决定是否折叠
                 const savedState = localStorage.getItem('sidebarState');
                 if (savedState === 'collapsed') {
-                    sidebar.classList.add('collapsed');
+                    // 使用 requestAnimationFrame 确保添加类之前浏览器已经完成初始渲染
+                    requestAnimationFrame(() => {
+                        sidebar.classList.add('collapsed');
+                    });
                 } else {
                     sidebar.classList.remove('collapsed');
                 }
@@ -435,11 +451,12 @@
             sidebarToggle.addEventListener('click', function() {
                 if (isMobile) {
                     // 移动端切换show类
-                    sidebar.classList.toggle('show');
-                    sidebarOverlay.classList.toggle('show');
+                    requestAnimationFrame(() => {
+                        sidebar.classList.toggle('show');
+                        sidebarOverlay.classList.toggle('show');
+                    });
                 } else {
                     // 桌面端切换collapsed类
-                    // 使用CSS过渡效果，防止跳动
                     requestAnimationFrame(() => {
                         sidebar.classList.toggle('collapsed');
                         // 保存状态到localStorage
@@ -450,16 +467,20 @@
             
             // 点击遮罩层关闭侧边栏
             sidebarOverlay.addEventListener('click', function() {
-                sidebar.classList.remove('show');
-                sidebarOverlay.classList.remove('show');
+                requestAnimationFrame(() => {
+                    sidebar.classList.remove('show');
+                    sidebarOverlay.classList.remove('show');
+                });
             });
 
             // 点击链接后关闭侧边栏（移动端）
             sidebarLinks.forEach(link => {
                 link.addEventListener('click', function() {
                     if (isMobile) {
-                        sidebar.classList.remove('show');
-                        sidebarOverlay.classList.remove('show');
+                        requestAnimationFrame(() => {
+                            sidebar.classList.remove('show');
+                            sidebarOverlay.classList.remove('show');
+                        });
                     }
                 });
             });
