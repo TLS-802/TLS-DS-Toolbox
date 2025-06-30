@@ -65,6 +65,34 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', function() {
         initResponsiveLayout();
     });
+
+    // 检查是否已定义CSS变量，如果未定义则添加默认值
+    const root = document.documentElement;
+    const style = getComputedStyle(root);
+    
+    // 检查并设置间距变量
+    if (!style.getPropertyValue('--spacing-xs').trim()) {
+        root.style.setProperty('--spacing-xs', '4px');
+        root.style.setProperty('--spacing-sm', '8px');
+        root.style.setProperty('--spacing-md', '12px');
+        root.style.setProperty('--spacing-base', '16px');
+        root.style.setProperty('--spacing-lg', '20px');
+        root.style.setProperty('--spacing-xl', '24px');
+        root.style.setProperty('--spacing-2xl', '32px');
+        
+        // 卡片样式变量
+        root.style.setProperty('--card-padding', '16px');
+        root.style.setProperty('--card-border-radius', '8px');
+        root.style.setProperty('--card-gap', '16px');
+        root.style.setProperty('--card-shadow', '0 1px 3px rgba(0, 0, 0, 0.1)');
+        root.style.setProperty('--card-border', '1px solid #f0f0f0');
+    }
+    
+    // 加载工具数据
+    loadToolData();
+
+    // 确保界面间距一致
+    ensureUniformSpacing();
 });
 
 // 工具函数
@@ -95,61 +123,168 @@ if (typeof window !== 'undefined') {
 } 
 
 // 加载工具数据
-async function loadToolsData() {
-    try {
-        const response = await fetch('/data/tools.json');
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error loading tools data:', error);
-        return null;
-    }
-}
-
-// 渲染工具卡片
-function renderToolCard(tool) {
-    return `
-        <a class="category-item" href="${tool.url}" target="_blank" rel="noopener noreferrer">
-            <div class="category-item-icon">
-                <img src="${tool.icon}" alt="${tool.name}">
-            </div>
-            <div class="category-item-info">
-                <h3>${tool.name}</h3>
-                <p>${tool.description}</p>
-            </div>
-        </a>
-    `;
-}
-
-// 渲染分类区域
-function renderCategory(category) {
-    return `
-        <section id="${category.id}" class="navs-section">
-            <div class="category-card">
-                <div class="category-card-head">
-                    <h2>
-                        <span>${category.name}</span> <small>${category.description}</small>
-                    </h2>
+function loadToolData() {
+    // 使用fetch API请求数据
+    fetch('data/tools.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('网络响应不正常');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // 处理数据
+            renderTools(data);
+        })
+        .catch(error => {
+            console.error('获取工具数据时出错:', error);
+            document.querySelector('.content-area').innerHTML = `
+                <div class="error-message" style="text-align: center; padding: 40px;">
+                    <h3>数据加载失败</h3>
+                    <p>抱歉，工具数据加载失败，请刷新页面重试。</p>
+                    <p>错误详情: ${error.message}</p>
                 </div>
-                <div class="category-card-body">
-                    <div class="category-grid">
-                        ${category.tools.map(tool => renderToolCard(tool)).join('')}
+            `;
+        });
+}
+
+// 渲染工具数据到页面
+function renderTools(data) {
+    const contentArea = document.querySelector('.content-area');
+    let html = '';
+    
+    // 遍历数据中的每个分类
+    data.categories.forEach(category => {
+        html += `
+        <div id="${category.id}" class="navs-section">
+            <div class="sec-panel">
+                <div class="sec-panel-head">
+                    <h2>${category.name} <small>${category.description || ''}</small></h2>
+                </div>
+                <div class="sec-panel-body">
+                    <div class="list-navs category-grid">
+        `;
+        
+        // 遍历分类中的所有工具
+        category.tools.forEach(tool => {
+            html += `
+            <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="category-item">
+                <div class="category-item-icon">
+                    <img src="${tool.icon}" alt="${tool.name}" loading="lazy">
+                </div>
+                <div class="category-item-info">
+                    <h3>${tool.name}</h3>
+                    <p>${tool.description}</p>
+                </div>
+            </a>
+            `;
+        });
+        
+        html += `
                     </div>
                 </div>
             </div>
-        </section>
-    `;
+        </div>
+        `;
+    });
+    
+    // 将生成的HTML插入到内容区域
+    contentArea.innerHTML = html;
+    
+    // 应用统一间距样式
+    applyUniformSpacing();
 }
 
-// 初始化页面
-async function initializePage() {
-    const contentArea = document.querySelector('.content-area');
-    const data = await loadToolsData();
+// 应用统一间距
+function applyUniformSpacing() {
+    // 获取所有卡片元素
+    const cards = document.querySelectorAll('.sec-panel');
+    const items = document.querySelectorAll('.category-item');
     
-    if (data && data.categories) {
-        contentArea.innerHTML = data.categories.map(category => renderCategory(category)).join('');
+    // 统一卡片间距
+    cards.forEach(card => {
+        card.style.marginBottom = 'var(--spacing-lg)';
+    });
+    
+    // 统一项目间距和对齐
+    items.forEach(item => {
+        item.style.padding = 'var(--spacing-sm)';
+    });
+    
+    // 响应式处理
+    if (window.innerWidth <= 768) {
+        document.querySelectorAll('.sec-panel-body').forEach(body => {
+            body.style.padding = 'var(--spacing-sm)';
+        });
     }
 }
 
-// 当DOM加载完成后初始化页面
-document.addEventListener('DOMContentLoaded', initializePage); 
+/**
+ * 确保所有元素的间距一致性
+ * 在页面加载后应用统一间距样式
+ */
+function ensureUniformSpacing() {
+    // 统一卡片间距
+    document.querySelectorAll('.sec-panel, .category-card').forEach(card => {
+        card.style.marginBottom = 'var(--spacing-lg)';
+    });
+    
+    // 统一卡片头部
+    document.querySelectorAll('.sec-panel-head, .category-card-head').forEach(head => {
+        head.style.padding = window.innerWidth <= 768 
+            ? 'var(--spacing-sm) var(--spacing-base)' 
+            : 'var(--spacing-base) var(--spacing-lg)';
+    });
+    
+    // 统一卡片内容区域
+    document.querySelectorAll('.sec-panel-body').forEach(body => {
+        body.style.padding = window.innerWidth <= 768 
+            ? 'var(--spacing-sm)' 
+            : 'var(--spacing-base)';
+    });
+    
+    // 统一网格间距
+    document.querySelectorAll('.list-navs').forEach(grid => {
+        grid.style.gridGap = window.innerWidth <= 768 
+            ? 'var(--spacing-sm)' 
+            : 'var(--spacing-md)';
+    });
+    
+    // 统一链接和项目间距
+    document.querySelectorAll('.navs-link, .category-item').forEach(item => {
+        item.style.padding = window.innerWidth <= 576 
+            ? 'var(--spacing-xs) var(--spacing-sm)' 
+            : 'var(--spacing-sm) var(--spacing-base)';
+        item.style.borderRight = 'var(--card-border)';
+        item.style.borderBottom = 'var(--card-border)';
+    });
+    
+    // 统一图标和文本间距
+    document.querySelectorAll('.navs-link-logo, .category-item-icon').forEach(icon => {
+        icon.style.marginRight = window.innerWidth <= 576 
+            ? 'var(--spacing-xs)' 
+            : 'var(--spacing-sm)';
+    });
+    
+    // 统一标题和描述间距
+    document.querySelectorAll('.navs-link-info h3, .category-item-info h3').forEach(title => {
+        title.style.marginBottom = 'var(--spacing-xs)';
+    });
+    
+    // 统一页脚和标题页间距
+    document.querySelectorAll('.site-footer .footer-content, .page-title .footer-content').forEach(content => {
+        content.style.padding = window.innerWidth <= 768 
+            ? 'var(--spacing-sm) 0' 
+            : 'var(--spacing-base) 0';
+    });
+    
+    // 统一社交链接间距
+    document.querySelectorAll('.social-links a').forEach(link => {
+        link.style.margin = `0 var(--spacing-xs)`;
+    });
+}
+
+// 监听窗口大小变化，重新应用统一间距
+window.addEventListener('resize', function() {
+    ensureUniformSpacing();
+}); 

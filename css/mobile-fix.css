@@ -28,9 +28,9 @@
 .category-item {
     display: flex !important;
     align-items: center !important;
-    padding: 10px !important;
-    border-right: 1px solid #f0f0f0 !important;
-    border-bottom: 1px solid #f0f0f0 !important;
+    padding: var(--spacing-sm) var(--spacing-base) !important;
+    border-right: var(--card-border) !important;
+    border-bottom: var(--card-border) !important;
     min-height: 60px !important;
     box-sizing: border-box !important;
     width: 100% !important; /* 确保宽度一致 */
@@ -38,19 +38,19 @@
 
 @media (max-width: 576px) {
     .category-item {
-        padding: 8px !important;
+        padding: var(--spacing-xs) var(--spacing-sm) !important;
         min-height: 50px !important;
     }
     
     .category-item-icon {
         width: 28px !important;
         height: 28px !important;
-        margin-right: 6px !important;
+        margin-right: var(--spacing-xs) !important;
     }
     
     .category-item-info h3 {
         font-size: 12px !important;
-        margin-bottom: 1px !important;
+        margin-bottom: var(--spacing-xs) !important;
     }
     
     .category-item-info p {
@@ -80,4 +80,68 @@
     max-height: 100% !important;
     border-radius: 4px !important;
     object-fit: contain !important;
-} 
+}
+
+/* 统一卡片间距 */
+.sec-panel, .category-card {
+    margin-bottom: var(--spacing-lg) !important;
+}
+
+/* 统一卡片内部间距 */
+.sec-panel-head, .category-card-head {
+    padding: var(--spacing-base) var(--spacing-lg) !important;
+}
+
+.sec-panel-body {
+    padding: var(--spacing-base) !important;
+}
+
+@media (max-width: 768px) {
+    .sec-panel-head, .category-card-head {
+        padding: var(--spacing-sm) var(--spacing-base) !important;
+    }
+    
+    .sec-panel-body {
+        padding: var(--spacing-sm) !important;
+    }
+    
+    .list-navs {
+        grid-gap: var(--spacing-sm) !important;
+    }
+}
+
+/* 统一导航链接样式 */
+.navs-link {
+    display: flex !important;
+    padding: var(--spacing-sm) var(--spacing-base) !important;
+    border-right: var(--card-border) !important;
+    border-bottom: var(--card-border) !important;
+}
+
+@media (max-width: 576px) {
+    .navs-link {
+        padding: var(--spacing-xs) var(--spacing-sm) !important;
+    }
+}
+
+/* 统一页脚和页头间距 */
+.site-footer .footer-content {
+    padding: var(--spacing-base) 0 !important;
+}
+
+.page-title .footer-content {
+    padding: var(--spacing-base) 0 !important;
+}
+
+@media (max-width: 768px) {
+    .site-footer .footer-content,
+    .page-title .footer-content {
+        padding: var(--spacing-sm) 0 !important;
+    }
+    
+    .social-links a {
+        margin: 0 var(--spacing-xs) !important;
+    }
+}
+
+/* 2024-07-05 统一所有间距为CSS变量系统，确保一致性 */ 
