@@ -175,6 +175,7 @@
             padding: 20px;
             width: 100%;
             flex: 1;
+            margin-top: 80px; /* 添加上边距，避免内容被固定标题遮挡 */
         }
         
         /* 响应式设计 */
@@ -206,6 +207,7 @@
             
             .content-container {
                 padding: 10px;
+                margin-top: 70px; /* 移动端调整上边距 */
             }
 
             .sidebar-toggle {
@@ -218,9 +220,9 @@
             }
         }
         
-        /* 页面顶部标题样式 */
+        /* 页面顶部标题样式 - 修改为固定位置 */
         .page-title {
-            position: sticky;
+            position: fixed;
             top: 0;
             z-index: 999;
             background-color: #ffffff;
