@@ -442,142 +442,15 @@
             margin-top: 70px;
         }
         
-        /* 响应式设计 */
-        @media (max-width: 992px) {
-            .page-wrapper {
-                flex-direction: column;
-            }
-            
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                max-height: calc(100vh - 70px);
-                z-index: 1001;
-                transition: left 0.3s ease;
-                background-color: #1e293b;
-            }
-
-            .sidebar.show {
-                left: 0;
-            }
-            
-            .main-content {
-                width: 100%;
-                margin-left: 0;
-            }
-            
-            .content-container {
-                padding: 10px;
-                margin-top: 70px;
-            }
-
-            .sidebar-toggle {
-                display: flex;
-            }
-
-            /* 移动端标题栏样式 */
-            .page-title {
-                left: 0;
-                width: 100%;
-            }
-
-            /* 移动端不使用collapsed类，改用show类控制 */
-            .sidebar.collapsed {
-                width: 60px;
-            }
-        }
-        
-        /* 分类卡片样式优化 */
-        .category-card {
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(30, 41, 59, 0.1);
+        /* 内容区域中的卡片间距 */
+        .navs-section {
             margin-bottom: 20px;
-            overflow: hidden;
+            scroll-margin-top: 20px;
         }
         
-        .category-card-head {
-            padding: 15px 20px;
-            border-bottom: 1px solid #f1f5f9;
-            background-color: #ffffff;
-        }
-        
-        .category-card-head h2 {
-            font-size: 16px;
-            font-weight: 600;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            color: #1e293b;
-        }
-        
-        .category-card-body {
-            padding: 15px;
-        }
-        
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-        }
-        
-        @media (max-width: 768px) {
-            .category-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .category-grid {
-                grid-template-columns: repeat(1, 1fr);
-            }
-        }
-        
-        /* 页面顶部标题样式 */
-        .page-title {
-            position: fixed;
-            top: 0;
-            left: 200px;
-            right: 0;
-            z-index: 1000;
-            background-color: #ffffff;
-            color: #1e293b;
-            padding: 0;
-            text-align: center;
-            margin-bottom: 0;
-            width: calc(100% - 200px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 1px 3px rgba(30, 41, 59, 0.1);
-            transition: left 0.3s ease, width 0.3s ease;
-        }
-
-        /* 侧边栏收起状态时调整标题栏 */
-        .sidebar.collapsed ~ .main-content .page-title {
-            left: 60px;
-            width: calc(100% - 60px);
-        }
-
-        .page-title .footer-content {
-            padding: 15px 0;
-            width: 100%;
-        }
-
-        .page-title h1 {
-            font-size: 20px;
-            font-weight: 600;
-            margin: 0;
-            color: #1e293b;
-        }
-
-        .page-title p {
-            font-size: 14px;
-            margin: 5px 0 0;
-            color: #64748b;
+        /* 页面顶部标题与第一个卡片之间的间距 */
+        .content-container .navs-section:first-child {
+            margin-top: 20px;
         }
         
         /* 页脚样式 */
@@ -585,7 +458,7 @@
             background-color: #ffffff;
             color: #1e293b;
             padding: 0;
-            margin-top: auto;
+            margin-top: 20px;
             width: 100%;
             flex-shrink: 0;
             display: flex;
@@ -593,7 +466,7 @@
             align-items: center;
             box-shadow: 0 -1px 3px rgba(30, 41, 59, 0.1);
         }
-
+        
         .footer-content {
             text-align: center;
             padding: 15px 0;
@@ -690,6 +563,111 @@
         .sidebar-toggle:hover {
             background-color: #f1f5f9;
             border-radius: 4px;
+        }
+
+        /* 页面顶部标题样式 */
+        .page-title {
+            position: fixed;
+            top: 0;
+            left: 200px;
+            right: 0;
+            z-index: 1000;
+            background-color: #ffffff;
+            color: #1e293b;
+            padding: 0;
+            text-align: center;
+            margin-bottom: 0;
+            width: calc(100% - 200px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(30, 41, 59, 0.1);
+            transition: left 0.3s ease, width 0.3s ease;
+        }
+
+        /* 侧边栏收起状态时调整标题栏 */
+        .sidebar.collapsed ~ .main-content .page-title {
+            left: 60px;
+            width: calc(100% - 60px);
+        }
+
+        .page-title .footer-content {
+            padding: 15px 0;
+            width: 100%;
+        }
+
+        .page-title h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+            color: #1e293b;
+        }
+
+        .page-title p {
+            font-size: 14px;
+            margin: 5px 0 0;
+            color: #64748b;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .page-wrapper {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                max-height: calc(100vh - 70px);
+                z-index: 1001;
+                transition: left 0.3s ease;
+                background-color: #1e293b;
+            }
+
+            .sidebar.show {
+                left: 0;
+            }
+            
+            .main-content {
+                width: 100%;
+                margin-left: 0;
+            }
+            
+            .content-container {
+                padding: 10px;
+                margin-top: 70px;
+            }
+            
+            /* 移动端卡片间距 */
+            .content-container .navs-section:first-child {
+                margin-top: 15px;
+            }
+            
+            .navs-section {
+                margin-bottom: 15px;
+            }
+            
+            .site-footer {
+                margin-top: 15px;
+            }
+
+            .sidebar-toggle {
+                display: flex;
+            }
+
+            /* 移动端标题栏样式 */
+            .page-title {
+                left: 0;
+                width: 100%;
+            }
+
+            /* 移动端不使用collapsed类，改用show类控制 */
+            .sidebar.collapsed {
+                width: 60px;
+            }
         }
     </style>
 </head>
