@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             platform: '飞书',
-            url: 'https://www.feishu.cn/invitation/page/add_contact/?token=154u7d8e-d426-4b6a-b4ec-75f7ff732522&amp;unique_id=Lwo89tNN9CZrOi0uAwnjEw==',
+            url: 'https://www.feishu.cn/invitation/page/add_contact/?token=154u7d8e-d426-4b6a-b4ec-75f7ff732522&unique_id=Lwo89tNN9CZrOi0uAwnjEw==',
             ariaLabel: '关注我的飞书',
             imgSrc: 'https://www.nodeimage.com/i/32451/IUVQmknd3WNR5WcGsc0qmYWeRVgXUxFS.png'
         }
@@ -30,6 +30,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 获取所有社交媒体链接容器
     const socialLinksContainers = document.querySelectorAll('.social-links');
+    if (socialLinksContainers.length === 0) {
+        console.warn('没有找到社交媒体链接容器');
+        return;
+    }
+
+    // 创建社交媒体链接元素
+    function createSocialLink(social) {
+        const link = document.createElement('a');
+        link.href = social.url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.className = 'bounce-animation';
+        link.setAttribute('aria-label', social.ariaLabel);
+        
+        // 使用图片
+        const img = document.createElement('img');
+        img.src = social.imgSrc;
+        img.alt = social.platform;
+        img.width = 24;
+        img.height = 24;
+        img.loading = 'lazy';
+        
+        // 添加图片加载错误处理
+        img.onerror = function() {
+            this.onerror = null;
+            this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23cccccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>';
+            console.warn(`图片加载失败: ${social.platform}`);
+        };
+        
+        link.appendChild(img);
+        return link;
+    }
 
     // 为每个容器生成社交媒体链接
     socialLinksContainers.forEach(container => {
@@ -37,29 +69,11 @@ document.addEventListener('DOMContentLoaded', function() {
         container.innerHTML = '';
         
         // 添加社交媒体链接
+        const fragment = document.createDocumentFragment();
         socialLinks.forEach(social => {
-            const link = document.createElement('a');
-            link.href = social.url;
-            link.target = '_blank';
-            link.rel = 'noopener';
-            link.className = 'bounce-animation';
-            link.setAttribute('aria-label', social.ariaLabel);
-            
-            // 使用图片而不是SVG
-            const img = document.createElement('img');
-            img.src = social.imgSrc;
-            img.alt = social.platform;
-            img.width = 24;
-            img.height = 24;
-            // 添加图片加载错误处理
-            img.onerror = function() {
-                this.onerror = null;
-                this.src = 'https://placehold.co/24x24/cccccc/333333?text=' + encodeURIComponent(social.platform);
-                console.log(`图片加载失败: ${social.platform}`);
-            };
-            
-            link.appendChild(img);
-            container.appendChild(link);
+            fragment.appendChild(createSocialLink(social));
         });
+        
+        container.appendChild(fragment);
     });
 }); 
