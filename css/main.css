@@ -85,7 +85,6 @@ input, select, textarea, button {
 /* 导航样式 */
 .navs-section {
     margin-bottom: 20px;
-    scroll-margin-top: 20px; /* 添加滚动边距，避免导航栏遮挡内容 */
 }
 
 /* 优化主内容区域响应式布局 */
@@ -106,7 +105,6 @@ input, select, textarea, button {
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     margin-bottom: 20px;
-    overflow: hidden;
 }
 .sec-panel-head {
     padding: 15px 20px;
@@ -166,12 +164,6 @@ input, select, textarea, button {
 @media (max-width: 576px) {
     .list-navs-cols-5 {
         grid-template-columns: repeat(2, 1fr);
-    }
-    .sec-panel-body {
-        padding: 15px;
-    }
-    .list-navs {
-        grid-gap: 10px;
     }
 }
 .navs-link {

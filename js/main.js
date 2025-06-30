@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 响应式布局处理 - 初始化一次即可，CSS媒体查询会自动处理大部分响应式样式
+    // 响应式布局处理
     function initResponsiveLayout() {
         // 检测设备类型 - 与CSS断点保持一致
         const isMobile = window.innerWidth <= 650;
@@ -31,13 +31,40 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isMobile) document.body.classList.add('is-mobile');
         if (isTablet) document.body.classList.add('is-tablet');
         if (isDesktop) document.body.classList.add('is-desktop');
+        
+        // 针对不同设备优化图标大小
+        document.querySelectorAll('.category-item-icon img').forEach(img => {
+            if (isMobile) {
+                img.style.maxWidth = '24px';
+                img.style.maxHeight = '24px';
+            } else if (isTablet) {
+                img.style.maxWidth = '28px';
+                img.style.maxHeight = '28px';
+            } else {
+                img.style.maxWidth = '32px';
+                img.style.maxHeight = '32px';
+            }
+        });
+        
+        // 控制网格布局 - 确保与CSS媒体查询一致
+        document.querySelectorAll('.category-grid').forEach(grid => {
+            if (isMobile) {
+                // 手机显示2列
+                grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            } else {
+                // 平板和PC显示5列
+                grid.style.gridTemplateColumns = 'repeat(5, 1fr)';
+            }
+        });
     }
     
     // 初始化响应式布局
     initResponsiveLayout();
     
     // 监听窗口大小变化
-    window.addEventListener('resize', initResponsiveLayout);
+    window.addEventListener('resize', function() {
+        initResponsiveLayout();
+    });
 });
 
 // 工具函数
@@ -70,7 +97,7 @@ if (typeof window !== 'undefined') {
 // 加载工具数据
 async function loadToolsData() {
     try {
-        const response = await fetch('data/tools.json');
+        const response = await fetch('/data/tools.json');
         const data = await response.json();
         return data;
     } catch (error) {
@@ -84,7 +111,7 @@ function renderToolCard(tool) {
     return `
         <a class="category-item" href="${tool.url}" target="_blank" rel="noopener noreferrer">
             <div class="category-item-icon">
-                <img src="${tool.icon}" alt="${tool.name}" loading="lazy">
+                <img src="${tool.icon}" alt="${tool.name}">
             </div>
             <div class="category-item-info">
                 <h3>${tool.name}</h3>

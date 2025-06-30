@@ -1,13 +1,83 @@
 /* 移动设备显示修复 - 2024-07-01 */
 
-/* 确保图标正确显示 */
-.category-item-icon img {
-    object-fit: contain !important;
+/* 修复分类网格在移动设备上的显示问题 */
+.category-grid {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important; /* 电脑端默认5列 */
+    gap: 0 !important;
 }
 
-/* 优化移动端样式，只保留差异化设置 */
+@media (max-width: 992px) {
+    .category-grid {
+        grid-template-columns: repeat(5, 1fr) !important; /* 平板端保持5列 */
+    }
+}
+
+@media (max-width: 768px) {
+    .category-grid {
+        grid-template-columns: repeat(3, 1fr) !important; /* 小平板过渡为3列 */
+    }
+}
+
 @media (max-width: 576px) {
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* 手机端2列 */
+    }
+}
+
+.category-item {
+    display: flex !important;
+    align-items: center !important;
+    padding: 10px !important;
+    border-right: 1px solid #f0f0f0 !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    min-height: 60px !important;
+    box-sizing: border-box !important;
+    width: 100% !important; /* 确保宽度一致 */
+}
+
+@media (max-width: 576px) {
+    .category-item {
+        padding: 8px !important;
+        min-height: 50px !important;
+    }
+    
+    .category-item-icon {
+        width: 28px !important;
+        height: 28px !important;
+        margin-right: 6px !important;
+    }
+    
+    .category-item-info h3 {
+        font-size: 12px !important;
+        margin-bottom: 1px !important;
+    }
+    
     .category-item-info p {
         font-size: 10px !important;
     }
+}
+
+/* 确保所有卡片内容对齐 */
+.category-item-info {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    min-width: 0 !important; /* 防止文本溢出 */
+}
+
+.category-item-icon {
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* 确保图标大小一致 */
+.category-item-icon img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    border-radius: 4px !important;
+    object-fit: contain !important;
 } 
