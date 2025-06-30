@@ -175,7 +175,6 @@
             padding: 20px;
             width: 100%;
             flex: 1;
-            margin-top: 100px; /* 为固定的标题栏留出空间 */
         }
         
         /* 响应式设计 */
@@ -213,11 +212,6 @@
                 display: flex;
             }
 
-            /* 移动端标题栏样式 */
-            .page-title {
-                width: 100%;
-            }
-
             /* 移动端不使用collapsed类，改用show类控制 */
             .sidebar.collapsed {
                 width: 60px;
@@ -226,7 +220,7 @@
         
         /* 页面顶部标题样式 */
         .page-title {
-            position: fixed;
+            position: sticky;
             top: 0;
             z-index: 999;
             background-color: #ffffff;
@@ -234,7 +228,7 @@
             padding: 0;
             text-align: center;
             margin-bottom: 20px;
-            width: calc(100% - 200px);
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -296,11 +290,6 @@
 
         .sidebar.collapsed .sidebar-nav a::before {
             margin-right: 0;
-        }
-        
-        /* 侧边栏收起状态下调整页面标题宽度 */
-        .sidebar.collapsed ~ .main-content .page-title {
-            width: calc(100% - 60px);
         }
 
         /* 添加遮罩层样式 */
