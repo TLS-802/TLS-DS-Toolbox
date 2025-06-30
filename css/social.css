@@ -2,8 +2,8 @@
 .social-links {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-sm) !important;
-    margin-bottom: var(--spacing-xs);
+    gap: 8px !important;
+    margin-bottom: 2px;
 }
 
 .social-links a {
@@ -55,14 +55,14 @@
 
 /* 页脚样式 */
 footer {
-    margin-top: var(--spacing-xl);
-    padding-top: var(--spacing-base);
+    margin-top: 2rem;
+    padding-top: 1.25rem;
     text-align: center;
     font-size: 0.875rem;
 }
 
 footer p {
-    margin-top: var(--spacing-sm);
+    margin-top: 0.75rem;
     color: #666;
 }
 
