@@ -852,6 +852,36 @@
                     }
                 });
             });
+            
+            // 增加工具卡片之间的间距 - 增加1.5倍
+            document.addEventListener('DOMContentLoaded', function() {
+                // 获取所有工具卡片
+                const categoryItems = document.querySelectorAll('.category-item');
+                const listNavs = document.querySelectorAll('.list-navs');
+                
+                // 增加工具卡片间的间距1.5倍
+                listNavs.forEach(grid => {
+                    const currentGap = getComputedStyle(grid).gap;
+                    const gapValue = parseFloat(currentGap);
+                    const newGap = gapValue * 1.5 + 'px';
+                    grid.style.gap = newGap;
+                });
+                
+                // 设置页面标题与常用工具卡片间距为0
+                const contentContainer = document.querySelector('.content-container');
+                if (contentContainer) {
+                    const firstSection = contentContainer.querySelector('.navs-section:first-child');
+                    if (firstSection) {
+                        firstSection.style.marginTop = '0';
+                    }
+                }
+                
+                // 设置数据分析·选品卡片与多媒体信息模块间距为0
+                const dataAnalysisSection = document.getElementById('data-analysis');
+                if (dataAnalysisSection) {
+                    dataAnalysisSection.style.marginBottom = '0';
+                }
+            });
         });
     </script>
 </body>

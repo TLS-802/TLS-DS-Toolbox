@@ -56,6 +56,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 grid.style.gridTemplateColumns = 'repeat(5, 1fr)';
             }
         });
+
+        // 增加工具卡片之间的间距1.5倍
+        document.querySelectorAll('.list-navs').forEach(grid => {
+            // 获取当前间距值
+            const currentGap = getComputedStyle(grid).gap;
+            // 如果间距值不为0，计算1.5倍的间距
+            if (currentGap && currentGap !== '0px') {
+                const gapValue = parseFloat(currentGap);
+                if (!isNaN(gapValue)) {
+                    const newGap = gapValue * 1.5 + 'px';
+                    grid.style.gap = newGap;
+                }
+            } else {
+                // 如果间距为0，设置基础间距的1.5倍
+                const baseGap = isMobile ? 
+                    parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--spacing-sm')) : 
+                    parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--spacing-md'));
+                
+                if (!isNaN(baseGap)) {
+                    grid.style.gap = (baseGap * 1.5) + 'px';
+                }
+            }
+        });
     }
     
     // 初始化响应式布局
@@ -268,47 +291,20 @@ function ensureUniformSpacing() {
     // 统一网格间距
     document.querySelectorAll('.list-navs').forEach(grid => {
         grid.style.gridGap = window.innerWidth <= 768 
-            ? 'var(--spacing-sm)' 
-            : 'var(--spacing-md)';
+            ? 'calc(var(--spacing-sm) * 1.5)' 
+            : 'calc(var(--spacing-md) * 1.5)';
     });
-    
-    // 统一链接和项目间距
-    document.querySelectorAll('.navs-link, .category-item').forEach(item => {
-        item.style.padding = window.innerWidth <= 576 
-            ? 'var(--spacing-xs) var(--spacing-sm)' 
-            : 'var(--spacing-sm) var(--spacing-base)';
-        item.style.borderRight = 'var(--card-border)';
-        item.style.borderBottom = 'var(--card-border)';
-    });
-    
-    // 统一图标和文本间距
-    document.querySelectorAll('.navs-link-logo, .category-item-icon').forEach(icon => {
-        icon.style.marginRight = window.innerWidth <= 576 
-            ? 'var(--spacing-xs)' 
-            : 'var(--spacing-sm)';
-    });
-    
-    // 统一标题和描述间距
-    document.querySelectorAll('.navs-link-info h3, .category-item-info h3').forEach(title => {
-        title.style.marginBottom = 'var(--spacing-xs)';
-    });
-    
-    // 统一页脚和标题页间距
-    document.querySelectorAll('.site-footer .footer-content, .page-title .footer-content').forEach(content => {
-        content.style.padding = window.innerWidth <= 768 
-            ? 'var(--spacing-sm) 0' 
-            : 'var(--spacing-base) 0';
-    });
-    
-    // 统一社交链接间距
-    document.querySelectorAll('.social-links a').forEach(link => {
-        link.style.margin = `0 var(--spacing-xs)`;
-    });
-    
-    // 修复页脚与内容之间的间距
-    const siteFooter = document.querySelector('.site-footer');
-    if (siteFooter) {
-        siteFooter.style.marginTop = '0';
+
+    // 设置页面标题与常用工具卡片之间的间距为0
+    const commonTools = document.getElementById('common-tools');
+    if (commonTools) {
+        commonTools.style.marginTop = '0';
+    }
+
+    // 设置数据分析·选品卡片与多媒体信息模块之间的间距为0
+    const dataAnalysis = document.getElementById('data-analysis');
+    if (dataAnalysis) {
+        dataAnalysis.style.marginBottom = '0';
     }
 }
 
