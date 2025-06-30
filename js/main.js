@@ -56,29 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 grid.style.gridTemplateColumns = 'repeat(5, 1fr)';
             }
         });
-
-        // 增加工具卡片之间的间距1.5倍
-        document.querySelectorAll('.list-navs').forEach(grid => {
-            // 获取当前间距值
-            const currentGap = getComputedStyle(grid).gap;
-            // 如果间距值不为0，计算1.5倍的间距
-            if (currentGap && currentGap !== '0px') {
-                const gapValue = parseFloat(currentGap);
-                if (!isNaN(gapValue)) {
-                    const newGap = gapValue * 1.5 + 'px';
-                    grid.style.gap = newGap;
-                }
-            } else {
-                // 如果间距为0，设置基础间距的1.5倍
-                const baseGap = isMobile ? 
-                    parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--spacing-sm')) : 
-                    parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--spacing-md'));
-                
-                if (!isNaN(baseGap)) {
-                    grid.style.gap = (baseGap * 1.5) + 'px';
-                }
-            }
-        });
     }
     
     // 初始化响应式布局
@@ -88,34 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', function() {
         initResponsiveLayout();
     });
-
-    // 检查是否已定义CSS变量，如果未定义则添加默认值
-    const root = document.documentElement;
-    const style = getComputedStyle(root);
-    
-    // 检查并设置间距变量
-    if (!style.getPropertyValue('--spacing-xs').trim()) {
-        root.style.setProperty('--spacing-xs', '4px');
-        root.style.setProperty('--spacing-sm', '8px');
-        root.style.setProperty('--spacing-md', '12px');
-        root.style.setProperty('--spacing-base', '16px');
-        root.style.setProperty('--spacing-lg', '20px');
-        root.style.setProperty('--spacing-xl', '24px');
-        root.style.setProperty('--spacing-2xl', '32px');
-        
-        // 卡片样式变量
-        root.style.setProperty('--card-padding', '16px');
-        root.style.setProperty('--card-border-radius', '8px');
-        root.style.setProperty('--card-gap', '16px');
-        root.style.setProperty('--card-shadow', '0 1px 3px rgba(0, 0, 0, 0.1)');
-        root.style.setProperty('--card-border', '1px solid #f0f0f0');
-    }
-    
-    // 加载工具数据
-    loadToolData();
-
-    // 确保界面间距一致
-    ensureUniformSpacing();
 });
 
 // 工具函数
@@ -146,181 +95,61 @@ if (typeof window !== 'undefined') {
 } 
 
 // 加载工具数据
-function loadToolData() {
-    // 使用fetch API请求数据
-    fetch('data/tools.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('网络响应不正常');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // 处理数据
-            renderTools(data);
-        })
-        .catch(error => {
-            console.error('获取工具数据时出错:', error);
-            document.querySelector('.content-area').innerHTML = `
-                <div class="error-message" style="text-align: center; padding: 40px;">
-                    <h3>数据加载失败</h3>
-                    <p>抱歉，工具数据加载失败，请刷新页面重试。</p>
-                    <p>错误详情: ${error.message}</p>
-                </div>
-            `;
-        });
+async function loadToolsData() {
+    try {
+        const response = await fetch('/data/tools.json');
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error loading tools data:', error);
+        return null;
+    }
 }
 
-// 渲染工具数据到页面
-function renderTools(data) {
-    const contentArea = document.querySelector('.content-area');
-    let html = '';
-    
-    // 遍历数据中的每个分类
-    data.categories.forEach(category => {
-        html += `
-        <div id="${category.id}" class="navs-section">
-            <div class="sec-panel">
-                <div class="sec-panel-head">
-                    <h2>${category.name} <small>${category.description || ''}</small></h2>
+// 渲染工具卡片
+function renderToolCard(tool) {
+    return `
+        <a class="category-item" href="${tool.url}" target="_blank" rel="noopener noreferrer">
+            <div class="category-item-icon">
+                <img src="${tool.icon}" alt="${tool.name}">
+            </div>
+            <div class="category-item-info">
+                <h3>${tool.name}</h3>
+                <p>${tool.description}</p>
+            </div>
+        </a>
+    `;
+}
+
+// 渲染分类区域
+function renderCategory(category) {
+    return `
+        <section id="${category.id}" class="navs-section">
+            <div class="category-card">
+                <div class="category-card-head">
+                    <h2>
+                        <span>${category.name}</span> <small>${category.description}</small>
+                    </h2>
                 </div>
-                <div class="sec-panel-body">
-                    <div class="list-navs category-grid">
-        `;
-        
-        // 遍历分类中的所有工具
-        category.tools.forEach(tool => {
-            html += `
-            <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="category-item">
-                <div class="category-item-icon">
-                    <img src="${tool.icon}" alt="${tool.name}" loading="lazy">
-                </div>
-                <div class="category-item-info">
-                    <h3>${tool.name}</h3>
-                    <p>${tool.description}</p>
-                </div>
-            </a>
-            `;
-        });
-        
-        html += `
+                <div class="category-card-body">
+                    <div class="category-grid">
+                        ${category.tools.map(tool => renderToolCard(tool)).join('')}
                     </div>
                 </div>
             </div>
-        </div>
-        `;
-    });
-    
-    // 将生成的HTML插入到内容区域
-    contentArea.innerHTML = html;
-    
-    // 应用统一间距样式
-    applyUniformSpacing();
+        </section>
+    `;
 }
 
-// 应用统一间距
-function applyUniformSpacing() {
-    // 获取所有卡片元素
-    const cards = document.querySelectorAll('.sec-panel');
-    const items = document.querySelectorAll('.category-item');
-    
-    // 统一卡片间距
-    cards.forEach(card => {
-        card.style.marginBottom = 'var(--spacing-lg)';
-    });
-    
-    // 统一项目间距和对齐
-    items.forEach(item => {
-        item.style.padding = 'var(--spacing-sm)';
-    });
-    
-    // 响应式处理
-    if (window.innerWidth <= 768) {
-        document.querySelectorAll('.sec-panel-body').forEach(body => {
-            body.style.padding = 'var(--spacing-sm)';
-        });
-    }
-}
-
-/**
- * 确保所有元素的间距一致性
- * 在页面加载后应用统一间距样式
- */
-function ensureUniformSpacing() {
-    // 统一卡片间距
-    document.querySelectorAll('.sec-panel, .category-card').forEach(card => {
-        card.style.marginBottom = 'var(--spacing-lg)';
-    });
-    
-    // 最后一个卡片特殊处理
-    const lastSection = document.querySelector('.navs-section:last-child');
-    if (lastSection) {
-        lastSection.style.marginBottom = 'var(--spacing-sm)';
-        
-        const lastCards = lastSection.querySelectorAll('.sec-panel, .category-card');
-        if (lastCards.length > 0) {
-            lastCards[lastCards.length - 1].style.marginBottom = 'var(--spacing-sm)';
-        }
-    }
-    
-    // 确保内容区域与页脚间距正确
-    const contentContainer = document.querySelector('.content-container');
-    if (contentContainer) {
-        contentContainer.style.paddingBottom = '0';
-    }
-    
+// 初始化页面
+async function initializePage() {
     const contentArea = document.querySelector('.content-area');
-    if (contentArea) {
-        contentArea.style.marginBottom = '0';
-    }
+    const data = await loadToolsData();
     
-    // 统一卡片头部
-    document.querySelectorAll('.sec-panel-head, .category-card-head').forEach(head => {
-        head.style.padding = window.innerWidth <= 768 
-            ? 'var(--spacing-sm) var(--spacing-base)' 
-            : 'var(--spacing-base) var(--spacing-lg)';
-    });
-    
-    // 统一卡片内容区域
-    document.querySelectorAll('.sec-panel-body').forEach(body => {
-        body.style.padding = window.innerWidth <= 768 
-            ? 'var(--spacing-sm)' 
-            : 'var(--spacing-base)';
-    });
-    
-    // 统一网格间距
-    document.querySelectorAll('.list-navs').forEach(grid => {
-        grid.style.gridGap = window.innerWidth <= 768 
-            ? 'calc(var(--spacing-sm) * 1.5)' 
-            : 'calc(var(--spacing-md) * 1.5)';
-    });
-
-    // 设置页面标题与常用工具卡片之间的间距为0
-    const commonTools = document.getElementById('common-tools');
-    if (commonTools) {
-        commonTools.style.marginTop = '0';
-    }
-
-    // 设置数据分析·选品卡片与多媒体信息模块之间的间距为0
-    const dataAnalysis = document.getElementById('data-analysis');
-    if (dataAnalysis) {
-        dataAnalysis.style.marginBottom = '0';
-    }
-    
-    // 为页面标题模块增加下边距
-    const pageTitle = document.querySelector('.page-title');
-    if (pageTitle) {
-        pageTitle.style.marginBottom = 'var(--spacing-lg)';
-    }
-    
-    // 为多媒体信息模块增加上边距
-    const videoTools = document.getElementById('video-tools');
-    if (videoTools) {
-        videoTools.style.marginTop = 'var(--spacing-lg)';
+    if (data && data.categories) {
+        contentArea.innerHTML = data.categories.map(category => renderCategory(category)).join('');
     }
 }
 
-// 监听窗口大小变化，重新应用统一间距
-window.addEventListener('resize', function() {
-    ensureUniformSpacing();
-}); 
+// 当DOM加载完成后初始化页面
+document.addEventListener('DOMContentLoaded', initializePage); 
